@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="sa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pāṇinian Taddhita Engine — 4.1.83 to 4.2.36</title>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Spectral+SC:wght@400;600&family=Noto+Sans+Devanagari:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #0e0f0d;
+  --bg2:       #141510;
+  --bg3:       #1a1c16;
+  --border:    #2a2d22;
+  --gold:      #c9a84c;
+  --gold2:     #e8c87a;
+  --gold-dim:  rgba(201,168,76,0.12);
+  --gold-glow: rgba(201,168,76,0.06);
+  --text:      #d4cdb8;
+  --text2:     #8a8470;
+  --text3:     #4a4840;
+  --red:       #c06050;
+  --green:     #6a9060;
+  --blue:      #5080a0;
+  --accent:    #a06040;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Spectral',Georgia,serif;
+  font-size:15px;
+  line-height:1.6;
+  display:flex;
+  flex-direction:column;
+}
+
+/* ── HEADER ── */
+header{
+  background:var(--bg2);
+  border-bottom:1px solid var(--border);
+  padding:14px 28px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-shrink:0;
+}
+.header-left{display:flex;flex-direction:column}
+.header-title{
+  font-family:'Spectral SC',serif;
+  font-size:17px;
+  letter-spacing:2px;
+  color:var(--gold2);
+  font-weight:600;
+}
+.header-scope{
+  font-size:11px;
+  letter-spacing:3px;
+  color:var(--text3);
+  margin-top:2px;
+  font-family:'Noto Sans Devanagari',sans-serif;
+}
+.shloka{
+  font-style:italic;
+  font-size:12px;
+  color:var(--text3);
+  text-align:right;
+  font-family:'Noto Sans Devanagari',sans-serif;
+}
+
+/* ── LAYOUT ── */
+.layout{display:flex;flex:1;overflow:hidden}
+
+/* ── SIDEBAR ── */
+aside{
+  width:240px;
+  background:var(--bg2);
+  border-right:1px solid var(--border);
+  overflow-y:auto;
+  flex-shrink:0;
+  padding-bottom:20px;
+}
+.side-section{
+  padding:14px 16px 6px;
+  font-size:9px;
+  letter-spacing:3px;
+  color:var(--text3);
+  text-transform:uppercase;
+  font-family:'Spectral SC',serif;
+}
+.adh-btn{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  width:100%;
+  padding:9px 16px;
+  background:none;
+  border:none;
+  border-left:3px solid transparent;
+  color:var(--text2);
+  cursor:pointer;
+  text-align:left;
+  font-family:inherit;
+  transition:all .15s;
+  position:relative;
+}
+.adh-btn:hover:not(:disabled){background:var(--gold-glow);color:var(--text)}
+.adh-btn.active{
+  background:var(--gold-dim);
+  border-left-color:var(--gold);
+  color:var(--gold2);
+}
+.adh-btn:disabled{opacity:0.35;cursor:not-allowed}
+.adh-icon{font-size:15px;width:20px;text-align:center;flex-shrink:0;margin-top:1px}
+.adh-san{
+  font-family:'Noto Sans Devanagari',sans-serif;
+  font-size:13px;
+  display:block;
+  line-height:1.3;
+}
+.adh-eng{font-size:10px;color:var(--text3);display:block;margin-top:2px;letter-spacing:.5px}
+.adh-badge{
+  font-size:9px;
+  padding:1px 5px;
+  border-radius:2px;
+  margin-left:auto;
+  flex-shrink:0;
+}
+.badge-ok{background:rgba(106,144,96,.2);color:var(--green)}
+.badge-soon{background:rgba(74,72,64,.3);color:var(--text3)}
+
+/* ── MAIN ── */
+main{flex:1;overflow-y:auto;padding:24px 28px}
+
+/* ── CARD ── */
+.card{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:4px;
+  margin-bottom:18px;
+  overflow:hidden;
+}
+.card-head{
+  padding:11px 18px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:var(--bg3);
+}
+.card-title{color:var(--gold);font-family:'Spectral SC',serif;font-size:13px;letter-spacing:1px}
+.card-sub{font-size:11px;color:var(--text3);margin-left:4px}
+.card-body{padding:18px}
+
+/* ── INPUT ── */
+.input-row{display:flex;gap:10px;margin-bottom:14px}
+.deva-input{
+  flex:1;
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:3px;
+  padding:10px 16px;
+  color:var(--text);
+  font-family:'Noto Sans Devanagari',sans-serif;
+  font-size:22px;
+  outline:none;
+  transition:border-color .2s;
+}
+.deva-input:focus{border-color:rgba(201,168,76,.4);box-shadow:0 0 0 2px rgba(201,168,76,.06)}
+.btn-derive{
+  background:var(--gold);
+  border:none;
+  border-radius:3px;
+  padding:0 22px;
+  color:#0e0f0d;
+  font-weight:600;
+  font-size:13px;
+  cursor:pointer;
+  font-family:'Spectral SC',serif;
+  letter-spacing:1px;
+  transition:background .15s;
+  white-space:nowrap;
+}
+.btn-derive:hover{background:var(--gold2)}
+
+/* ── CHIPS ── */
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
+.chip{
+  padding:3px 10px;
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-radius:2px;
+  font-size:12px;
+  color:var(--text2);
+  cursor:pointer;
+  font-family:'Noto Sans Devanagari',sans-serif;
+  transition:all .15s;
+}
+.chip:hover{border-color:rgba(201,168,76,.3);color:var(--text)}
+.chip.active{background:var(--gold-dim);border-color:rgba(201,168,76,.35);color:var(--gold2)}
+
+/* ── QUESTIONS ── */
+.q-label{
+  font-size:10px;
+  letter-spacing:2px;
+  color:var(--text3);
+  text-transform:uppercase;
+  margin-bottom:7px;
+  display:block;
+  font-family:'Spectral SC',serif;
+}
+.radio-group{display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
+.radio-opt{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:7px 13px;
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-radius:3px;
+  cursor:pointer;
+  font-size:13px;
+  color:var(--text2);
+  transition:all .15s;
+  font-family:'Noto Sans Devanagari',sans-serif;
+}
+.radio-opt:hover{background:var(--gold-glow);color:var(--text)}
+.radio-opt.sel{
+  background:var(--gold-dim);
+  border-color:rgba(201,168,76,.3);
+  color:var(--gold2);
+}
+.radio-dot{
+  width:12px;height:12px;
+  border-radius:50%;
+  border:2px solid var(--text3);
+  flex-shrink:0;
+  transition:all .15s;
+}
+.radio-opt.sel .radio-dot{background:var(--gold);border-color:var(--gold)}
+
+/* ── RESULT ── */
+.result-box{
+  background:var(--bg);
+  border:1px solid #2a3020;
+  border-radius:5px;
+  padding:22px 26px;
+  margin-top:6px;
+  animation:slideIn .3s ease;
+}
+@keyframes slideIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.res-sutra-no{
+  display:inline-block;
+  font-size:10px;
+  letter-spacing:2px;
+  color:var(--gold);
+  background:var(--gold-dim);
+  padding:3px 10px;
+  border-radius:2px;
+  margin-bottom:10px;
+  font-family:'Spectral SC',serif;
+}
+.res-sutra-text{
+  font-size:17px;
+  color:var(--text);
+  margin-bottom:16px;
+  font-family:'Noto Sans Devanagari',sans-serif;
+}
+.res-final{
+  text-align:center;
+  font-size:38px;
+  color:#f0e8d0;
+  padding:18px 0;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  margin-bottom:16px;
+  font-family:'Noto Sans Devanagari',sans-serif;
+  letter-spacing:1px;
+}
+.res-pratyaya{
+  text-align:center;
+  margin-bottom:18px;
+}
+.pratyaya-badge{
+  display:inline-block;
+  padding:3px 14px;
+  background:var(--gold-dim);
+  border:1px solid rgba(201,168,76,.25);
+  border-radius:2px;
+  font-size:12px;
+  color:var(--gold);
+  font-family:'Noto Sans Devanagari',sans-serif;
+  letter-spacing:.5px;
+}
+.deriv-label{
+  font-size:10px;
+  letter-spacing:2px;
+  color:var(--text3);
+  text-transform:uppercase;
+  margin-bottom:8px;
+  font-family:'Spectral SC',serif;
+}
+.deriv-steps{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:6px;
+  margin-bottom:16px;
+  background:var(--bg3);
+  padding:10px 14px;
+  border-radius:3px;
+  border:1px solid var(--border);
+}
+.step{
+  font-size:13px;
+  color:var(--text2);
+  padding:3px 10px;
+  background:rgba(255,255,255,.03);
+  border-radius:2px;
+  border:1px solid rgba(255,255,255,.06);
+  font-family:'Noto Sans Devanagari',sans-serif;
+}
+.step.final{
+  color:#f0e8d0;
+  background:rgba(201,168,76,.1);
+  border-color:rgba(201,168,76,.35);
+  font-weight:500;
+}
+.step-rule{
+  font-size:10px;
+  color:var(--text3);
+  font-family:'Spectral',serif;
+  font-style:italic;
+  padding:2px 7px;
+  border:1px dashed var(--border);
+  border-radius:2px;
+}
+.arrow{color:var(--gold);font-size:11px;opacity:0.7}
+.notes-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.note-box{
+  padding:10px 14px;
+  background:rgba(255,255,255,.02);
+  border-radius:3px;
+  border-left:3px solid var(--gold);
+}
+.note-box.eng{border-left-color:var(--blue)}
+.note-title{
+  font-size:9px;
+  letter-spacing:2px;
+  color:var(--text3);
+  margin-bottom:4px;
+  display:block;
+  font-family:'Spectral SC',serif;
+}
+.note-text{
+  font-size:12px;
+  color:var(--text2);
+  line-height:1.6;
+  font-family:'Noto Sans Devanagari',sans-serif;
+}
+.error-box{
+  padding:12px 16px;
+  background:rgba(192,96,80,.08);
+  border:1px solid rgba(192,96,80,.2);
+  border-radius:3px;
+  color:#c08070;
+  font-size:13px;
+  margin-top:10px;
+  font-family:'Noto Sans Devanagari',sans-serif;
+}
+
+/* ── HISTORY ── */
+.hist-wrap{display:flex;flex-wrap:wrap;gap:7px;padding:12px 18px}
+.hist-btn{
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-radius:3px;
+  padding:5px 12px;
+  font-family:'Noto Sans Devanagari',sans-serif;
+  font-size:13px;
+  cursor:pointer;
+  color:var(--text2);
+  display:flex;
+  gap:8px;
+  align-items:center;
+  transition:all .15s;
+}
+.hist-btn:hover{border-color:rgba(201,168,76,.3);color:var(--text)}
+.hist-result{color:var(--gold);font-size:11px}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:5px;background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
+@media(max-width:700px){
+  aside{width:190px}
+  main{padding:16px}
+  .notes-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <div class="header-title">Pāṇinian Taddhita Master Engine</div>
+    <div class="header-scope">4.1.83 – 4.1.152 · 4.2.1 – 4.2.36 · अष्टाध्यायी</div>
+  </div>
+  <div class="shloka">॥ श्रीः ॥</div>
+</header>
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+<aside>
+  <div class="side-section">अधिकारः</div>
+  <div id="adhList"></div>
+</aside>
+
+<!-- MAIN -->
+<main>
+  <div class="card">
+    <div class="card-head">
+      <span id="adhIcon" style="font-size:16px">👨‍👦</span>
+      <span class="card-title" id="adhTitle">तस्यापत्यम्</span>
+      <span class="card-sub" id="adhSub">4.1.92+</span>
+    </div>
+    <div class="card-body">
+      <div class="input-row">
+        <input class="deva-input" id="stemInput" placeholder="शब्दं लिखतु…" autocomplete="off" spellcheck="false">
+        <button class="btn-derive" onclick="derive()">व्युत्पत्तिः</button>
+      </div>
+      <div class="chips" id="chipsRow"></div>
+      <div id="questionsArea"></div>
+      <div id="resultArea"></div>
+    </div>
+  </div>
+
+  <div class="card" id="histCard" style="display:none">
+    <div class="card-head">
+      <span class="card-title" style="font-size:11px;letter-spacing:2px;color:var(--text3)">पूर्वपरीक्षाः</span>
+    </div>
+    <div class="hist-wrap" id="histWrap"></div>
+  </div>
+</main>
+</div>
+
+<script>
+// ============================================================
+// ॥ श्रीः ॥  Pāṇinian Taddhita Master Engine
+// ============================================================
+
+// ── Sandhi Engine ────────────────────────────────────────────
+const VI={'अ':'आ','आ':'आ','इ':'ऐ','ई':'ऐ','उ':'औ','ऊ':'औ','ऋ':'आर्','ॠ':'आर्','ए':'ऐ','ऐ':'ऐ','ओ':'औ','औ':'औ'};
+const MA={'ा':'ा','ि':'ै','ी':'ै','ु':'ौ','ू':'ौ','ृ':'ार्','ॄ':'ार्','े':'ै','ै':'ै','ो':'ौ','ौ':'ौ'};
+const CO="कखगघङचछजझञटठडढणतथदधनपफबभमयरलवशषसह";
+
+function applyAn(stem){
+  let vs="",vf=false;const ch=[...stem];let i=0;
+  while(i<ch.length){const c=ch[i];
+    if(!vf){if(VI[c]){vs+=VI[c];vf=true;i++;continue;}
+      if(CO.includes(c)&&i+1<ch.length){const n=ch[i+1];
+        if(n==='्'){vs+=c+n;i+=2;continue;}
+        if(MA[n]){vs+=c+(MA[n]==='ार्'?'ार्':MA[n]);vf=true;i+=2;continue;}
+        vs+=c+'ा';vf=true;i++;continue;}
+      if(CO.includes(c)){vs+=c+'ा';vf=true;i++;continue;}}
+    vs+=c;i++;}
+  let f=vs;
+  if(['ा','ि','ी','े','ै'].some(m=>f.endsWith(m)))f=f.slice(0,-1);
+  else if(['ु','ू'].some(m=>f.endsWith(m)))f=f.slice(0,-1)+'व';
+  else if(f.endsWith('न्'))f=f.slice(0,-2);
+  else if(f.endsWith('्'))f=f.slice(0,-1);
+  return f;
+}
+function applyInj(stem){
+  let vs="",vf=false;const ch=[...stem];let i=0;
+  while(i<ch.length){const c=ch[i];
+    if(!vf){if(VI[c]){vs+=VI[c];vf=true;i++;continue;}
+      if(CO.includes(c)&&i+1<ch.length){const n=ch[i+1];
+        if(n==='्'){vs+=c+n;i+=2;continue;}
+        if(MA[n]){vs+=c+(MA[n]==='ार्'?'ार्':MA[n]);vf=true;i+=2;continue;}
+        vs+=c+'ा';vf=true;i++;continue;}
+      if(CO.includes(c)){vs+=c+'ा';vf=true;i++;continue;}}
+    vs+=c;i++;}
+  let f=vs;
+  if(['ा','ि','ी','े','ै','ो','ौ'].some(m=>f.endsWith(m)))f=f.slice(0,-1)+'ि';
+  else if(['ु','ू'].some(m=>f.endsWith(m)))f=f.slice(0,-1)+'वि';
+  else if(f.endsWith('न्'))f=f.slice(0,-2)+'ि';
+  else if(f.endsWith('्'))f=f.slice(0,-1)+'ि';
+  else f=f+'ि';
+  return f;
+}
+function anDeriv(stem,suf='म्'){const b=applyAn(stem);return`${stem} →[७.२.११७]→ ${b} →[अण्]→ ${b}${suf}`;}
+
+function isAkarant(w){
+  const m=['ा','ि','ी','ु','ू','ृ','ॄ','े','ै','ो','ौ','्','ः','ं'];
+  if(w.endsWith('अ'))return true;
+  if(!m.includes(w[w.length-1]))return true;
+  return false;
+}
+
+// ── All Data ────────────────────────────────────────────────
+const ashvapati_data={"अश्वपति":"आश्वपत","अक्षपति":"आक्षपत","ज्ञानपति":"ज्ञानपत","शतपति":"शातपत","गणपति":"गाणपत","स्थानपति":"स्थाणपत","यज्ञपति":"याज्ञपत","राष्ट्रपति":"राष्ट्रपत","कुलपति":"कौलपत","गृहपति":"गार्हपत","पशुपति":"पाशुपत","धान्यपति":"धान्यपत","धन्वपति":"धान्वपत","बन्धुपति":"बान्धुपत","धर्मपति":"धार्मपत","सभापति":"साभापत","प्राणपति":"प्राणपत","क्षेत्रपति":"क्षैत्रपत"};
+const dityadi_list=["दिति","अदिति","आदित्य"];
+const utsadi_gana=["उत्स","उदपान","विकर","विनद","महानद","मदानस","महाप्राण","तरुण","तलुन","वष्कय","पृथिवी","धेनु","पंक्ति","जगती","त्रिष्टुप्","अनुष्टुभ्","जनपद","भरत","उशीनर","ग्रीष्म","पीलुकुण","उदस्थान","पृषत्","भल्लकीय","रथन्तर","मध्यंदिन","बृहत्","महत्","सत्त्वत्","कुरु","पञ्चाल","इन्द्रावसान","उष्णिह्","ककुभ्","सुवर्ण","देव"];
+const agni_kali_list=["अग्नि","कलि"];
+const bahvadi_data={"बाहु":"बाहवि","उपबाहु":"औपबाहवि","उपवाकु":"औपवाकवि","निवाकु":"नैवाकवि","शिवाकु":"शैवाकवि","वटाकु":"वाटाकवि","उपनिन्दु":"औपनिन्दवि","उपबिन्दु":"औपबिन्दवि","वृषली":"वार्षलि","वृकला":"वार्कलि","चूडा":"चौडालि","बलाका":"बालाकि","मूषिका":"मौषिकि","कुशला":"कौशलि","भगला":"भागलि","छगला":"छागलि","ध्रुवका":"ध्रौवकि","धुवका":"धौवकि","सुमित्रा":"सौमित्रि","दुर्मित्रा":"दौर्मित्रि","पुष्करसद्":"पौष्करसति","अनुहरत्":"आनुहरति","देवशर्मन्":"दैवशर्मि","अग्निशर्मन्":"आग्निशर्मि","भद्रशर्मन्":"भाद्रशर्मि","सुशर्मन्":"सौशर्मि","कुनामन्":"कौनामि","सुनामन्":"सौनामि","पञ्चन्":"पाञ्चि","सप्तन्":"साप्ति","अष्टन्":"आष्टि","अमितौजस्":"आमितौजि","सुधावत्":"सौधावति","उदञ्चु":"औदञ्चवि","शिरस्":"हास्तिशीर्ष","माष":"माषि","शराविन्":"शारावि","मरीची":"मारीचि","क्षेमवृद्धिन्":"क्षैमवृद्धि","नगरमर्दिन्":"नागरमर्दि","लोमन्":"और्ध्वलौमि","अजीगर्त":"आजीगर्त्ति","कृष्ण":"कार्ष्णि","युधिष्ठिर":"यौधिष्ठिर","अर्जुन":"आर्जुनि","साम्ब":"साम्बि","गद":"गादि","प्रद्युम्न":"प्राद्युम्नि","राम":"रामि","उदङ्क":"औदङ्कि","वृक":"वार्कि","चूडाल":"चौडालि","सलक":"सालकि","श्वशुर":"श्वाशुरि","उदक":"औदकि","जमदग्नि":"जामदग्नि","बोध":"बौधि"};
+const sudhatri_data={"सुधातृ":"सौधातकि","व्यास":"वैयासकि","वरुड":"वारुडकि","निषाद":"नैषादकि","चण्डाल":"चाण्डालकि","बिम्ब":"बैम्बकि"};
+const kunjadi_data={"कुञ्ज":{sg:"कौञ्जायन्य",pl:"कौञ्जायन"},"ब्रध्र":{sg:"ब्राध्नायन्य",pl:"ब्राध्नायन"},"शङ्ख":{sg:"शाङ्खायन्य",pl:"शाङ्खायन"},"भस्मन्":{sg:"भास्मायन्य",pl:"भास्मायन"},"गण":{sg:"गाणायन्य",pl:"गाणायन"},"लोमन्":{sg:"लौमायन्य",pl:"लौमायन"},"शत":{sg:"शाठायन्य",pl:"शाठायन"},"शाक":{sg:"शाकायन्य",pl:"शाकायन"},"शुण्डा":{sg:"शौण्डायन्य",pl:"शौण्डायन"},"शुभ":{sg:"शौभायन्य",pl:"शौभायन"},"विपाश्":{sg:"वैपाशायन्य",pl:"वैपाशायन"},"स्कन्द":{sg:"स्कान्दायन्य",pl:"स्कान्दायन"},"स्कम्भ":{sg:"स्ताम्भायन्य",pl:"स्ताम्भायन"},"शकट":{sg:"शाकटायन्य",pl:"शाकटायन"},"शुम्भा":{sg:"शौम्भायन्य",pl:"शौम्भायन"},"शिव":{sg:"शैवायन्य",pl:"शैवायन"}};
+const nadadi_data={"नड":"नाडायन","चर":"चारायण","बक":"बाकायन","मुञ्ज":"मौञ्चायन","इतिक":"ऐतिकायन","उपक":"औपकायन","नर":"नारायण","मित्र":"मैत्रायण","द्वीप":"द्वैपायन","काश्यप":"काश्यपायन","काव्य":"काव्यायन","अज":"आजायन","लिगु":"लैगवायन","चित्र":"चैत्रायण","कुमार":"कौमारायण","क्रोष्टु":"क्रौष्टायन","लोह":"लौहायन","स्तम्भ":"स्ताम्भायन","अग्र":"आग्रायण","तृण":"तार्णायन","शकट":"शाकटायन","ऋक्":"आर्चायन","सायक":"सायकायन","दास":"दासायन","प्राण":"प्राणायन"};
+const gargadi_data={"गर्ग":"गार्ग्य","वत्स":"वात्स्य","वाजासे":"वाज्य","संस्कृति":"साङ्कृत्य","अज":"आज्य","व्याघ्रपात्":"वैयाघ्रपाद्य","अगस्ति":"आगस्त्य","पुलस्ति":"पौलस्त्य","चमस":"चामस्य","रेभ":"रैभ्य","अग्निवेश":"आग्निवेश्य","शंख":"शाङ्खय","शट":"शाठ्य","शक":"शाक्य","धूम":"धौम्य","अवट":"आवट्य","मनस्":"मानस्य","धनंजय":"धानञ्जय्य","वृक्ष":"वार्क्ष्य","लोहित":"लौहित्य","बभ्र":"बाभ्रव्य","वल्गु":"वाल्गव्य","मण्डु":"माण्डव्य","गण्डु":"गाण्डव्य","शंकु":"शाङ्कव्य","लिगु":"लैगव्य","मनु":"मानव्य","तन्तु":"तान्तव्य","कथक":"काथक्य","कन्थक":"कान्थक्य","ऋक्ष":"आर्क्ष्य","तण्ड":"ताण्ड्य","वतण्ड":"वातण्ड्य","भूत":"भौत्य","कण्व":"काण्व्य","शकल":"शाकल्य","यज्ञवल्क":"याज्ञवल्क्य","शण्डिल":"शाण्डिल्य","मुद्गल":"मौद्गल्य","जमदग्नि":"जामदग्न्य","पराशर":"पाराशर्य","उलूक":"औलूक्य","भिषज":"भैषज्य","दल्भ":"दाल्भ्य","चेकित":"चैकित्य","संहित":"साहित्य","पथ":"पाथ्य"};
+const bidadi_data={"बिद":"बैद","उर्व":"और्व","कश्यप":"काश्यप","कुशिक":"कौशिक","भरद्वाज":"भारद्वाज","उपमन्यु":"औपमन्यव","किलात":"कैलात","कन्दर्प":"कान्दर्प","विश्वानर":"वैश्वानर","ऋषिषेण":"आर्षिषेण","ऋतभाग":"आर्तभाग","हर्यश्व":"हार्यश्व","प्रियक":"प्रैयक","आपस्तम्ब":"आपस्तम्ब","शरद्वत्":"शारद्वत","शुनक":"शौनक","धेनु":"धैनव","गोपवन":"गौपवन","शिग्रु":"शैग्रव","बिन्दु":"बैन्दव","शमिक":"शामिक","हरित":"हारित","विष्णु":"वैष्णव","बुद्ध":"बौद्ध","प्रतिबोध":"प्रातिबोध","रचित":"राचित","निषाद":"नैषाद","शबर":"शाबर","अलस":"आलस","मठर":"माठर","मृदु":"मार्दव","पुनर्भू":"पौनर्भव","पुत्र":"पौत्र","दुहितृ":"दौहित्र","ननान्दृ":"नानान्द्र","परस्त्री":"पारशव"};
+const non_rishi_list=["पुत्र","दुहितृ","ननान्दृ","परस्त्री"];
+const drona_data={"द्रोण":["द्रौणायन","द्रौणि"],"पर्वत":["पार्वतायन","पार्वति"],"जीवन्त":["जैवन्तायन","जैवन्ति"]};
+const kapibodha_data={"कपि":"काप्य","बोध":"बौध्य"};
+const ashvadi_data={"अश्व":"आश्वायन","अश्मन्":"आश्मायन","शंख":"शाङ्खायन","शूद्रक":"शौद्रकायन","रोहिण":"रौहिणायन","बस्त":"बास्तायन","प्रकृत":"प्राकृतायन","क्षान्त":"क्षान्तायन","काश":"काशायन","तीक्ष्ण":"तैक्ष्णायन","अर्क":"आर्कायन","चक्र":"चाक्रायन","श्रविष्ठ":"श्राविष्ठायन","पवित्र":"पावित्रायण","श्याम":"श्यामायन","धूम":"धौमायन","धूम्र":"धौम्रायण","विश्वानर":"वैश्वानरायण","कुट":"कौटायन","जन":"जानायन","ग्रीष्म":"ग्रैष्मायण","अर्ह":"आर्हायन","कित":"कैतायन","विशाल":"वैशालायन","गिरि":"गैरायण","चपल":"चापलायन","कुल":"कौलायन","नड":"नाडायन","नत्त":"नात्तायन","आत्रेय":"आत्रेयायन","शप":"शापायन","जात":"जातायन","भरद्वाज":"भारद्वाजायन"};
+const shivadi_data={"शिव":"शैव","प्रोष्ठ":"प्रौष्ठ","चण्ड":"चाण्ड","जम्भ":"जाम्भ","भूरि":"भौर","दण्ड":"दाण्ड","कुठार":"कौठार","ककुभ्":"काकुभ","सुख":"सौख","मुनि":"मौन","ककुत्स्थ":"काकुत्स्थ","रोध":"रौध","कपिंजल":"कापिंजल","खंजन":"खाञ्जन","वतण्ड":"वातण्ड","परिल":"पारिल","पिष्ट":"पैष्ट","हैहय":"हैहय","गोपिका":"गौपिक","कपिलिका":"कापिलिक","जटिलिका":"जाटिलिक","बधिरिका":"बाधिरिक","वृष्णिक":"वार्ष्णिक","रेख":"रैख","विटप":"वैटप","पिटक":"पैटक","ऊर्णनाभ":"और्णनाभ","जरत्कारु":"जारत्कारव","पृथा":"पार्थ","गंगा":"गाङ्ग","विपाश":"वैपाश","यस्क":"यास्क","लह्य":"लाह्य","द्रुह्य":"द्रौह्य","पर्ण":"पार्ण","भूमि":"भौम","इला":"ऐल","सपत्नी":"सापत्न","त्रिवेणी":"त्रैवेण","रोहितिक":"रौहितिक","राजल":"राजल","तडाक":"ताडाक"};
+const avriddha_nadi={"यमुना":"यामुन","सरस्वती":"सारस्वत","नर्मदा":"नार्मद","इरावती":"ऐरावत","वितस्ता":"वैतस्त","सुभद्रा":"सौभद्र","शिक्षिता":"शैक्षित","चिन्तिता":"चैन्तित","संस्कृता":"सांस्कृत","हिडिम्बा":"हैडिम्ब"};
+const rishi_list=["वसिष्ठ","विश्वामित्र","भरद्वाज"];
+const andhaka_list=["श्वफल्क","रन्धस्"];
+const vrishni_list=["वसुदेव","अनिरुद्ध"];
+const kuru_list=["नकुल","सहदेव","भीष्म","कर्ण","धृतराष्ट्र","युधिष्ठिर","अर्जुन","भीमसेन"];
+const kurunadi_nya={"अर्जुन":"आर्जुन्य","युधिष्ठिर":"यौधिष्ठिर्य","साम्ब":"साम्ब्य","प्रद्युम्न":"प्राद्युम्न्य","कृष्ण":"कार्ष्ण्य"};
+const color_meanings={"शुक्ल":"शुक्लवर्णः","शुभ्र":"शुक्लवर्णः","शुचि":"शुक्लवर्णः","श्वेत":"शुक्लवर्णः","विशद":"शुक्लवर्णः","पाण्डर":"शुक्लवर्णः","अवदात":"शुक्लवर्णः","सित":"शुक्लवर्णः","धवल":"शुक्लवर्णः","हरिण":"पीतसंवलितशुक्लः","पाण्डुर":"पीतसंवलितशुक्लः","पाण्डु":"पीतसंवलितशुक्लः","धूसर":"ईषद्धवलवर्णः","कृष्ण":"कृष्णवर्णः","नील":"कृष्णवर्णः","असित":"कृष्णवर्णः","श्याम":"कृष्णवर्णः","काल":"कृष्णवर्णः","श्यामल":"कृष्णवर्णः","मेचक":"कृष्णवर्णः","पीत":"पीतवर्णः","गौर":"पीतवर्णः","पालाश":"हरितवर्णः","हरित":"हरितवर्णः","लोहित":"रक्तवर्णः","रोहित":"रक्तवर्णः","रक्त":"रक्तवर्णः","मञ्जिष्ठ":"रक्तवर्णः","मञ्जिष्ठा":"रक्तवर्णः","कुसुम्भ":"रक्तवर्णः","शोण":"अधिकरक्तवर्णः","अरुण":"ईषद्रक्तवर्णः","पाटल":"श्वेतरक्तवर्णः","श्याव":"कृष्णपीतवर्णः","कपिश":"कृष्णपीतवर्णः","कषाय":"मटमैला","धूम्र":"कृष्णलोहितवर्णः","कडार":"कपिलवर्णः","कपिल":"कपिलवर्णः","पिङ्ग":"कपिलवर्णः","पिशङ्ग":"कपिलवर्णः","कद्रु":"कपिलवर्णः","पिङ्गल":"कपिलवर्णः","चित्र":"नानावर्णाः","किर्मीर":"नानावर्णाः","कल्माष":"नानावर्णाः","शबल":"नानावर्णाः","कर्बुर":"नानावर्णाः","नीली":"नीलवर्णः","हरिद्रा":"पीतवर्णः","महारजन":"रक्त-पीतवर्णः","लाक्षा":"रक्तवर्णः","शकल":"कृष्णवर्णः","कर्दम":"मृत्तिकावर्णः"};
+const nakshatra_data={"पुष्य":"पौष","तिष्य":"तैष","मघा":"माघ","अश्विनी":"आश्विन","कृत्तिका":"कार्त्तिक","रोहिणी":"रौहिण","मृगशीर्ष":"मार्गशीर्ष","आर्द्रा":"आर्द्र","पुनर्वसु":"पौनर्वसव","फाल्गुनी":"फाल्गुन","विशाखा":"वैशाख","अनुराधा":"आनूराध","ज्येष्ठा":"ज्यैष्ठ","मूल":"मौल","अषाढा":"आषाढ","श्रवण":"श्रावण","धनिष्ठा":"धानिष्ठ","शतभिषक्":"शातभिषज","भाद्रपदा":"भाद्रपद","रेवती":"रैवत","चित्रा":"चैत्र","हस्त":"हास्त","स्वाती":"स्वातिक","उत्तरा":"औत्तर","अश्वत्थ":"आश्वत्थ"};
+const dvandva_data={"राधानुराधा":"राधानुराधीय","तिष्यपुनर्वसु":"तिष्यपुनर्वसवीय"};
+const drishtam_sama_data={"वसिष्ठ":"वासिष्ठ","विश्वामित्र":"वैश्वामित्र","क्रुञ्च":"क्रौञ्च"};
+const parivrita_data={"वस्त्र":"वास्त्र","कम्बल":"काम्बल","चर्मन्":"चार्मण"};
+const amatra_data={"अम्बरीष":"भर्जनपात्रम्","भ्राष्ट्र":"भर्जनपात्रम्","कन्दु":"मद्यपात्रम्","स्वेदनी":"मद्यपात्रम्","अलिञ्जर":"महाकुम्भः","मणिक":"महाकुम्भः","कर्करी":"गलन्तिका","आलु":"गलन्तिका","पिठर":"स्थाली","स्थाली":"स्थाली","उखा":"स्थाली","कुण्ड":"स्थाली","कलश":"घटः","घट":"घटः","कुट":"घटः","निप":"घटः","शराव":"पात्रभेदः","वर्धमानक":"पात्रभेदः","मल्लिका":"पात्रभेदः","कर्पर":"पात्रभेदः","कंस":"पानपात्रम्","पानभाजन":"पानपात्रम्","कुतुप":"अल्पतैलपात्रम्","आवपन":"पात्रम्","भाण्ड":"पात्रम्","पात्र":"पात्रम्","अमत्र":"पात्रम्","भाजन":"पात्रम्","दर्वि":"दर्विः","कम्बि":"दर्विः","खजाका":"दर्विः","तर्दू":"दर्विभेदः","दारुहस्तक":"दर्विभेदः"};
+const devata_yat_list=["वायु","ऋतु","पितृ","उषस्"];
+const devata_yat_forms={"वायु":"वायव्य","ऋतु":"ऋतव्य","पितृ":"पित्र्य","उषस्":"उषस्य"};
+const devata_yat_cha_list=["द्यावापृथिवी","शुनासीर","मरुत्वत्","अग्नीषोम","वास्तोष्पति","गृहमेध"];
+const devata_yat_cha_forms={"द्यावापृथिवी":["द्यावापृथिव्य","द्यावापृथिवीय"],"शुनासीर":["शूनासीर्य","शूनासीरीय"],"मरुत्वत्":["मरुत्वत्य","मरुत्वतीय"],"अग्नीषोम":["अग्निषोम्य","अग्निषोमीय"],"वास्तोष्पति":["वास्तोष्पत्य","वास्तोष्पतीय"],"गृहमेध":["गृहमेध्य","गृहमेधीय"]};
+const devata_cha_vartika=["पैङ्गाक्षीपुत्र","तार्णबिन्दु","तृणबिन्दु"];
+const devata_kala_data={"मास":["ठञ् (इक)","मासिक"],"वसन्त":["अण्","वासन्त"],"प्रावृष्":["एण्य","प्रावृषेण्य"]};
+const devata_thanj_data={"महाराज":"माहाराजिक","प्रोष्ठपद":"प्रौष्ठपदिक"};
+const pati_uttarapada_devata={"बृहस्पति":["बार्हस्पत्य","बार्हस्पत्"],"प्रजापति":["प्राजापत्य","प्राजापत्"]};
+const ashvapati_devata={"पशुपति":"पाशुपत","गृहपति":"गार्हपत","यज्ञपति":"याज्ञपत","राष्ट्रपति":"राष्ट्रपत","गणपति":"गाणपत","सभापति":"साभापत","क्षेत्रपति":"क्षैत्रपत"};
+const dhak_devata={"अग्नि":["आग्नि","आग्नेय"],"कलि":["कालि","कालेय"]};
+
+// ── Adhikāra config ─────────────────────────────────────────
+const ADHIKARAS=[
+  {id:"apatya_gotra",san:"तस्यापत्यम्",       eng:"Apatya / Gotra — 4.1.92+",   icon:"👨‍👦",ok:true,
+   presets:["श्रीधर","वसिष्ठ","गर्ग","शिव","पीला","बाहु","अग्नि","दिति","विष्णु","पुत्र","द्रोण","यमुना"]},
+  {id:"rakta",san:"तेन रक्तं रागात्",         eng:"Coloured by — 4.2.1",         icon:"🎨",ok:true,
+   presets:["लोहित","कृष्ण","पीत","कषाय","नीली","हरिद्रा","शकल","मञ्जिष्ठ"]},
+  {id:"nakshatra_time",san:"नक्षत्रेण युक्तः कालः",eng:"Nakshatra-Time — 4.2.3",icon:"⭐",ok:true,
+   presets:["पुष्य","मघा","रोहिणी","अश्विनी","श्रवण","कृत्तिका","चित्रा","मूल"]},
+  {id:"drishtam_sama",san:"दृष्टं साम",         eng:"Sāman — 4.2.7",              icon:"🎵",ok:true,
+   presets:["वसिष्ठ","क्रुञ्च","कलि","वामदेव","उशनस्"]},
+  {id:"parivrito_rathah",san:"परिवृतो रथः",    eng:"Covered Chariot — 4.2.10",   icon:"🏇",ok:true,
+   presets:["वस्त्र","कम्बल","चर्मन्","पाण्डुकम्बल"]},
+  {id:"tatroddhritam",san:"तत्रोद्धृतममत्रेभ्यः",eng:"Vessel Food — 4.2.14",    icon:"🍲",ok:true,
+   presets:["शराव","कलश","मल्लिका","कर्पर","उखा","स्थाली"]},
+  {id:"samskritam_bhakshah",san:"संस्कृतं भक्षाः",eng:"Prepared Food — 4.2.16", icon:"🍱",ok:true,
+   presets:["शूल","उखा","दधि","क्षीर","उदश्वित्","घृत"]},
+  {id:"devata",san:"साऽस्य देवता",             eng:"Deity — 4.2.24–4.2.36",      icon:"🙏",ok:true,
+   presets:["इन्द्र","वरुण","सोम","अग्नि","वायु","बृहस्पति","पशुपति","क","शुक्र","महेन्द्र","महाराज","पितृ"]},
+  {id:"tatra_bhavah",san:"तत्र भवः",            eng:"Coming Soon",                icon:"📍",ok:false,presets:[]},
+  {id:"tasya_bhavah",san:"तस्य भावः",           eng:"Coming Soon",                icon:"📐",ok:false,presets:[]},
+];
+
+// ── State ────────────────────────────────────────────────────
+let curAdh="apatya_gotra", answers={}, history=[], animKey=0;
+
+// ── Questions config ─────────────────────────────────────────
+function getQuestions(adh,stem){
+  if(adh==="apatya_gotra") return [{key:"sub",label:"विवक्षा",opts:[{v:"apatya",l:"अपत्यम् — Son (Anantara)"},{v:"gotra",l:"गोत्रापत्यम् — Gotra (Grandson)"},{v:"yuvan",l:"युवापत्यम् — Yuvan (Great-grandson)"}]}];
+  if(adh==="nakshatra_time") return [
+    {key:"is_kala",label:"कालम् अस्ति?",opts:[{v:"yes",l:"आम् — It is Time"},{v:"no",l:"न — Not time"}]},
+    {key:"dvandva",label:"नक्षत्रद्वन्द्वः?",opts:[{v:"yes",l:"आम् — Dvandva compound"},{v:"no",l:"न — Single nakshatra"}],showIf:{is_kala:"yes"}},
+    {key:"vishesha",label:"काल-भेदः",opts:[{v:"vishesha",l:"विशेष-कालः"},{v:"avishesha",l:"अविशेष-कालः"}],showIf:{dvandva:"no",is_kala:"yes"}},
+  ];
+  if(adh==="parivrito_rathah") return [
+    {key:"is_chariot",label:"रथः अस्ति?",opts:[{v:"yes",l:"आम् — It is a chariot"},{v:"no",l:"न — Not a chariot"}]},
+    {key:"is_covering",label:"वेष्टनम् अस्ति?",opts:[{v:"yes",l:"आम् — Complete covering"},{v:"no",l:"न — Not a covering"}],showIf:{is_chariot:"yes"}},
+  ];
+  if(adh==="tatroddhritam") return [{key:"is_vessel",label:`'${stem}' पात्रम् अस्ति?`,opts:[{v:"yes",l:"आम् — It is a vessel"},{v:"no",l:"न — Not a vessel"}]}];
+  if(adh==="samskritam_bhakshah") return [
+    {key:"is_food",label:"भक्षः अस्ति?",opts:[{v:"yes",l:"आम् — It is food"},{v:"no",l:"न — Not food"}]},
+    {key:"is_dvigu",label:"द्विगुसमासः?",opts:[{v:"no",l:"न — Not Dvigu"},{v:"yes",l:"आम् — Dvigu compound"}],showIf:{is_food:"yes"}},
+  ];
+  if(adh==="devata") return [
+    {key:"is_dev",label:`'${stem}' देवतानाम?`,opts:[{v:"yes",l:"आम् — It is a deity"},{v:"no",l:"न — Not a deity"}]},
+    {key:"pitru_ctx",label:"पितृ/मातृ सन्दर्भः",opts:[{v:"deity",l:"देवता"},{v:"brother",l:"भ्राता (Uncle)"},{v:"father",l:"पिता (Grandfather)"}],showIf:{is_dev:"yes"},onlyFor:["पितृ","मातृ"]},
+    {key:"avi_ctx",label:"अवि-सन्दर्भः",opts:[{v:"deity",l:"देवता (सामान्य)"},{v:"milk",l:"दुग्धम् (Milk)"}],showIf:{is_dev:"yes"},onlyFor:["अवि"]},
+    {key:"tila_ctx",label:"तिल-सन्दर्भः",opts:[{v:"deity",l:"देवता (सामान्य)"},{v:"fruitless",l:"निष्फलम् (Fruitless)"}],showIf:{is_dev:"yes"},onlyFor:["तिल"]},
+  ];
+  return [];
+}
+
+function buildExtra(adh,answers,stem){
+  if(adh==="apatya_gotra") return {sub:answers.sub||"apatya",extra:null};
+  if(adh==="nakshatra_time"){
+    if(answers.is_kala==="no") return {extra:"not_time"};
+    if(answers.dvandva==="yes") return {extra:"dvandva"};
+    if(answers.vishesha==="avishesha") return {extra:"avishesha"};
+    if(["श्रवण","अश्वत्थ"].includes(stem)) return {extra:"vishesha_sanjna"};
+    return {extra:"vishesha"};
+  }
+  if(adh==="parivrito_rathah"){
+    if(answers.is_chariot==="no") return {extra:"not_chariot"};
+    if(answers.is_covering==="no") return {extra:"not_covering"};
+    return {extra:"valid_chariot"};
+  }
+  if(adh==="tatroddhritam") return {extra:answers.is_vessel==="no"?"not_amatra":"is_amatra"};
+  if(adh==="samskritam_bhakshah"){
+    if(answers.is_food==="no") return {extra:"not_bhaksha"};
+    if(answers.is_dvigu==="yes") return {extra:"is_dvigu"};
+    return {extra:"valid_bhaksha"};
+  }
+  if(adh==="devata"){
+    if(answers.is_dev==="no") return {extra:"not_devata"};
+    const ctx=answers.pitru_ctx||answers.avi_ctx||answers.tila_ctx||"deity";
+    if(ctx==="brother") return {extra:"brother"};
+    if(ctx==="father") return {extra:"father"};
+    if(ctx==="milk") return {extra:"milk"};
+    if(ctx==="fruitless") return {extra:"fruitless"};
+    return {extra:"is_devata"};
+  }
+  return {};
+}
+
+// ── Master Solver ────────────────────────────────────────────
+function R(no,text,suffix,derivation,note_san,note_eng){return{no,text,suffix,derivation,note_san,note_eng};}
+
+function solve(stem,mc,sub,extra){
+  const ad=(s,n='म्')=>anDeriv(s,n);
+
+  // ══ APATYA ══
+  if(mc==='apatya_gotra'){
+    if(stem in kurunadi_nya) return R("4.1.152","कुरुनादिभ्यो ण्यः","ण्य",`${stem} →[ण्य]→ ${kurunadi_nya[stem]}ः`,"कुरुनादि-गणात् ण्य।","Takes Ṇya.");
+    if(stem==="अत्रि") return R("4.1.122","आत्रेयीषु ढक्","ढक् (एय)","अत्रि →[७.२.११७]→ आत्रि →[ढक्]→ आत्रेयः","अत्रि → ढक्।","Atri takes Ḍhak.");
+    if(stem in bahvadi_data) return R("4.1.96","बाह्वादिभ्यश्च","इञ्",`${stem} + इञ् → ${bahvadi_data[stem]}ः`,"बाह्वादि-गणात् इञ्।","Bāhvādi takes Iñ.");
+    if(stem in sudhatri_data) return R("4.1.97","सुधातृभ्यस्त्रिष्वप्यकञ्","इञ् + अकङ्",`${stem} → ${sudhatri_data[stem]}ः`,"सुधातृ-गणात् इञ् + अकङ्।","Sudhātṛ: Iñ + Akaṅ.");
+    const is114=(rishi_list.includes(stem))||(andhaka_list.includes(stem)&&extra==="andhaka")||(vrishni_list.includes(stem)&&extra==="vrishni")||(kuru_list.includes(stem)&&extra==="kuru"&&!kurunadi_nya[stem]);
+    if(is114) return R("4.1.114","ऋष्यन्धकवृष्णिकुरुभ्यश्च","अण्",ad(stem),"ऋषि/अन्धक/वृष्णि/कुरु → अण्।","Aṇ for Rishi/Andhaka/Vrishni/Kuru.");
+    if(stem==="पीला") return R("4.1.120","पीलाया वा","अण् (वा)","पीला →[७.२.११७]→ पैला →[अण्]→ पैलः | →[ढक्]→ पैलेयः","'पीला' → विकल्पेन अण्, पक्षे ढक्।","Pīlā optionally Aṇ, else Ḍhak.");
+    if(stem in avriddha_nadi) return R("4.1.113","अवृद्धाभ्यो नदीमानुषीभ्यः","अण्",ad(stem),"अवृद्ध-नदी/मानुषी → अण्।","Aṇ for Avṛddha river-names.");
+    if(stem in shivadi_data) return R("4.1.112","शिवादिभ्योऽण्","अण्",ad(stem),"शिवादि-गणात् अण्।","Śivādi takes Aṇ.");
+    if(stem in ashvadi_data&&sub==='gotra') return R("4.1.110","अश्वादिभ्यः फञ्","फञ् (आयन)",`${stem} →[फञ्]→ ${ashvadi_data[stem]}ः`,"अश्वादि-गणात् फञ्।","Aśvādi takes Phañ.");
+    if(stem in kapibodha_data&&extra==="angirasa") return R("4.1.107","कपिबोधाद् यञि अङ्गिरसगोत्रे","यञ्",`${stem} → ${kapibodha_data[stem]}ः`,"अङ्गिरसगोत्रे कपिबोधात् यञ्।","Kapibodha + Āṅgirasa → Yañ.");
+    if(stem in gargadi_data&&sub==='gotra') return R("4.1.105","गर्गादिभ्यो यञ्","यञ्",`${stem} →[यञ्]→ ${gargadi_data[stem]}ः`,"गर्गादि-गणात् यञ्।","Gargādi takes Yañ.");
+    if(stem in bidadi_data){
+      if(sub==='gotra'&&!non_rishi_list.includes(stem)) return R("4.1.104","बिदादिभ्योऽञ् (गोत्रे)","अञ्",`${stem} →[अञ्]→ ${bidadi_data[stem]}ः`,"बिदादि → गोत्रे अञ्।","Bidādi in Gotra → Añ.");
+      if(sub==='apatya'&&non_rishi_list.includes(stem)) return R("4.1.104","बिदादिभ्योऽञ् (अपत्ये)","अञ्",`${stem} →[अञ्]→ ${bidadi_data[stem]}ः`,"बिदादि → अपत्ये अञ्।","Bidādi in Apatya → Añ.");
+    }
+    if(stem in drona_data){const [ph,ij]=drona_data[stem];if(sub==='gotra') return R("4.1.103","द्रोण... फक्","फक्",`${stem} → ${ph}ः`,"द्रोण/पर्वत/जीवन्त → गोत्रे फक्।","Droṇa in Gotra → Phak.");return R("4.1.103","द्रोण... इञ्","इञ्",`${stem} → ${ij}ः`,"द्रोण/पर्वत/जीवन्त → अपत्ये इञ्।","Droṇa in Apatya → Iñ.");}
+    if(stem in ashvapati_data) return R("4.1.84","अश्वपत्यादिभ्यश्च","अण्",ad(stem),"अश्वपत्यादि → अण्।","Aśvapati-ādi takes Aṇ.");
+    if(sub==='gotra'&&stem in nadadi_data) return R("4.1.99","नडादिभ्यः फक्","फक् (आयन)",`${stem} →[फक्]→ ${nadadi_data[stem]}ः`,"नडादि → गोत्रे फक्।","Naḍādi in Gotra → Phak.");
+    if(sub==='gotra'&&stem in kunjadi_data){const num=extra||"sg";return R("4.1.98","कुञ्जादिभ्यश्चफञ्","चफञ्",`${stem} →[चफञ्]→ ${kunjadi_data[stem][num]}ः`,"कुञ्जादि → गोत्रे चफञ्।","Kuñjādi in Gotra → Cphañ.");}
+    if(isAkarant(stem)){const b=applyInj(stem);return R("4.1.95","अत इञ्","इञ्",`${stem} →[७.२.११७]→ ${b.slice(0,-1)} →[इञ्]→ ${b}ः`,"अदन्तात् इञ्।","A-kārānta takes Iñ.");}
+    if(stem==="अग्नि"||stem==="कलि") return R("4.1.86","अग्निकलिभ्यां ढक्","ढक् (एय)",`${stem} → ${stem==='अग्नि'?'आग्नेय':'कालेय'}ः`,"अग्नि/कलि → ढक्।","Agni/Kali takes Ḍhak.");
+    if(utsadi_gana.includes(stem)) return R("4.1.86","उत्सादिभ्योऽञ्","अञ्",`${stem} + अञ्`,"उत्सादि → अञ्।","Utsādi takes Añ.");
+    if(stem==="गो") return R("4.1.85 (वार्)","सर्वत्र गोः...","यत्","गव्यः","गो → गव्य।","Go takes Yat.");
+    if(dityadi_list.includes(stem)) return R("4.1.85","दित्यदित्यादित्यपत्युत्तरपदाण्ण्यः","ण्य",`${stem} + ण्य`,"दित्यादि → ण्य।","Dityādi takes Ṇya.");
+    return R("4.1.92","तस्यापत्यम्","अण् (उत्सर्गः)",ad(stem),"औत्सर्गिकः अण्।","General Aṇ suffix.");
+  }
+
+  // ══ RAKTA ══
+  if(mc==='rakta'){
+    if(stem==='पीत') return R("4.2.1 (वार्)","पीतात् कन्","कन्","पीत →[कन्]→ पीतकम्","पीत → कन्।","Pīta takes Kan.");
+    if(stem==='नीली') return R("4.2.1 (वार्)","नील्याः अण्","अण्","नीली →[अण्]→ नीलम्","नीली → अण्।","Nīlī takes Aṇ.");
+    if(['हरिद्रा','महारजन'].includes(stem)) return R("4.2.1 (वार्)","हरिद्रादेः अञ्जि","अञ्जि",`${stem} → ${stem==='हरिद्रा'?'हारिद्र':'मारजन'}म्`,"हरिद्रादेः अञ्जि।","Haridrā takes Añji.");
+    if(stem==='शकल') return R("4.2.2","शकलाद् ठक्","ठक् (इक)","शकल →[ठक्]→ शाकलिकम्","शकल → ठक्।","Śakala takes Ṭhak.");
+    if(stem in color_meanings) return R("4.2.1","तेन रक्तं रागात्","अण्",ad(stem)+` | रागः: ${color_meanings[stem]}`,"रागवाचकात् अण्।","Aṇ for coloring agent.");
+    return R("4.2.1 (प्रत्युदा.)","तेन रक्तं रागात्","न भवति",`${stem}ेन रक्तम्`,`❌ '${stem}' रागवाचकः नास्ति।`,`❌ '${stem}' is not a color/dye.`);
+  }
+
+  // ══ NAKSHATRA ══
+  if(mc==='nakshatra_time'){
+    if(["चन्द्रमस्","चन्द्रमा","चन्द्रमाः"].includes(stem)) return R("4.2.3 (प्रत्युदा.)","नक्षत्रेण युक्तः कालः","न भवति",`${stem} युक्ता रात्रिः`,"❌ नक्षत्रवाचकः नास्ति।","❌ Not an asterism.");
+    if(extra==="dvandva"&&stem in dvandva_data) return R("4.2.6","द्वन्द्वाच्छः","छ (ईय)",`${stem} →[छ]→ ${dvandva_data[stem]}`,"द्वन्द्वे छ-प्रत्ययः।","Dvandva takes Cha.");
+    if(extra==="avishesha") return R("4.2.4","लुबविशेषे","अण् → लुप्",`${stem} (नक्षत्रनाम एव रात्रिः)`,"अविशेषे अण्-लुप्।","Avishesha: Lup.");
+    if(extra==="vishesha_sanjna"&&["श्रवण","अश्वत्थ"].includes(stem)) return R("4.2.5","श्रवणाश्वत्थाभ्यां ण्यः","ण्य",`${stem} →[ण्य]→ ${stem==='श्रवण'?'श्रावण्य':'आश्वत्थ्य'}`,"श्रवण/अश्वत्थ-संज्ञायां ण्य।","Śravaṇa/Aśvattha → Ṇya.");
+    const b=nakshatra_data[stem]||applyAn(stem);
+    return R("4.2.3","नक्षत्रेण युक्तः कालः","अण्",`${stem} →[७.२.११७]→ ${b} →[अण्]→ ${b}ः / ${b}ी`,"विशेष-काले अण्।","Takes Aṇ for time named by asterism.");
+  }
+
+  // ══ SAMA ══
+  if(mc==='drishtam_sama'){
+    if(stem==="वामदेव") return R("4.2.9","वामदेवाड्ड्यड्ड्यौ","ड्यत्/ड्य","वामदेव्यम् (साम)","ड्यत्/ड्य।","Vāmadeva takes Ḍyat.");
+    if(stem==="कलि") return R("4.2.8","कलेर्ढक्","ढक् (एय)","कालेयम् (साम)","ढक्-प्रत्ययः।","Kali takes Ḍhak.");
+    if(stem==="उशनस्") return R("4.2.7 (वार्.)","अण् डित् वा","अण् (वा)","औशनसम् / औशनम्","विकल्पेन डित्त्वम्।","Optionally ḍit.");
+    const b=drishtam_sama_data[stem]||applyAn(stem);
+    return R("4.2.7","दृष्टं साम","अण्",`${stem} →[७.२.११७]→ ${b} →[अण्]→ ${b}म् (साम)`,"अण्-प्रत्ययः।","Takes Aṇ.");
+  }
+
+  // ══ RATHA ══
+  if(mc==='parivrito_rathah'){
+    if(extra==='not_chariot') return R("4.2.10 (प्रत्युदा.)","परिवृतो रथः","न भवति",`${stem}ेण परिवृतः कायः`,"❌ विशेष्यम् 'रथः' नास्ति।","❌ Not a chariot.");
+    if(extra==='not_covering') return R("4.2.10 (प्रत्युदा.)","परिवृतो रथः","न भवति",`${stem}ैः परिवृतः`,"❌ वेष्टनम् नास्ति।","❌ Not a covering.");
+    if(stem==="पाण्डुकम्बल") return R("4.2.11","पाण्डुकम्बलादिनिः","इनि","पाण्डुकम्बली (रथः)","इनि-प्रत्ययः।","Takes Ini.");
+    const b=parivrita_data[stem]||applyAn(stem);
+    return R("4.2.10","परिवृतो रथः","अण्",`${stem} →[७.२.११७]→ ${b} →[अण्]→ ${b}ः (रथः)`,"अण्-प्रत्ययः।","Takes Aṇ.");
+  }
+
+  // ══ AMATRA ══
+  if(mc==='tatroddhritam'){
+    if(extra==='not_amatra') return R("4.2.14 (प्रत्युदा.)","तत्रोद्धृतममत्रेभ्यः","न भवति",`${stem}ौ उद्धृतम्`,`❌ '${stem}' पात्रवाचकः नास्ति।`,`❌ '${stem}' is not a vessel.`);
+    return R("4.2.14","तत्रोद्धृतममत्रेभ्यः","अण्",ad(stem)+` (ओदनम्)`,`'${stem}' → सप्तमी → अण्।`,"Aṇ for food extracted from vessel.");
+  }
+
+  // ══ SAMSKRITAM ══
+  if(mc==='samskritam_bhakshah'){
+    if(extra==='not_bhaksha') return R("4.2.16 (प्रत्युदा.)","संस्कृतं भक्षाः","न भवति",`${stem}े संस्कृतः`,`❌ '${stem}' भक्षः नास्ति।`,"❌ Not food.");
+    if(extra==='is_dvigu') return R("4.2.16/4.1.88","संस्कृतं भक्षाः / द्विगोर्लुक्","अण् → लुक्",`${stem}ः`,`'${stem}' द्विगुः → अण्-लुक्।`,"Dvigu: Aṇ elided.");
+    if(stem==="शूल"||stem==="उखा") return R("4.2.17","शूलोखाभ्यां यत्","यत् (य)",`${stem} →[यत्]→ ${stem==='शूल'?'शूल्य':'औखेय'}म्`,"शूल/उखा → यत्।","Śūla/Ukhā takes Yat.");
+    if(stem==="दधि") return R("4.2.18","दध्नस्ठक्","ठक् (इक)","दधि →[ठक्]→ दाधिकम्","दधि → ठक्।","Dadhi takes Ṭhak.");
+    if(stem==="उदश्वित्") return R("4.2.19","उदश्वितो वा","अण् (वा)","औदश्विदम् (वा उदश्वित् एव)","विकल्पेन अण्।","Udaśvit optionally Aṇ.");
+    if(stem==="क्षीर") return R("4.2.20","क्षीरात् ढञ्","ढञ् (एय)","क्षीर →[ढञ्]→ क्षैरेयम्","क्षीर → ढञ्।","Kṣīra takes Ḍhañ.");
+    return R("4.2.16","संस्कृतं भक्षाः","अण्",ad(stem)+` (भक्षः)`,`'${stem}' → भक्षनिर्देशे अण्।`,"Aṇ for food prepared here.");
+  }
+
+  // ══ DEVATA ══
+  if(mc==='devata'){
+    if(extra==='not_devata') return R("4.2.24 (प्रत्युदा.)","साऽस्य देवता","न भवति",`${stem} — न देवतावाचकः`,`❌ '${stem}' देवतानाम नास्ति।`,`❌ '${stem}' is not a deity.`);
+    // 4.2.36 Nipātana
+    if(stem==="पितृ"&&extra==="brother") return R("4.2.36 (वार्)","पितुर्भ्रातरि व्यत्","व्यत्","पितृ →[व्यत्]→ पितृव्यः","पितुः भ्राता → व्यत्।","Father's brother → Vyat.");
+    if(stem==="मातृ"&&extra==="brother") return R("4.2.36 (वार्)","मातुर्डुलच्","डुलच्","मातृ →[डुलच्]→ मातुलः","मातुः भ्राता → डुलच्।","Mother's brother → Ḍulac.");
+    if(stem==="मातृ"&&extra==="father") return R("4.2.36 (वार्)","मातृपितृभ्यां डामहच्","डामहच्","मातृ →[डामहच्]→ मातामहः","मातुः पिता → डामहच्।","Maternal grandfather → Ḍāmahac.");
+    if(stem==="पितृ"&&extra==="father") return R("4.2.36 (वार्)","मातृपितृभ्यां डामहच्","डामहच्","पितृ →[डामहच्]→ पितामहः","पितुः पिता → डामहच्।","Paternal grandfather → Ḍāmahac.");
+    if(stem==="अवि"&&extra==="milk") return R("4.2.36 (वार्)","अवेर्दुग्धे सोढदूसमरीसचः","सोढ/दूस/मरीसच्","अवि → अविसोधम् | अविदूसम् | अविमरीसम्","अवेः दुग्धम् → त्रयः निपातनाः।","Sheep's milk → three nipātana forms.");
+    if(stem==="तिल"&&extra==="fruitless") return R("4.2.36 (वार्)","तिलात् निष्फलात् पिञ्जपेजौ","पिञ्ज/पेज","तिल →[पिञ्ज]→ तिलपिञ्जम् | →[पेज]→ तिलपेजम्","निष्फल-तिलम् → पिञ्ज/पेज।","Fruitless sesame → Piñja/Peja.");
+    // 4.2.35
+    if(stem in devata_thanj_data) return R("4.2.35","महाराजप्रोष्ठपदाट्ठञ्","ठञ् (इक)",`${stem} →[ठञ्]→ ${devata_thanj_data[stem]}म्`,"ठञ्-प्रत्ययः।","Takes Ṭhañ.");
+    // 4.2.34
+    if(stem in devata_kala_data){const[p,f]=devata_kala_data[stem];return R("4.2.34","कालेभ्यो भववत्",p,`${stem} →[${p}]→ ${f}म्`,"कालवाचकः देवता → भववत् प्रत्ययः।","Time-deity transfers suffix from Tatra Bhavaḥ.");}
+    // 4.2.33
+    if(stem==="अग्नि") return R("4.2.33","अग्नेर्ढक्","ढक् (एय)","अग्नि →[७.२.११७]→ आग्नि →[ढक्→एय]→ आग्नेयम्","अग्नि-देवतायाः ढक्।","Agni takes Ḍhak.");
+    if(stem==="कलि") return R("4.2.33 (वार्)","अग्निकलिभ्यां ढक्","ढक् (एय)","कलि →[७.२.११७]→ कालि →[ढक्→एय]→ कालेयम्","कलि → ढक् (वार्त्तिकम्)।","Kali takes Ḍhak.");
+    // 4.2.32
+    if(devata_yat_cha_list.includes(stem)){const[y,c]=devata_yat_cha_forms[stem];return R("4.2.32","द्यावापृथिव्यादिभ्यश्च","यत् / छ",`${stem} →[यत्]→ ${y}म् | →[छ]→ ${c}म्`,"यत् + छ उभौ प्रत्ययौ।","Takes both Yat and Cha.");}
+    // 4.2.31
+    if(devata_yat_list.includes(stem)) return R("4.2.31","वाय्वृतुपित्रुषसो यत्","यत् (य)",`${stem} →[यत्]→ ${devata_yat_forms[stem]}म्`,"वायु/ऋतु/पितृ/उषस् → यत्।","Takes Yat.");
+    // 4.2.30
+    if(stem==="सोम") return R("4.2.30","सोमाट्ट्यण्","ट्यण् (य)","सोम →[७.२.११७]→ सौम →[ट्यण्]→ सौम्यः | स्त्री: सौमी","सोम → ट्यण्।","Soma takes Ṭyaṇ.");
+    // 4.2.29
+    if(stem==="महेन्द्र") return R("4.2.29","महेन्द्राद्घाणौ च","घ/छ/अण्","महेन्द्र →[घ]→ महेन्द्रियम् | →[छ]→ महेन्द्रीयम् | →[अण्]→ माहेन्द्रम्","घ + छ + अण् त्रयोऽपि।","Takes Gha, Cha, and Aṇ.");
+    // 4.2.28
+    if(stem==="शतरुद्र") return R("4.2.28","शतरुद्राच्छश्च घश्च","छ/घ","शतरुद्र →[छ]→ शतरुद्रीयम् | →[घ]→ शतरुद्रियम्","छ + घ उभौ।","Takes Cha and Gha.");
+    if(devata_cha_vartika.includes(stem)) return R("4.2.28 (वार्)","पैङ्गाक्षीपुत्रादिभ्यश्छः","छ (ईय)",`${stem} →[छ]→ ${stem}ीयम्`,"छ-प्रत्ययः।","Takes Cha.");
+    // 4.2.27
+    if(["अपोनप्तृ","अपान्नप्तृ"].includes(stem)){const b=stem.slice(0,-1);return R("4.2.27","अपोनप्त्रादिभ्यो घः / छ च","घ/छ",`${stem} →[घ]→ ${b}्रियम् | →[छ]→ ${b}्रीयम्`,"अपोनप्तृ/अपान्नप्तृ → घ + छ।","Takes Gha and Cha.");}
+    // 4.2.26
+    if(stem==="शुक्र") return R("4.2.26","शुक्राद्घन्","घन् (इय)","शुक्र →[घन्]→ शुक्रियम्","शुक्र → घन्।","Śukra takes Ghan.");
+    // 4.2.25
+    if(stem==="क") return R("4.2.25","कस्येत्","अण् (इत्-आदेश)","क + अण् →[४.२.२५ इत्-आदेश]→ कि + अ →[७.२.११७]→ कै + अ →[६.१.७८]→ कायम्","'क' → इत्-आदेशः → कायम्।","'Ka' (Prajāpati) → इत् ādeśa → kāyam.");
+    if(stem==="श्री") return R("4.2.25 (कौ.)","कस्येत् (श्री)","अण्","श्री + अण् →[७.२.११७]→ श्रै + अ →[६.१.७८]→ श्रायम्","श्री → श्रायम् (कौमुदी)।","Śrī → śrāyam (Kaumudī).");
+    // 4.2.24 — apavādas then general
+    if(stem in pati_uttarapada_devata){const[f,v]=pati_uttarapada_devata[stem];return R("4.2.24+4.1.85","साऽस्य देवता + ण्य","ण्य",`${stem} →[७.२.११७]→ ${v} →[ण्य]→ ${f}म्`,"पत्युत्तरपद → ण्य।","-pati deity → Ṇya.");}
+    if(stem in ashvapati_devata){const f=ashvapati_devata[stem];return R("4.2.24+4.1.84","साऽस्य देवता + अश्वपत्यादि","अण्",`${stem} →[७.२.११७]→ ${f} →[अण्]→ ${f}म्`,"अश्वपत्यादि → अण्।","Aśvapati-ādi deity → Aṇ.");}
+    return R("4.2.24","साऽस्य देवता","अण् (प्राग्दीव्यतोऽण् 4.1.83)",ad(stem),`'${stem}' देवतावाचकात् प्रथमासमर्थात् अण्।`,`Aṇ for deity '${stem}' — sacred to / belonging to.`);
+  }
+
+  return null;
+}
+
+// ── UI Rendering ─────────────────────────────────────────────
+function buildSidebar(){
+  const el=document.getElementById('adhList');
+  el.innerHTML=ADHIKARAS.map(a=>`
+    <button class="adh-btn${curAdh===a.id?' active':''}" 
+      id="ab_${a.id}" 
+      ${!a.ok?'disabled':''} 
+      onclick="selectAdh('${a.id}')">
+      <span class="adh-icon">${a.icon}</span>
+      <span>
+        <span class="adh-san">${a.san}</span>
+        <span class="adh-eng">${a.eng}</span>
+      </span>
+      <span class="adh-badge ${a.ok?'badge-ok':'badge-soon'}">${a.ok?'✅':'🚧'}</span>
+    </button>`).join('');
+}
+
+function buildChips(stem){
+  const a=ADHIKARAS.find(x=>x.id===curAdh);
+  const el=document.getElementById('chipsRow');
+  el.innerHTML=(a.presets||[]).map(p=>`
+    <span class="chip${stem===p?' active':''}" onclick="selectChip('${p}')">${p}</span>`
+  ).join('');
+}
+
+function renderQuestions(stem){
+  const qs=getQuestions(curAdh,stem).filter(q=>{
+    if(q.onlyFor&&!q.onlyFor.includes(stem)) return false;
+    if(!q.showIf) return true;
+    return Object.entries(q.showIf).every(([k,v])=>answers[k]===v);
+  });
+  const el=document.getElementById('questionsArea');
+  if(!qs.length){el.innerHTML='';return;}
+  el.innerHTML=qs.map(q=>`
+    <span class="q-label">${q.label}</span>
+    <div class="radio-group">
+      ${q.opts.map(o=>`
+        <div class="radio-opt${answers[q.key]===o.v?' sel':''}" onclick="selectOpt('${q.key}','${o.v}')">
+          <div class="radio-dot"></div>${o.l}
+        </div>`).join('')}
+    </div>`).join('');
+}
+
+function renderResult(stem,mc,sub,extra){
+  const el=document.getElementById('resultArea');
+  if(!stem){el.innerHTML='';return;}
+  const res=solve(stem,mc,sub,extra);
+  if(!res){el.innerHTML=`<div class="error-box">❌ क्षम्यताम् — '${stem}' अस्मिन् अर्थे नियमः न प्राप्तः।</div>`;return;}
+
+  // Parse derivation steps
+  const raw=res.derivation;
+  const steps=raw.split('→').map(s=>s.trim()).filter(Boolean);
+  const stepsHTML=steps.length>1?steps.map((s,i)=>{
+    const isFinal=i===steps.length-1;
+    const ruleMatch=s.match(/\[(.*?)\]/);
+    const rule=ruleMatch?ruleMatch[1]:'';
+    const clean=s.replace(/\[.*?\]/,'').trim();
+    return(i>0?`<span class="arrow">→</span>`:'')
+      +(rule?`<span class="step-rule">${rule}</span>`:'')
+      +`<span class="step${isFinal?' final':''}">${clean}</span>`;
+  }).join(''):'';
+
+  const finalForm=steps.length>1?steps[steps.length-1].replace(/\[.*?\]/,'').trim():raw;
+
+  el.innerHTML=`
+    <div class="result-box" id="rb_${++animKey}">
+      <div class="res-sutra-no">${res.no}</div>
+      <div class="res-sutra-text">${res.text}</div>
+      <div class="res-final">${finalForm}</div>
+      <div class="res-pratyaya"><span class="pratyaya-badge">प्रत्ययः: ${res.suffix}</span></div>
+      ${stepsHTML?`
+      <div style="margin:16px 0">
+        <div class="deriv-label">व्युत्पत्तिः</div>
+        <div class="deriv-steps">${stepsHTML}</div>
+      </div>`:''}
+      <div class="notes-grid">
+        <div class="note-box">
+          <span class="note-title">संस्कृतम्</span>
+          <span class="note-text">${res.note_san}</span>
+        </div>
+        <div class="note-box eng">
+          <span class="note-title">English</span>
+          <span class="note-text">${res.note_eng}</span>
+        </div>
+      </div>
+    </div>`;
+
+  // Save to history
+  history.unshift({stem,adh:curAdh,sub,extra,finalForm,res});
+  if(history.length>12) history.pop();
+  renderHistory();
+}
+
+function renderHistory(){
+  const card=document.getElementById('histCard');
+  const wrap=document.getElementById('histWrap');
+  if(!history.length){card.style.display='none';return;}
+  card.style.display='';
+  wrap.innerHTML=history.map((h,i)=>`
+    <button class="hist-btn" onclick="loadHistory(${i})">
+      <span>${h.stem}</span>
+      <span style="color:var(--text3)">→</span>
+      <span class="hist-result">${h.finalForm}</span>
+    </button>`).join('');
+}
+
+// ── Actions ──────────────────────────────────────────────────
+function selectAdh(id){
+  const a=ADHIKARAS.find(x=>x.id===id);if(!a||!a.ok)return;
+  curAdh=id;answers={};
+  document.querySelectorAll('.adh-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('ab_'+id).classList.add('active');
+  const stem=document.getElementById('stemInput').value.trim();
+  document.getElementById('adhIcon').textContent=a.icon;
+  document.getElementById('adhTitle').textContent=a.san;
+  document.getElementById('adhSub').textContent=a.eng;
+  buildChips(stem);
+  renderQuestions(stem);
+  document.getElementById('resultArea').innerHTML='';
+}
+
+function selectChip(p){
+  document.getElementById('stemInput').value=p;
+  answers={};
+  buildChips(p);
+  renderQuestions(p);
+  document.getElementById('resultArea').innerHTML='';
+}
+
+function selectOpt(key,val){
+  answers={...answers,[key]:val};
+  const stem=document.getElementById('stemInput').value.trim();
+  renderQuestions(stem);
+  document.getElementById('resultArea').innerHTML='';
+}
+
+function derive(){
+  const stem=document.getElementById('stemInput').value.trim();
+  if(!stem) return;
+  buildChips(stem);
+  const {sub,extra}=buildExtra(curAdh,answers,stem);
+  renderResult(stem,curAdh,sub||null,extra||null);
+}
+
+function loadHistory(i){
+  const h=history[i];
+  curAdh=h.adh;
+  answers={};
+  document.getElementById('stemInput').value=h.stem;
+  document.querySelectorAll('.adh-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('ab_'+h.adh).classList.add('active');
+  const a=ADHIKARAS.find(x=>x.id===h.adh);
+  if(a){document.getElementById('adhIcon').textContent=a.icon;document.getElementById('adhTitle').textContent=a.san;document.getElementById('adhSub').textContent=a.eng;}
+  buildChips(h.stem);
+  renderQuestions(h.stem);
+  renderResult(h.stem,h.adh,h.sub,h.extra);
+}
+
+// Input events
+document.getElementById('stemInput').addEventListener('keydown',e=>{if(e.key==='Enter')derive();});
+document.getElementById('stemInput').addEventListener('input',e=>{
+  answers={};
+  const stem=e.target.value.trim();
+  buildChips(stem);
+  renderQuestions(stem);
+  document.getElementById('resultArea').innerHTML='';
+});
+
+// Init
+buildSidebar();
+buildChips('');
+renderQuestions('');
+</script>
+</body>
+</html>
