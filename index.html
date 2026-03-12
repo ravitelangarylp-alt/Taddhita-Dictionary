@@ -404,7 +404,7 @@ main{flex:1;overflow-y:auto;padding:24px 28px}
 <header>
   <div class="header-left">
     <div class="header-title">Pāṇinian Taddhita Master Engine</div>
-    <div class="header-scope">4.1.83 – 4.1.152 · 4.2.1 – 4.2.36 · Context-Sensitive Apavādas ✅</div>
+    <div class="header-scope">4.1.83–4.1.152 · 4.2.1–4.2.36 · पितृव्यमातुलमातामहपितामहाः स्वतन्त्रम् ✅</div>
   </div>
   <div class="shloka">॥ श्रीः ॥</div>
 </header>
@@ -554,8 +554,10 @@ const ADHIKARAS=[
    presets:["शराव","कलश","मल्लिका","कर्पर","उखा","स्थाली"]},
   {id:"samskritam_bhakshah",san:"संस्कृतं भक्षाः",eng:"Prepared Food — 4.2.16", icon:"🍱",ok:true,
    presets:["शूल","उखा","दधि","क्षीर","उदश्वित्","घृत"]},
-  {id:"devata",san:"साऽस्य देवता",             eng:"Deity — 4.2.24–4.2.36",      icon:"🙏",ok:true,
-   presets:["इन्द्र","वरुण","सोम","अग्नि","वायु","बृहस्पति","पशुपति","क","शुक्र","महेन्द्र","महाराज","पितृ"]},
+  {id:"devata",san:"साऽस्य देवता",             eng:"Deity — 4.2.24–4.2.35",      icon:"🙏",ok:true,
+   presets:["इन्द्र","वरुण","सोम","अग्नि","वायु","बृहस्पति","पशुपति","क","शुक्र","महेन्द्र","महाराज","प्रजापति"]},
+  {id:"nipatan",san:"पितृव्यमातुलमातामहपितामहाः",eng:"Kinship Nipātana — 4.2.36+", icon:"👴",ok:true,
+   presets:["पितृ","मातृ","अवि","तिल"]},
   {id:"tatra_bhavah",san:"तत्र भवः",            eng:"Coming Soon",                icon:"📍",ok:false,presets:[]},
   {id:"tasya_bhavah",san:"तस्य भावः",           eng:"Coming Soon",                icon:"📐",ok:false,presets:[]},
 ];
@@ -600,10 +602,30 @@ function getQuestions(adh,stem){
   ];
   if(adh==="devata") return [
     {key:"is_dev",label:`'${stem}' देवतानाम?`,opts:[{v:"yes",l:"आम् — It is a deity"},{v:"no",l:"न — Not a deity"}]},
-    {key:"pitru_ctx",label:"पितृ/मातृ सन्दर्भः",opts:[{v:"deity",l:"देवता"},{v:"brother",l:"भ्राता (Uncle)"},{v:"father",l:"पिता (Grandfather)"}],showIf:{is_dev:"yes"},onlyFor:["पितृ","मातृ"]},
-    {key:"avi_ctx",label:"अवि-सन्दर्भः",opts:[{v:"deity",l:"देवता (सामान्य)"},{v:"milk",l:"दुग्धम् (Milk)"}],showIf:{is_dev:"yes"},onlyFor:["अवि"]},
-    {key:"tila_ctx",label:"तिल-सन्दर्भः",opts:[{v:"deity",l:"देवता (सामान्य)"},{v:"fruitless",l:"निष्फलम् (Fruitless)"}],showIf:{is_dev:"yes"},onlyFor:["तिल"]},
+    // devata — no nipātana words here; they have their own adhikāra
   ];
+
+  // ══ NIPĀTANA ══
+  if(adh==="nipatan"){
+    if(["पितृ","मातृ"].includes(stem)) return [
+      {key:"nip_ctx", label:"कः अर्थः विवक्षितः?", opts:[
+        {v:"brother", l:"भ्राता — Father's/Mother's brother (Uncle)"},
+        {v:"father",  l:"पिता  — Father's/Mother's father (Grandfather)"},
+        {v:"mother",  l:"माता  — Father's/Mother's mother (Grandmother) — fem."},
+      ]}
+    ];
+    if(stem==="अवि") return [
+      {key:"nip_ctx", label:"कः अर्थः विवक्षितः?", opts:[
+        {v:"milk",    l:"दुग्धम् — अवेः दुग्धम् (Sheep's milk)"},
+      ]}
+    ];
+    if(stem==="तिल") return [
+      {key:"nip_ctx", label:"कः अर्थः विवक्षितः?", opts:[
+        {v:"fruitless", l:"निष्फलम् — निष्फलं तिलम् (Fruitless sesame)"},
+      ]}
+    ];
+    return [];
+  }
   return [];
 }
 
@@ -637,12 +659,10 @@ function buildExtra(adh,answers,stem){
   }
   if(adh==="devata"){
     if(answers.is_dev==="no") return {extra:"not_devata"};
-    const ctx=answers.pitru_ctx||answers.avi_ctx||answers.tila_ctx||"deity";
-    if(ctx==="brother") return {extra:"brother"};
-    if(ctx==="father") return {extra:"father"};
-    if(ctx==="milk") return {extra:"milk"};
-    if(ctx==="fruitless") return {extra:"fruitless"};
     return {extra:"is_devata"};
+  }
+  if(adh==="nipatan"){
+    return {extra: answers.nip_ctx||null};
   }
   return {};
 }
@@ -778,13 +798,6 @@ function solve(stem,mc,sub,extra){
   // ══ DEVATA ══
   if(mc==='devata'){
     if(extra==='not_devata') return R("4.2.24 (प्रत्युदा.)","साऽस्य देवता","न भवति",`${stem} — न देवतावाचकः`,`❌ '${stem}' देवतानाम नास्ति।`,`❌ '${stem}' is not a deity.`);
-    // 4.2.36 Nipātana
-    if(stem==="पितृ"&&extra==="brother") return R("4.2.36 (वार्)","पितुर्भ्रातरि व्यत्","व्यत्","पितृ →[व्यत्]→ पितृव्यः","पितुः भ्राता → व्यत्।","Father's brother → Vyat.");
-    if(stem==="मातृ"&&extra==="brother") return R("4.2.36 (वार्)","मातुर्डुलच्","डुलच्","मातृ →[डुलच्]→ मातुलः","मातुः भ्राता → डुलच्।","Mother's brother → Ḍulac.");
-    if(stem==="मातृ"&&extra==="father") return R("4.2.36 (वार्)","मातृपितृभ्यां डामहच्","डामहच्","मातृ →[डामहच्]→ मातामहः","मातुः पिता → डामहच्।","Maternal grandfather → Ḍāmahac.");
-    if(stem==="पितृ"&&extra==="father") return R("4.2.36 (वार्)","मातृपितृभ्यां डामहच्","डामहच्","पितृ →[डामहच्]→ पितामहः","पितुः पिता → डामहच्।","Paternal grandfather → Ḍāmahac.");
-    if(stem==="अवि"&&extra==="milk") return R("4.2.36 (वार्)","अवेर्दुग्धे सोढदूसमरीसचः","सोढ/दूस/मरीसच्","अवि → अविसोधम् | अविदूसम् | अविमरीसम्","अवेः दुग्धम् → त्रयः निपातनाः।","Sheep's milk → three nipātana forms.");
-    if(stem==="तिल"&&extra==="fruitless") return R("4.2.36 (वार्)","तिलात् निष्फलात् पिञ्जपेजौ","पिञ्ज/पेज","तिल →[पिञ्ज]→ तिलपिञ्जम् | →[पेज]→ तिलपेजम्","निष्फल-तिलम् → पिञ्ज/पेज।","Fruitless sesame → Piñja/Peja.");
     // 4.2.35
     if(stem in devata_thanj_data) return R("4.2.35","महाराजप्रोष्ठपदाट्ठञ्","ठञ् (इक)",`${stem} →[ठञ्]→ ${devata_thanj_data[stem]}म्`,"ठञ्-प्रत्ययः।","Takes Ṭhañ.");
     // 4.2.34
@@ -814,6 +827,171 @@ function solve(stem,mc,sub,extra){
     if(stem in pati_uttarapada_devata){const[f,v]=pati_uttarapada_devata[stem];return R("4.2.24+4.1.85","साऽस्य देवता + ण्य","ण्य",`${stem} →[७.२.११७]→ ${v} →[ण्य]→ ${f}म्`,"पत्युत्तरपद → ण्य।","-pati deity → Ṇya.");}
     if(stem in ashvapati_devata){const f=ashvapati_devata[stem];return R("4.2.24+4.1.84","साऽस्य देवता + अश्वपत्यादि","अण्",`${stem} →[७.२.११७]→ ${f} →[अण्]→ ${f}म्`,"अश्वपत्यादि → अण्।","Aśvapati-ādi deity → Aṇ.");}
     return R("4.2.24","साऽस्य देवता","अण् (प्राग्दीव्यतोऽण् 4.1.83)",ad(stem),`'${stem}' देवतावाचकात् प्रथमासमर्थात् अण्।`,`Aṇ for deity '${stem}' — sacred to / belonging to.`);
+  }
+
+  // ══ NIPĀTANA — पितृव्यमातुलमातामहपितामहाः ══
+  // These words are nipātana — given readymade. The vārttikas explain
+  // the affixes that can be inferred from the nipāta forms.
+  if(mc==='nipatan'){
+    const ctx = extra; // 'brother' | 'father' | 'mother' | 'milk' | 'fruitless'
+
+    // ── पितृ ───────────────────────────────────────────────────
+    if(stem==="पितृ"){
+      if(ctx==="brother") return R(
+        "4.2.36 (वार्) — पितुर्भ्रातरि व्यत्",
+        "पितुर्भ्रातरि व्यत्",
+        "व्यत्",
+        "पितृ + व्यत् →[व्यत्-प्रत्ययः]→ पितृव्यः",
+        `निपातनम् — पितुः भ्राता = पितृव्यः ।
+वार्त्तिकम्: पितुर्भ्रातरि व्यत् ।
+पितृ + व्यत् → पितृव्य । यकारोत्तरे अकारः स्वरितः (तित्स्वरितम्) ।`,
+        `Nipātana. Father's brother = पितृव्यः (Paternal Uncle).
+Vārttika: After पितृ, the affix व्यत् comes in the sense of 'his brother'.
+पितृ + व्यत् → पितृव्यः. The a after y is svarita by tit-svarita.`
+      );
+      if(ctx==="father") return R(
+        "4.2.36 (वार्) — ताभ्यां पितरि डामहच्",
+        "मातृपितृभ्यां पितरि डामहच्",
+        "डामहच्",
+        "पितृ + डामहच् →[टेः ६.४.१४३ → ऋकारस्य लोपः]→ पित् + आमह →[संधिः]→ पितामहः । स्त्री: पितामही (षित् + ङीष् ४.१.४१)",
+        `निपातनम् — पितुः पिता = पितामहः (Paternal Grandfather) ।
+वार्त्तिकम्: ताभ्यां पितरि डामहच् ।
+पितृ + डामहच् → टेः (६.४.१४३) ऋकारस्य टिसंज्ञकस्य लोपः → पित् + आमह → पितामहः ।
+स्त्री: डामहच् 'षित्' अस्ति → षिद्गौरादिभ्यश्च (४.१.४१) → ङीष् → पितामही ।`,
+        `Nipātana. Father's father = पितामहः (Paternal Grandfather).
+Vārttika: ताभ्यां पितरि डामहच् — affix डामहच् after पितृ/मातृ in sense 'their father'.
+पितृ + डामहच् → ṭi-lopa (6.4.143) drops ṛ → पित् + आमह → पितामहः.
+Fem: डामहच् is ṣit → ṅīṣ by 4.1.41 → पितामही.`
+      );
+      // No context selected yet
+      return R(
+        "4.2.36 — निपातनम्",
+        "पितृव्यमातुलमातामहपितामहाः",
+        "निपातनम्",
+        "पितृ — कृपया अर्थं चिनोतु",
+        "अर्थः अनिश्चितः — भ्राता वा पिता वा चिनोतु ।",
+        "Please select the intended meaning (brother / father)."
+      );
+    }
+
+    // ── मातृ ───────────────────────────────────────────────────
+    if(stem==="मातृ"){
+      if(ctx==="brother") return R(
+        "4.2.36 (वार्) — मातुर्डुलच्",
+        "मातुर्डुलच्",
+        "डुलच्",
+        "मातृ + डुलच् →[ड-च-इत्संज्ञा-लोपः]→ मातृ + उल →[टेः ६.४.१४३ → ऋकारलोपः]→ मात् + उल →[संधिः]→ मातुलः",
+        `निपातनम् — मातुः भ्राता = मातुलः (Maternal Uncle) ।
+वार्त्तिकम्: मातुर्डुलच् ।
+प्रक्रिया:
+१. मातृ + डुलच् — डकारचकारयोः इत्संज्ञा, लोपः → मातृ + उल
+२. टेः (६.४.१४३) — ऋकारः टिसंज्ञकः, तस्य लोपः → मात् + उल
+३. मात् + उल → मातुलः`,
+        `Nipātana. Mother's brother = मातुलः (Maternal Uncle).
+Vārttika: मातुर्डुलच् — affix डुलच् after मातृ meaning 'her brother'.
+Process:
+1. मातृ + डुलच् → ḍ and c are it → drop → मातृ + उल
+2. ṭi-lopa (6.4.143): ṛ is ṭi, dropped → मात् + उल
+3. मात् + उल → मातुलः`
+      );
+      if(ctx==="father") return R(
+        "4.2.36 (वार्) — ताभ्यां पितरि डामहच्",
+        "मातृपितृभ्यां पितरि डामहच्",
+        "डामहच्",
+        "मातृ + डामहच् →[टेः ६.४.१४३ → ऋकारलोपः]→ मात् + आमह →[संधिः]→ मातामहः । स्त्री: मातामही (षित् + ङीष् ४.१.४१)",
+        `निपातनम् — मातुः पिता = मातामहः (Maternal Grandfather) ।
+वार्त्तिकम्: ताभ्यां पितरि डामहच् ।
+मातृ + डामहच् → टेः (६.४.१४३) ऋकारलोपः → मात् + आमह → मातामहः ।
+स्त्री: षित्वात् (४.१.४१) ङीष् → मातामही ।`,
+        `Nipātana. Mother's father = मातामहः (Maternal Grandfather).
+Vārttika: ताभ्यां पितरि डामहच् — after मातृ/पितृ in sense of 'their father'.
+मातृ + डामहच् → ṭi-lopa (6.4.143) → मात् + आमह → मातामहः.
+Fem (षित्): by 4.1.41 → ṅīṣ → मातामही.`
+      );
+      if(ctx==="mother") return R(
+        "4.2.36 (वार्) — मातरि षिच्च",
+        "मातरि षिच्च — डामहच् (षित्) + ङीष्",
+        "डामहच् (षित्) + ङीष्",
+        "मातृ + डामहच् →[षित् → ङीष् ४.१.४१]→ मात् + आमह + ई →[संधिः]→ मातामही | पितृ + डामहच् + ङीष् → पितामही",
+        `निपातनम् — मातुः माता = मातामही, पितुः माता = पितामही ।
+वार्त्तिकम्: मातरि षिच्च ।
+डामहच्-प्रत्ययः 'षित्' अपि अस्ति ।
+षिद्गौरादिभ्यश्च (४.१.४१) → स्त्रीत्वे ङीष् विधीयते ।
+मातृ + डामहच् + ङीष् → मातामही ।
+पितृ + डामहच् + ङीष् → पितामही ।`,
+        `Nipātana. Mother's mother = मातामही; Father's mother = पितामही.
+Vārttika: मातरि षिच्च — डामहच् is also ṣit.
+By 4.1.41 (ṣid-gaurādi): ṅīṣ added for feminine.
+मातृ + डामहच् + ṅīṣ → मातामही.
+पितृ + डामहच् + ṅīṣ → पितामही.`
+      );
+      return R(
+        "4.2.36 — निपातनम्",
+        "पितृव्यमातुलमातामहपितामहाः",
+        "निपातनम्",
+        "मातृ — कृपया अर्थं चिनोतु",
+        "अर्थः अनिश्चितः — भ्राता / पिता / माता चिनोतु ।",
+        "Please select the intended meaning."
+      );
+    }
+
+    // ── अवि ────────────────────────────────────────────────────
+    if(stem==="अवि"){
+      return R(
+        "4.2.36 (वार्) — अवेर्दुग्धे सोढदूसमरीसचः",
+        "अवेर्दुग्धे सोढ-दूस-मरीसचः",
+        "सोढ / दूस / मरीसच्",
+        "अवि + सोढ  → अविसोढम् ।\nअवि + दूस   → अविदूसम् ।\nअवि + मरीसच् → अविमरीसम् ।",
+        `निपातनम् — अवेः दुग्धम् ।
+वार्त्तिकम्: अवेः दुग्धे सोढ-दूस-मरीसचः वक्तव्याः ।
+अवि (= मेषः / एडकः) इत्यस्मात् 'दुग्धम्' अस्मिन् अर्थे त्रयः प्रत्ययाः भवन्ति —
+  १. अवि + सोढ  → अविसोढम्
+  २. अवि + दूस   → अविदूसम्
+  ३. अवि + मरीसच् → अविमरीसम्`,
+        `Nipātana. Sheep's milk — three vārttika affixes.
+Vārttika: अवेर्दुग्धे सोढ-दूस-मरीसचः
+After अवि (= sheep/ewe), in the meaning 'its milk':
+  1. अवि + सोढ  → अविसोढम्
+  2. अवि + दूस   → अविदूसम्
+  3. अवि + मरीसच् → अविमरीसम्`
+      );
+    }
+
+    // ── तिल ────────────────────────────────────────────────────
+    if(stem==="तिल"){
+      return R(
+        "4.2.36 (वार्) — तिलात् निष्फलात् पिञ्जपेजौ",
+        "तिलात् निष्फलात् पिञ्ज-पेजौ",
+        "पिञ्ज / पेज",
+        "तिल + पिञ्ज → तिलपिञ्जम् ।\nतिल + पेज  → तिलपेजम् ।\nवैदिकम्: तिल + पिञ्ज् (डित्) →[टेः ६.४.१४३]→ तिल्पिञ्जः (AV १२.२.५४)",
+        `निपातनम् — निष्फलं तिलम् ।
+वार्त्तिकम्: तिलात् निष्फलात् पिञ्जपेजौ ।
+तिल-शब्दात् 'निष्फलम्' अस्मिन् अर्थे द्वौ प्रत्ययौ —
+  १. तिल + पिञ्ज → तिलपिञ्जम्
+  २. तिल + पेज  → तिलपेजम्
+वार्त्तिकम्: पिञ्जः छन्दसि डित् च —
+  वेदेषु पिञ्ज् 'डित्' → टेः (६.४.१४३) टिलोपः → तिल् + पिञ्ज = तिल्पिञ्जः
+  (अथर्ववेदः १२.२.५४: 'इषीकां जरतीमिष्ट्वा तिल्पिञ्जं दण्डनं नडम्')`,
+        `Nipātana. Fruitless sesame — two affixes.
+Vārttika: तिलात् निष्फलात् पिञ्ज-पेजौ
+After तिल in the sense 'fruitless (useless) sesame':
+  1. तिल + पिञ्ज → तिलपिञ्जम्
+  2. तिल + पेज  → तिलपेजम्
+Vārttika: पिञ्जः छन्दसि डित् च —
+  In Vedic, पिञ्ज् is ḍit → ṭi-lopa (6.4.143) → तिल् + पिञ्ज = तिल्पिञ्जः
+  (Atharva-veda 12.2.54: 'iṣīkāṃ jaratīmiṣṭvā tilpiñjaṃ daṇḍanaṃ naḍam')`
+      );
+    }
+
+    // Unknown stem in nipātana
+    return R(
+      "4.2.36 — निपातनम्",
+      "पितृव्यमातुलमातामहपितामहाः",
+      "निपातनम्",
+      `'${stem}' — अस्मिन् अधिकारे नास्ति`,
+      `❌ '${stem}' अत्र निपातितः नास्ति ।`,
+      `❌ '${stem}' is not in this nipātana group. Use: पितृ, मातृ, अवि, तिल.`
+    );
   }
 
   return null;
