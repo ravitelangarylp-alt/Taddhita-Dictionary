@@ -2560,12 +2560,17 @@ e.g. himālaya → haimālayaḥ, vana → vānaḥ.`);
   return null;
 }
 
-// ── suffixMapping — centralised pratyaya metadata dictionary ─────────────────
-// Each entry: { it, clean, vibluk, vrddhi }
-//   it      = anubandha letters dropped (1.3.3 etc.); '—' if none
-//   clean   = phonetic remainder after it-lopa (shown in steps 5–8)
-//   vibluk  = 2.4.71 ṅas-vibhakti-luk applies
-//   vrddhi  = 7.2.117 ādivṛddhi applies
+const suffixMapping = {
+    "अण्": "अ", "अञ्": "अ", "ण": "अ",
+    "यञ्": "य", "ण्य": "य", "यत्": "य",
+    "फक्": "आयन", "फञ्": "आयन", "फक् (आयन)": "आयन", "फञ् (आयन)": "आयन",
+    "ढक्": "एय", "ढञ्": "एय", "ढक् (एय)": "एय",
+    "खक्": "ईन", "खञ्": "ईन",
+    "छ": "ईय", "घ": "इय",
+    "ठक्": "इक", "ठञ्": "इक", "ञिठ्": "इक", "ठक् (इक)": "इक",
+    "वुन्": "अक", "वुन": "अक", "वुन् (अक)": "अक",
+    "इनि": "इन्", "इञ्": "इ"
+};
 const SUFFIX_META={
   // ── अ-कार (aṇ, añ, ṇa) ──────────────────────────────────
   'अण्':      {it:'ण्',     clean:'अ',     vibluk:true,  vrddhi:true},
