@@ -34,10 +34,13 @@ body{
   display:flex;
   flex-direction:column;
 }
+/* ── Inknut Antiqua for Sanskrit display elements ── */
 .sanskrit-text,.large-rupa-font,.vikalpa-rupa,.res-final,.motto,
 .header-title,.adh-san,.deva-input,.res-sutra-text,.note-text{
   font-family:'Inknut Antiqua','Noto Sans Devanagari',serif;
 }
+
+/* ── HEADER ── */
 header{
   background:var(--bg2);
   border-bottom:3px solid var(--gold2);
@@ -72,7 +75,18 @@ header{
   margin-top:3px;
   font-family:'Noto Sans Devanagari',sans-serif;
 }
+.shloka{
+  font-style:italic;
+  font-size:12px;
+  color:var(--text3);
+  text-align:right;
+  font-family:'Noto Sans Devanagari',sans-serif;
+}
+
+/* ── LAYOUT ── */
 .layout{display:flex;flex:1;overflow:hidden}
+
+/* ── SIDEBAR ── */
 aside{
   width:240px;
   background:var(--bg2);
@@ -129,7 +143,11 @@ aside{
 }
 .badge-ok{background:rgba(46,125,50,.12);color:var(--green);font-weight:600}
 .badge-soon{background:rgba(74,72,64,.3);color:var(--text3)}
+
+/* ── MAIN ── */
 main{flex:1;overflow-y:auto;padding:24px 28px}
+
+/* ── CARD ── */
 .card{
   background:var(--bg2);
   border:1px solid var(--border);
@@ -148,6 +166,8 @@ main{flex:1;overflow-y:auto;padding:24px 28px}
 .card-title{color:var(--gold);font-family:'Spectral SC',serif;font-size:13px;letter-spacing:1px}
 .card-sub{font-size:11px;color:var(--text3);margin-left:4px}
 .card-body{padding:18px}
+
+/* ── INPUT ── */
 .input-row{display:flex;gap:10px;margin-bottom:14px}
 .deva-input{
   flex:1;
@@ -177,6 +197,8 @@ main{flex:1;overflow-y:auto;padding:24px 28px}
   white-space:nowrap;
 }
 .btn-derive:hover{background:var(--gold)}
+
+/* ── CHIPS ── */
 .chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
 .chip{
   padding:3px 10px;
@@ -191,6 +213,8 @@ main{flex:1;overflow-y:auto;padding:24px 28px}
 }
 .chip:hover{border-color:rgba(201,168,76,.3);color:var(--text)}
 .chip.active{background:var(--gold-dim);border-color:rgba(201,168,76,.35);color:var(--gold2)}
+
+/* ── QUESTIONS ── */
 .q-label{
   font-size:10px;
   letter-spacing:2px;
@@ -229,6 +253,8 @@ main{flex:1;overflow-y:auto;padding:24px 28px}
   transition:all .15s;
 }
 .radio-opt.sel .radio-dot{background:var(--gold);border-color:var(--gold)}
+
+/* ── RESULT ── */
 .result-box{
   background:var(--bg);
   border:1px solid var(--border);
@@ -266,6 +292,7 @@ main{flex:1;overflow-y:auto;padding:24px 28px}
   font-family:'Noto Sans Devanagari',sans-serif;
   letter-spacing:1px;
 }
+/* ── Vikalpa (optional forms) rendering ── */
 .vikalpa-wrap{
   display:flex;
   flex-wrap:wrap;
@@ -324,6 +351,7 @@ main{flex:1;overflow-y:auto;padding:24px 28px}
   border-radius:3px;
   border:1px solid var(--border);
 }
+/* Each line in a multi-form derivation (vikalpa/nipātana) */
 .deriv-line{
   display:flex;
   flex-wrap:wrap;
@@ -358,84 +386,6 @@ main{flex:1;overflow-y:auto;padding:24px 28px}
   border:1px dashed var(--border);
   border-radius:2px;
 }
-/* ── Numbered Prakriyā table ── */
-.prakriya-box{
-  background:var(--bg3);
-  border:1px solid var(--border);
-  border-radius:4px;
-  margin-bottom:16px;
-  overflow:hidden;
-}
-.prakriya-title{
-  font-size:9px;
-  letter-spacing:2px;
-  color:var(--text3);
-  text-transform:uppercase;
-  padding:7px 14px 6px;
-  font-family:'Spectral SC',serif;
-  border-bottom:1px solid var(--border);
-  background:var(--bg2);
-}
-.prakriya-row{
-  display:grid;
-  grid-template-columns:28px 1fr 1fr;
-  gap:0;
-  border-bottom:1px solid rgba(255,204,128,.35);
-  min-height:36px;
-}
-.prakriya-row:last-child{border-bottom:none;}
-.prakriya-row.final-row{background:var(--gold-dim);}
-.pk-num{
-  font-size:10px;
-  color:var(--text3);
-  font-family:'Spectral SC',serif;
-  padding:8px 0 8px 10px;
-  display:flex;
-  align-items:center;
-  border-right:1px solid rgba(255,204,128,.35);
-}
-.pk-form{
-  font-size:13px;
-  color:var(--text2);
-  font-family:'Inknut Antiqua','Noto Sans Devanagari',serif;
-  padding:7px 12px;
-  display:flex;
-  align-items:center;
-  gap:5px;
-  flex-wrap:wrap;
-  border-right:1px solid rgba(255,204,128,.35);
-}
-.pk-join{color:var(--gold);font-size:11px;opacity:.7;font-family:'Spectral',serif;}
-.pk-suf{
-  color:var(--accent);
-  border-bottom:1px dotted var(--accent);
-  padding-bottom:1px;
-}
-.pk-final{color:var(--gold2);font-weight:500;}
-.pk-rule{
-  font-size:10px;
-  color:var(--text3);
-  font-family:'Spectral',serif;
-  font-style:italic;
-  padding:7px 10px;
-  display:flex;
-  align-items:center;
-  line-height:1.5;
-}
-.pk-chip{
-  display:inline-block;
-  background:rgba(230,81,0,.08);
-  border:1px solid rgba(230,81,0,.2);
-  border-radius:2px;
-  padding:1px 5px;
-  font-size:9px;
-  color:var(--accent);
-  font-style:normal;
-  font-family:'Spectral SC',serif;
-  letter-spacing:.3px;
-  margin-right:3px;
-  white-space:nowrap;
-}
 .arrow{color:var(--gold);font-size:11px;opacity:0.7}
 .notes-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .note-box{
@@ -469,6 +419,8 @@ main{flex:1;overflow-y:auto;padding:24px 28px}
   margin-top:10px;
   font-family:'Noto Sans Devanagari',sans-serif;
 }
+
+/* ── HISTORY ── */
 .hist-wrap{display:flex;flex-wrap:wrap;gap:7px;padding:12px 18px}
 .hist-btn{
   background:var(--bg3);
@@ -486,6 +438,9 @@ main{flex:1;overflow-y:auto;padding:24px 28px}
 }
 .hist-btn:hover{border-color:rgba(201,168,76,.3);color:var(--text)}
 .hist-result{color:var(--gold);font-size:11px}
+
+/* ── SCROLLBAR ── */
+/* ── Compact Site Footer ── */
 .site-footer{
   text-align:center;
   padding:12px 20px;
@@ -499,8 +454,85 @@ main{flex:1;overflow-y:auto;padding:24px 28px}
   flex-shrink:0;
 }
 .site-footer p{margin:0;padding:2px 0;}
+
+/* ── Numbered Prakriyā table ── */
+.prakriya-box{
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-radius:4px;
+  margin-bottom:16px;
+  overflow:hidden;
+}
+.prakriya-title{
+  font-size:9px;
+  letter-spacing:2px;
+  color:var(--text3);
+  text-transform:uppercase;
+  padding:7px 14px 6px;
+  font-family:'Spectral SC',serif;
+  border-bottom:1px solid var(--border);
+  background:var(--bg2);
+}
+.prakriya-row{
+  display:grid;
+  grid-template-columns:28px 1fr 1fr;
+  gap:0;
+  border-bottom:1px solid rgba(255,204,128,.35);
+  min-height:36px;
+}
+.prakriya-row:last-child{border-bottom:none}
+.prakriya-row.final-row{background:var(--gold-dim)}
+.pk-num{
+  font-size:10px;
+  color:var(--text3);
+  font-family:'Spectral SC',serif;
+  padding:8px 0 8px 10px;
+  display:flex;
+  align-items:center;
+  border-right:1px solid rgba(255,204,128,.35);
+}
+.pk-form{
+  font-size:13px;
+  color:var(--text2);
+  font-family:'Inknut Antiqua','Noto Sans Devanagari',serif;
+  padding:7px 12px;
+  display:flex;
+  align-items:center;
+  gap:5px;
+  flex-wrap:wrap;
+  border-right:1px solid rgba(255,204,128,.35);
+}
+.pk-join{color:var(--gold);font-size:11px;opacity:.7;font-family:'Spectral',serif}
+.pk-suf{color:var(--accent);border-bottom:1px dotted var(--accent);padding-bottom:1px}
+.pk-vib{color:var(--text3);border-bottom:1px dashed var(--text3);font-style:italic}
+.pk-final{color:var(--gold2);font-weight:500}
+.pk-rule{
+  font-size:10px;
+  color:var(--text3);
+  font-family:'Spectral',serif;
+  font-style:italic;
+  padding:7px 10px;
+  display:flex;
+  align-items:center;
+  line-height:1.5;
+}
+.pk-chip{
+  display:inline-block;
+  background:rgba(230,81,0,.08);
+  border:1px solid rgba(230,81,0,.2);
+  border-radius:2px;
+  padding:1px 5px;
+  font-size:9px;
+  color:var(--accent);
+  font-style:normal;
+  font-family:'Spectral SC',serif;
+  letter-spacing:.3px;
+  margin-right:3px;
+  white-space:nowrap;
+}
 ::-webkit-scrollbar{width:5px;background:#FDF6E3}
 ::-webkit-scrollbar-thumb{background:#FFCC80;border-radius:3px}
+
 @media(max-width:700px){
   aside{width:190px}
   main{padding:16px}
@@ -514,17 +546,19 @@ main{flex:1;overflow-y:auto;padding:24px 28px}
   <div class="header-left">
     <div class="header-title sanskrit-text">Pāṇinian Taddhita Dictionary</div>
     <div class="motto sanskrit-text">॥ प्रियतद्धिताः खलु दाक्षिणात्याः ॥</div>
-    <div class="header-scope">4.1.83–4.1.155 · 4.2.1–4.2.57 · पितृव्यमातुलमातामहपितामहाः स्वतन्त्रम् ✅</div>
+    <div class="header-scope">4.1.83–4.1.155 · 4.2.1–5.1.132 · पितृव्यमातुलमातामहपितामहाः स्वतन्त्रम् ✅</div>
   </div>
 </header>
 
 <div class="layout">
 
+<!-- SIDEBAR -->
 <aside>
   <div class="side-section">अधिकारः</div>
   <div id="adhList"></div>
 </aside>
 
+<!-- MAIN -->
 <main>
   <div class="card">
     <div class="card-head">
@@ -563,6 +597,10 @@ const MA={'ा':'ा','ि':'ै','ी':'ै','ु':'ौ','ू':'ौ','ृ':'ा
 const CO="कखगघङचछजझञटठडढणतथदधनपफबभमयरलवशषसह";
 
 function applyAn(stem){
+  // ── Special Pāṇinian vṛddhi for tadadhite compounds ──────────
+  if(stem==="व्याकरण") return "वैयाकरण";
+  if(stem.startsWith("न्याय")) return stem.replace("न्याय","नैयाय");
+  if(stem==="अनसू") return "आनुसू";
   let vs="",vf=false;const ch=[...stem];let i=0;
   while(i<ch.length){const c=ch[i];
     if(!vf){if(VI[c]){vs+=VI[c];vf=true;i++;continue;}
@@ -606,12 +644,18 @@ function isAkarant(w){
   return false;
 }
 
+// ── Syllable counter (Devanagari vowel count) ─────────────────
+// ── Syllable counter — exact port of Python count_vowels_py ──
+// Used for Dvyaśca (4.1.121) and इतश्चानिञः (4.1.122)
 function countVowels(word){
   const IND="अआइईउऊऋॠएऐओऔ";
   const DEP="ािीुूृॄेैोौ";
   let n=0;
+  // independent vowel letters
   for(const c of word) if(IND.includes(c)) n++;
+  // dependent vowel matras
   for(const c of word) if(DEP.includes(c)) n++;
+  // implicit 'a' on consonants not followed by halant or dependent vowel
   for(let i=0;i<word.length;i++){
     if(CO.includes(word[i])){
       const nx=word[i+1]||'';
@@ -621,13 +665,19 @@ function countVowels(word){
   return n;
 }
 
+// ── Ḍhak (एय) sandhi — 6.4.147 terminal drops ─────────────
+// Strip strīpratyaya terminal first, THEN apply Ādivṛddhi on the base.
+// This ensures applyAn gets a consonant-final form for correct Vṛddhi.
 function applyDhakSandhi(stem){
   let base;
   if(stem.endsWith('ति')){
+    // kṛti ending: strip 'ति', add halant 'त्', then Ādivṛddhi
     base = applyAn(stem.slice(0,-2)+'त्');
   } else if(stem.endsWith('ी')||stem.endsWith('ा')||stem.endsWith('ू')){
+    // 6.4.147: ū/ī/ā drop before Ḍhak — strip terminal matra first
     base = applyAn(stem.slice(0,-1));
   } else if(stem.endsWith('ि')){
+    // Short i: applyAn handles via terminal stripping
     base = applyAn(stem);
   } else {
     base = applyAn(stem);
@@ -635,6 +685,7 @@ function applyDhakSandhi(stem){
   return base+'ेयः';
 }
 
+// ── Strīpratyaya terminal detector ───────────────────────────
 function isStripratyaya(w){
   return w.endsWith('ा')||w.endsWith('ी')||w.endsWith('ू')||w.endsWith('ति');
 }
@@ -656,26 +707,57 @@ const kapibodha_data={"कपि":"काप्य","बोध":"बौध्य
 const ashvadi_data={"अश्व":"आश्वायन","अश्मन्":"आश्मायन","शंख":"शाङ्खायन","शूद्रक":"शौद्रकायन","रोहिण":"रौहिणायन","बस्त":"बास्तायन","प्रकृत":"प्राकृतायन","क्षान्त":"क्षान्तायन","काश":"काशायन","तीक्ष्ण":"तैक्ष्णायन","अर्क":"आर्कायन","चक्र":"चाक्रायन","श्रविष्ठ":"श्राविष्ठायन","पवित्र":"पावित्रायण","श्याम":"श्यामायन","धूम":"धौमायन","धूम्र":"धौम्रायण","विश्वानर":"वैश्वानरायण","कुट":"कौटायन","जन":"जानायन","ग्रीष्म":"ग्रैष्मायण","अर्ह":"आर्हायन","कित":"कैतायन","विशाल":"वैशालायन","गिरि":"गैरायण","चपल":"चापलायन","कुल":"कौलायन","नड":"नाडायन","नत्त":"नात्तायन","आत्रेय":"आत्रेयायन","शप":"शापायन","जात":"जातायन","भरद्वाज":"भारद्वाजायन"};
 const shivadi_data={"शिव":"शैव","प्रोष्ठ":"प्रौष्ठ","चण्ड":"चाण्ड","जम्भ":"जाम्भ","भूरि":"भौर","दण्ड":"दाण्ड","कुठार":"कौठार","ककुभ्":"काकुभ","सुख":"सौख","मुनि":"मौन","ककुत्स्थ":"काकुत्स्थ","रोध":"रौध","कपिंजल":"कापिंजल","खंजन":"खाञ्जन","वतण्ड":"वातण्ड","परिल":"पारिल","पिष्ट":"पैष्ट","हैहय":"हैहय","गोपिका":"गौपिक","कपिलिका":"कापिलिक","जटिलिका":"जाटिलिक","बधिरिका":"बाधिरिक","वृष्णिक":"वार्ष्णिक","रेख":"रैख","विटप":"वैटप","पिटक":"पैटक","ऊर्णनाभ":"और्णनाभ","जरत्कारु":"जारत्कारव","पृथा":"पार्थ","गंगा":"गाङ्ग","विपाश":"वैपाश","यस्क":"यास्क","लह्य":"लाह्य","द्रुह्य":"द्रौह्य","पर्ण":"पार्ण","भूमि":"भौम","इला":"ऐल","सपत्नी":"सापत्न","त्रिवेणी":"त्रैवेण","रोहितिक":"रौहितिक","राजल":"राजल","तडाक":"ताडाक"};
 const avriddha_nadi={"यमुना":"यामुन","सरस्वती":"सारस्वत","नर्मदा":"नार्मद","इरावती":"ऐरावत","वितस्ता":"वैतस्त","सुभद्रा":"सौभद्र","शिक्षिता":"शैक्षित","चिन्तिता":"चैन्तित","संस्कृता":"सांस्कृत","हिडिम्बा":"हैडिम्ब"};
+
+// ── 4.1.123 शुभ्रादिभ्यश्च — gana list ──────────────────────
+// Words taking Ḍhak (एय) directly; गोधा handled separately (4.1.129/130)
 const shubhradi_gana=new Set(["शुभ्र","विष्टपुर","ब्रह्मकृत","शतद्वार","शलाथल","शलाकाभ्रू","लेखाभ्रू","विकंसा","रोहिणी","रुक्मिणी","धर्मिणी","दिश्","शालूक","अजवस्ति","शकंधि","विमातृ","विधवा","शुक","विश","देवतर","शकुनि","शुक्र","उग्र","ज्ञातल","बन्धकी","सृकण्डु","विस्रि","अतिथि","गोदन्त","कुशाम्ब","मकष्टु","शाताहर","पवष्टुरिक","सुनामन्","लक्ष्मण","श्याम","कृकलास","अणीब","प्रवाहण","भरत","भरम","मृकण्डु","कर्पूर","इतर","अन्यतर","आलीढ","सुदन्त","सुदक्ष","सुवक्षस्","सुदामन्","कद्रु","तुद","अकशाय","कुमारिका","कुठारिका","किशोरिका","अम्बिका","जिह्माशिन्","परिधि","वायुदत्त","शकल","शलाका","खडूर","कुबेरिका","अशोका","गन्धपिङ्गला","खडोन्मत्ता","अनुदृष्टि","जरतिन्","बलीवर्दिन्","विग्र","वीज","जीव","श्वन्","अश्मन्","अश्व","अजिर","शतावर","कृकसा","मद्यष्टु","ककल","स्थूल","मकथु","यमष्टु","कष्टु","मृकण्ड","गुद","रुद","कुशेरिका","शवल","अजिन","गङ्गा","पाण्डव"]);
+
+// ── 4.1.135 चतुष्पाद्भ्यो ढञ् — quadruped gana ────────────────
 const chatushpad_gana=new Set(["कमण्डलु","शुन्तिबाहु","जम्बु","धेनु","गो","अश्व","गर्दभ","उष्ट्र","अज","अवि","मृग","व्याघ्र","सिंह","हस्तिन्","ऊष्ट्र","खर","रास","घोटक","वराह","श्वन्"]);
+// ── 4.1.136 गृष्ट्यादिभ्यश्च — grishti gana ──────────────────
 const grishtyadi_gana=new Set(["गृष्टि","हृष्टि","बलि","हलि","विश्रि","कुद्रि","अजवस्ति","मित्रयु"]);
+
+// ── 4.1.146 रेवत्यादिभ्यष्ठक् — gana (bypass strī rules) ─────
 const revatyadi_gana=new Set(["रेवती","अश्वपाली","मणिपाली","द्वारपाली","वृकवञ्चिन्","वृकबन्धु","वृकग्राह","कर्णग्राह","दण्डग्राह","कुक्कुटाक्ष","चामरग्राह"]);
-const kurvadi_gana=new Set(["कुरु","गर्गर","मङ्गुष","अजमार","रथकार","वावदूक","कवि","विमति","वामरथ","पितृमत्","एजि","वातकि","शलाका","सुर","पुर","शुभ्र","अभ्र","दर्भ","केशिनी","वेन","सत्यंकार","पथिकार","मूढ","शाक","कर्तृ","हर्तृ","काक","स्फाटक"]);
+// ── 4.1.151 कुर्वादिभ्यो ण्यः — gana ────────────────────────
+const kurvadi_gana=new Set(["गर्गर","मङ्गुष","अजमार","रथकार","वावदूक","कवि","विमति","वामरथ","पितृमत्","एजि","वातकि","शलाका","सुर","पुर","शुभ्र","अभ्र","दर्भ","केशिनी","वेन","सत्यंकार","पथिकार","मूढ","शाक","कर्तृ","हर्तृ","काक","स्फाटक"]);
+
+// ── 4.1.154 तिकादिभ्यः फिञ् — gana ──────────────────────────
 const tikadi_gana=new Set(["तिक","कितव","संज्ञा","बाल","शिखा","उरस्","शाट्य","सैन्धव","यमुन्द","रूप्य","ग्राम्य","नील","अमित्र","गौकक्ष्य","कुरु","देवरथ","तैतल","औरस","कौरव्य","भौरिकि","भौलिकि","चन्द्रमस्","शुभ","गङ्गा","वरेण्य","सुपामन्","आरद्ध","वह्यका","खल्यका","वृष","लोमक","उदज्ञ","यज्ञ","सुयामन्","ऋश्य","भीत","जाजल","रस","लावक","वसु","बन्धु"]);
+
+// ══ तस्य समूहः (4.2.37–4.2.51) DATA ════════════════════════════
+// bhikṣādi — hardcoded Aṇ forms (4.2.38)
+const bhikshadi_samuha={"भिक्षा":"भैक्षम्","गर्भिणी":"गार्भिणम्","क्षेत्र":"क्षैत्रम्","करीष":"कारीषम्","अङ्गार":"आङ्गारम्","चर्मिन्":"चार्मिणम्","धर्मिन्":"धार्मिणम्","सहस्र":"साहस्रम्","युवति":"यौवतम्","पदाति":"पादातम्","पद्धति":"पाद्धतम्","अथर्वन्":"आथर्वम्","दक्षिणा":"दाक्षिणम्","भूत":"भौतम्"};
+// khaṇḍikādi — Añ (4.2.45)
+const khandikadi_samuha=new Set(["खण्डिका","वडवा","भिक्षुक","शुक","उलूक","श्वन्","युग","वरत्रा","हलबन्ध"]);
+// pāśādi — ya + ṭāp (4.2.49)
+const pashadi_samuha=new Set(["पाश","तृण","धूम","वात","अङ्गार","पोत","बालक","पिटक","पिटाक","शकट","हल","नड","वन"]);
+// khalādi — ya/ini (4.2.50)
+const khaladi_samuha=new Set(["खल","डाक","कुटुम्ब","शाक","कुण्डल"]);
+// kamalādi — khaṇḍach (vārttika)
+const kamaladi_samuha=new Set(["कमल","अम्भोज","पद्मिनी","कुमुद","सरोज","पद्म","नलिनी","कैरविणी"]);
+// pūrvādi — kāṇḍach (vārttika)
+const purvadi_samuha=new Set(["पूर्व","तृण","कर्म"]);
+// bypass — words with fully determined forms, no context question needed
+const bypassSamuha=new Set(["भिक्षा","गर्भिणी","युवति","उक्षन्","उष्ट्र","राजन्","मनुष्य","केदार","कवचिन्","ब्राह्मण","माणव","वाडव","ग्राम","जन","गज","हस्तिन्","धेनु","केश","अश्व","खल","गो","रथ","पर्शु","वात","क्षेत्र","करीष","अङ्गार","भूत"]);
 
 // ══ विषयो देशे (4.2.52–4.2.54) DATA ════════════════════════════
 const rajanyadi_vishaya = new Set(["राजन्य","देवयान","मालव","विराट","त्रिगर्त","शालङ्कायन","जालन्धरायण","आत्मकामेय","अम्बरीषपुत्र","वसाति","बैल्ववन","शैलूष","उदुम्बर","बैल्वल","आर्जुनायन","संप्रिय","दाक्षि","ऊर्णनाभ"]);
 const bhaurikyadi_vishaya = new Set(["भौरिकि","वैपेय","भौलिकि","चैटयत","काणेय","वाणिजक","वालिज","वालिज्यक","शैकयत","वैकयत"]);
 const aishukaryadi_vishaya = new Set(["ऐषुकारि","सारस्यायन","चान्द्रायण","द्व्याक्षायण","त्र्याक्षायण","औडायन","जौलायन","खाडायन","सौवीर","दासमित्रि","दासमित्रायण","शौद्रायण","शापण्डायन","शायण्डायन","दाक्षायण","शपण्ड","शयण्ड","तार्क्ष्यायण","शौभ्रायण","शौण्ड","शयाण्डि","वैश्वमाणव","वैश्वधेनव","नड","तुण्डदेव","विश्वदेव"]);
-
-// ══ तस्य समूहः (4.2.37–4.2.51) DATA ════════════════════════════
-const bhikshadi_samuha={"भिक्षा":"भैक्षम्","गर्भिणी":"गार्भिणम्","क्षेत्र":"क्षैत्रम्","करीष":"कारीषम्","अङ्गार":"आङ्गारम्","चर्मिन्":"चार्मिणम्","धर्मिन्":"धार्मिणम्","सहस्र":"साहस्रम्","युवति":"यौवतम्","पदाति":"पादातम्","पद्धति":"पाद्धतम्","अथर्वन्":"आथर्वम्","दक्षिणा":"दाक्षिणम्","भूत":"भौतम्"};
-const khandikadi_samuha=new Set(["खण्डिका","वडवा","भिक्षुक","शुक","उलूक","श्वन्","युग","वरत्रा","हलबन्ध"]);
-const pashadi_samuha=new Set(["पाश","तृण","धूम","वात","अङ्गार","पोत","बालक","पिटक","पिटाक","शकट","हल","नड","वन"]);
-const khaladi_samuha=new Set(["खल","डाक","कुटुम्ब","शाक","कुण्डल"]);
-const kamaladi_samuha=new Set(["कमल","अम्भोज","पद्मिनी","कुमुद","सरोज","पद्म","नलिनी","कैरविणी"]);
-const purvadi_samuha=new Set(["पूर्व","तृण","कर्म"]);
-const bypassSamuha=new Set(["भिक्षा","गर्भिणी","युवति","उक्षन्","उष्ट्र","राजन्","मनुष्य","केदार","कवचिन्","ब्राह्मण","माणव","वाडव","ग्राम","जन","गज","हस्तिन्","धेनु","केश","अश्व","खल","गो","रथ","पर्शु","वात","क्षेत्र","करीष","अङ्गार","भूत"]);
+// ══ तदधीते तद्वेद (4.2.59–4.2.63) DATA ════════════════════════
+const ukthadi_gana = new Set(["उक्थ","लोकायत","न्याय","न्यास","पुनरुक्त","निरुक्त","निमित्त","द्विपदा","ज्योतिष","अनुपद","अनुकल्प","यज्ञ","धर्म","चर्चा","क्रमेतर","श्लक्ष्ण","संहिता","पदक्रम","संघट्ट","संघात","वृत्ति","परिषद्","संग्रह","गण","गुण","आयुर्वेद","अनुगुण"]);
+const kramadi_gana = new Set(["क्रम","पद","शिक्षा","मीमांसा","सामन्"]);
+const vasantadi_gana = new Set(["वसन्त","वर्षा","शरद्","हेमन्त","शिशिर","प्रथम","गुण","चरम","अनुगुण","अपर्वन्","अथर्वन्","ग्रीष्म"]);
+const kratu_list = new Set(["अग्निष्टोम","वाजपेय","उक्थ"]);
+const akhyana_list = new Set(["यवक्रीत","वासवदत्ता","इतिहास","पुराण"]);
+const vidya_exceptions = new Set(["अङ्ग","क्षत्र","धर्म","संसर्ग","त्रि"]);
+// ── _tad aliases (used in tadadhite solver) ─────────────────────
+const ukthadi_tad    = ukthadi_gana;
+const kramadi_tad    = kramadi_gana;
+const vasantadi_tad  = vasantadi_gana;
+const akhyanadi_tad  = new Set(["इतिहास","पुराण","यवक्रीत","वासवदत्ता","आख्यायिका"]);
+// ── 4.1.154 (वार्.) / 4.1.155 — yuṭ-augment words (hardcoded final forms) ──
 const yut_words={
   "दगु":      {form:"दागव्यायनिः",  no:"4.1.154 (वार्.)", text:"दग्वादिभ्यो युट्"},
   "कोसल":     {form:"कौसल्यायनिः", no:"4.1.155",         text:"कौसल्यकार्मार्याभ्यां च"},
@@ -685,12 +767,18 @@ const yut_words={
   "छाग":      {form:"छाग्यायनिः",   no:"4.1.154 (वार्.)", text:"दग्वादिभ्यो युट्"},
   "वृष":      {form:"वार्ष्यायणिः", no:"4.1.154 (वार्.)", text:"दग्वादिभ्यो युट्"},
 };
+
+// ── 4.1.126 कल्याण्यादीनामिनङ् — hardcoded double-vṛddhi forms ─
+// इनङ्-ādeśa of the antyasyllable + Ḍhak; सुभगा/दुर्भगा: 7.3.19 ubhaya-pda-vṛddhi
 const kalyanyadi_gana={
   "कल्याणी":"काल्याणिनेयः","सुभगा":"सौभागिनेयः","दुर्भगा":"दौर्भागिनेयः",
   "बन्धकी":"बान्धकिनेयः","अनुदृष्टि":"आनुदृष्टिनेयः","अनुसृष्टि":"आनुसृष्टिनेयः",
   "जरती":"जारतिनेयः","बलीवर्दी":"बालीवर्दिनेयः","ज्येष्ठा":"ज्यैष्ठिनेयः",
   "कनिष्ठा":"कानिष्ठिनेयः","मध्यमा":"माध्यमिनेयः","परस्त्री":"पारस्त्रिनेयः"
 };
+
+// ── 4.1.114 (काश्यपे) — विकर्णकुषीतक context data ─────────
+// Ḍhak in Kāśyapa clan; Iñ otherwise; Vatsa-clan → 4.1.117 Phañ (handled separately)
 const kushitaka_kashyapa={"विकर्ण":"वैकर्णेयः","कुषीतक":"कौषीतकेयः","कुषीत":"कौषीतेयः"};
 const kushitaka_inj={"विकर्ण":"वैकर्णिः","कुषीतक":"कौषीतकिः","कुषीत":"कौषीतिः"};
 const rishi_list=["वसिष्ठ","विश्वामित्र","भरद्वाज"];
@@ -715,6 +803,79 @@ const pati_uttarapada_devata={"बृहस्पति":["बार्हस्
 const ashvapati_devata={"पशुपति":"पाशुपत","गृहपति":"गार्हपत","यज्ञपति":"याज्ञपत","राष्ट्रपति":"राष्ट्रपत","गणपति":"गाणपत","सभापति":"साभापत","क्षेत्रपति":"क्षैत्रपत"};
 const dhak_devata={"अग्नि":["आग्नि","आग्नेय"],"कलि":["कालि","कालेय"]};
 
+
+// ══ तत्र भवः (4.2.64–4.2.80) DATA ═══════════════════════════════════
+// दिगादि → यत् (4.2.65)
+const digadi_tatra = new Set(["पूर्व","अपर","उत्तर","दक्षिण","अधर","अन्तर","मध्य","उपर",
+  "अन्त","पर","अव","उद्","पुरस्","अधस्","उपरि","अनु","परि","अपि","अभि","प्रति","वि"]);
+// ग्रामजनपदैकदेश — अञ् (4.2.66 + वार्.)
+const gramajanapad_tatra = new Set(["पाञ्चाल","कोसल","मगध","अङ्ग","वङ्ग","कलिङ्ग",
+  "चेदि","वत्स","कुरु","काशी","मत्स्य","सूरसेन","अश्मक","अवन्ति","गान्धार","शाल्व",
+  "मद्र","कम्बोज","केकय","विदेह","चम्पा","अयोध्या"]);
+// विशेषनिपातनानि — hardcoded forms (4.2.67 + वार्.)
+const nipatan_tatra = {
+  "मगध":        "मागध",
+  "अङ्ग":        "आङ्ग",
+  "वङ्ग":        "वाङ्ग",
+  "कलिङ्ग":      "कालिङ्ग",
+  "मद्र":        "माद्र",
+  "सिन्धु":      "सैन्धव",
+  "मालव":        "मालव",
+  "अवन्ति":      "आवन्तिक",
+  "वाराणसी":     "वाराणसेय",
+  "मथुरा":       "माथुर",
+  "पाटलिपुत्र":  "पाटलिपुत्रक",
+  "कुरुक्षेत्र": "कौरुक्षेत्र",
+  "तक्षशिला":    "ताक्षशिल",
+  "पुष्कल":      "पौष्कल",
+  "उज्जयिनी":    "उज्जयिनेय",
+  "प्रतिष्ठान":  "प्रातिष्ठानिक",
+};
+// उत्तरपदमात्र विशेषाः — ठक् etc. (4.2.67+)
+const thak_tatra = new Set(["पुर","नगर","ग्राम","खेट","खर्वट","मडम्ब","पट्टन",
+  "द्रोणमुख","सम्वाह","शिबिर","वास","आवास","निवास"]);
+
+
+// ══ तस्य भावः (5.1.119–5.1.132) DATA ══════════════════════════
+// ईमनिच् (5.1.126) — dṛḍhādi: hardcoded irregular iman-forms
+const drdhadi_iman = {
+  "दृढ":   "दृढिमा",
+  "मृदु":   "मृदिमा",
+  "लघु":    "लघिमा",
+  "गुरु":   "गरिमा",
+  "महत्":   "महिमा",
+  "बहु":    "बहुलिमा",
+  "ह्रस्व": "ह्रस्विमा",
+  "दीर्घ":  "दीर्घिमा",
+  "पृथु":   "पृथिमा",
+  "मृदु":   "मृदिमा",
+  "कृश":    "कृशिमा",
+  "स्थूल":  "स्थूलिमा",
+};
+// इमनिच् (5.1.126 वार्.) — alternate iman class
+const imanic_forms = {
+  "अणु":    "अणिमा",
+  "मह":     "महिमा",
+  "पटु":    "पटिमा",
+};
+// ष्यञ् (5.1.125) — śālīnādi: abstract quality nouns
+const shalinadi_syanj = new Set([
+  "शालीन","प्राजन","वयस्","पृथग्","प्रसृत","प्रसिद्ध",
+  "शौण्ड","विदग्ध","कृतज्ञ","दक्ष","साहस","प्रगल्भ",
+]);
+// विद्वदादि — optional tva/tā (5.1.121)
+const vidvadadi_bhava = new Set([
+  "विद्वस्","सुधी","प्राज्ञ","मेधाविन्","बहुश्रुत",
+]);
+// Special nipātana bhāva-forms
+const nipatan_bhava = {
+  "पुरुष":   ["पुरुषत्वम्","पुरुषता"],
+  "स्त्री":   ["स्त्रीत्वम्","स्त्रीत्वम्"],
+  "नपुंसक":  ["नपुंसकत्वम्","नपुंसकता"],
+  "बाल":     ["बालत्वम्","बालता"],
+  "वृद्ध":   ["वार्द्धकम्","वार्द्धक्यम्"],   // special for old-age
+};
+
 // ── Adhikāra config ─────────────────────────────────────────
 const ADHIKARAS=[
   {id:"apatya_gotra",san:"तस्यापत्यम्",       eng:"Apatya / Gotra — 4.1.92+",   icon:"👨‍👦",ok:true,
@@ -736,18 +897,22 @@ const ADHIKARAS=[
   {id:"nipatan",san:"पितृव्यमातुलमातामहपितामहाः",eng:"Kinship Nipātana — 4.2.36+", icon:"👴",ok:true,
    presets:["पितृ","मातृ","अवि","तिल"]},
   {id:"tasya_samuha",san:"तस्य समूहः",              eng:"Collection — 4.2.37–4.2.51",icon:"🫙",ok:true,
-   presets:["भिक्षा","गर्भिणी","क्षेत्र","युवति","केदार","अहन्","पर्शु","ब्राह्मण","ग्राम","हस्तिन्","धेनु","केश","खण्डिका","श्वन्","पाश","तृण","खल","गो","रथ","कमल","पूर्व","राजन्","उक्षन्","अश्व","ग्राम","जन","बन्धु"]},
-  // ══ NEW: विषयो देशे ══
+   presets:["भिक्षा","गर्भिणी","क्षेत्र","युवति","केदार","अहन्","पर्शु","ब्राह्मण","ग्राम","हस्तिन्","धेनु","केश","खण्डिका","श्वन्","पाश","तृण","खल","गो","रथ","कमल","पूर्व","राजन्","उक्षन्","अश्व","जन","बन्धु"]},
   {id:"vishayo_deshe",san:"विषयो देशे",             eng:"Country/Region — 4.2.52–4.2.54",icon:"🗺️",ok:true,
    presets:["मदन","शिबि","कम्बोज","विराट","उदुम्बर","मालव","त्रिगर्त","भौरिकि","ऐषुकारि","सौवीर","नड","दाक्षि","तुण्डदेव","विश्वदेव","राजन्य","वसाति"]},
   {id:"pragatheshu",san:"प्रगाथेषु",              eng:"Pragatha / Metre — 4.2.55",    icon:"📜",ok:true,
    presets:["जगती","पङ्क्ति","त्रिष्टुभ्","अनुष्टुभ्","बृहती","उष्णिह्"]},
-  {id:"sangrame",san:"सङ्ग्रामे प्रयोजनयोद्धृभ्यः",eng:"Battle Purpose/Warrior — 4.2.56",icon:"⚔️",ok:true,
+  {id:"sangrame",san:"सङ्ग्रामे",eng:"Battle Purpose/Warrior — 4.2.56",icon:"⚔️",ok:true,
    presets:["सुभद्रा","भरत","अहिमाला","देवदत्त","शत्रुञ्जय","विश्वजित्"]},
   {id:"kridayam",san:"क्रीडायाम् (प्रहरणम्)",    eng:"Sport Weapon — 4.2.57",         icon:"🏏",ok:true,
    presets:["दण्ड","मुष्टि","शर","चक्र","भल्ल"]},
-  {id:"tatra_bhavah",san:"तत्र भवः",            eng:"Coming Soon",                icon:"📍",ok:false,presets:[]},
-  {id:"tasya_bhavah",san:"तस्य भावः",           eng:"Coming Soon",                icon:"📐",ok:false,presets:[]},
+  {id:"tadadhite",san:"तदधीते तद्वेद",          eng:"Studies / Knows — 4.2.59–4.2.63", icon:"📖",ok:true,
+   presets:["व्याकरण","क्रम","कल्पसूत्र","वार्त्तिकसूत्र","शतपथ","सर्ववेद","वसन्त","अनुब्राह्मण","उक्थ","मीमांसा","शिक्षा","इतिहास","पुराण","न्याय","ज्योतिष","आयुर्वेद","व्याकरणविद्या","पदक्रम","लोकायत","संहिता","सामन्"]},
+  {id:"tatra_bhavah",san:"तत्र भवः",            eng:"Exists There — 4.2.64–4.2.80",icon:"📍",ok:true,
+   presets:["पूर्व","उत्तर","दक्षिण","मध्य","मगध","अङ्ग","पाञ्चाल","कोसल","सिन्धु","अवन्ति","वाराणसी","मथुरा","पाटलिपुत्र","उज्जयिनी","कुरुक्षेत्र","तक्षशिला","ग्राम","नगर","पुर","काशी"]},
+  {id:"tasya_bhavah",san:"तस्य भावः",           eng:"Abstract Quality — 5.1.119+", icon:"📐",ok:true,
+   presets:["ब्राह्मण","गुरु","लघु","दृढ","महत्","मृदु","विद्वस्","राजन्","पुत्र","श्रेष्ठ",
+            "शालीन","पटु","अणु","सुन्दर","कृश","स्थूल","पण्डित","धनिन्","मेधाविन्","वृद्ध"]},
 ];
 
 // ── State ────────────────────────────────────────────────────
@@ -755,21 +920,8 @@ let curAdh="apatya_gotra", answers={}, history=[], animKey=0;
 
 // ── Questions config ─────────────────────────────────────────
 function getQuestions(adh,stem){
-  // ══ NEW: विषयो देशे needs NO questions ══
-  if(adh==="vishayo_deshe") return [];
-
-  // ══ NEW: प्रगाथेषु — one context question ══
-  if(adh==="pragatheshu") return [
-    {key:"is_svartha", label:"सन्दर्भः (Context)", opts:[
-      {v:"pragatha", l:"प्रगाथः — सोऽस्यादिः (Begins a Pragatha stanza)"},
-      {v:"svartha",  l:"स्वार्थे — नपुंसकम् (Self-descriptive / Neuter — Vārttika)"},
-    ]},
-  ];
-
-  // ══ NEW: सङ्ग्रामे and क्रीडायाम् need NO questions ══
-  if(adh==="sangrame" || adh==="kridayam") return [];
-
   if(adh==="apatya_gotra") return [{key:"sub",label:"विवक्षा",opts:[{v:"apatya",l:"अपत्यम् — Son (Anantara)"},{v:"gotra",l:"गोत्रापत्यम् — Gotra (Grandson)"},{v:"yuvan",l:"युवापत्यम् — Yuvan (Great-grandson)"}]},
+    // Context-sensitive clan questions — shown only for trigger words
     {key:"clan102",label:"गोत्र-सन्दर्भः (4.1.102)",showIf:{sub:"gotra"},onlyFor:["शरद्वत्"],
      opts:[{v:"bhrigu",l:"भृगु-गोत्रे (Bhṛgu clan)"},{v:"other",l:"अन्यत्र (Other clan)"}]},
     {key:"clan102b",label:"गोत्र-सन्दर्भः (4.1.102)",showIf:{sub:"gotra"},onlyFor:["शुनक"],
@@ -786,6 +938,7 @@ function getQuestions(adh,stem){
      opts:[{v:"bharadvaja",l:"भरद्वाज-गोत्रे → शौङ्गायनः"},{v:"other",l:"अन्यत्र → सामान्यः"}]},
     {key:"clan117c",label:"गोत्र-सन्दर्भः (4.1.117)",showIf:{sub:"gotra"},onlyFor:["छगल"],
      opts:[{v:"atri",l:"अत्रि-गोत्रे → छागलायनः"},{v:"other",l:"अन्यत्र → इञ् (4.1.96)"}]},
+    // ── 4.1.114 — विकर्ण/कुषीतक/कुषीत: Kāśyapa=ढक्, Vatsa=फञ्, other=इञ् ──
     {key:"clan114", label:"कस्य गोत्रे? (4.1.114)",
      onlyFor:["विकर्ण","कुषीतक","कुषीत"],
      opts:[
@@ -793,6 +946,8 @@ function getQuestions(adh,stem){
        {v:"vatsa",   l:"वत्स-गोत्रे → फञ् (4.1.117)"},
        {v:"other",   l:"अन्यत्र → इञ् (4.1.95)"},
      ]},
+    // ── 4.1.131 — Kṣudrā question for strīpratyayānta words ──
+    // Shown alongside strī_ctx; user first confirms stripratyaya, then kshudra
     {key:"kshudra_ctx", label:"क्षुद्रावाचकः अस्ति? (दासी, काणा, etc.)",
      showIf:{strī_ctx:"is_stripratyaya"},
      onlyFor:["__strī__"],
@@ -800,17 +955,21 @@ function getQuestions(adh,stem){
        {v:"not_kshudra",l:"न — सामान्या स्त्री → ढक् (4.1.120/121)"},
        {v:"is_kshudra", l:"आम् — क्षुद्रावाचकः → ढ्रक् वा ढक् (4.1.131)"},
      ]},
+    // ── 4.1.120 वार्त्तिकम् — वडवा (context: apatya=अण् vs vṛṣabha=ढक्) ──
     {key:"vadava_ctx", label:"वडवायाः विवक्षा — कः अर्थः?",
      onlyFor:["वडवा"],
      opts:[{v:"apatya",l:"अपत्यम् — Offspring → वाडवः (अण्)"},{v:"vrisha",l:"वृषभः — Bull → वाडवेयः (ढक्)"}]},
+    // ── 4.1.121/120 — Strīpratyayānta detection (shown for ā/ī/ū/ti-ending words) ──
     {key:"strī_ctx", label:"स्त्रीप्रत्ययान्तः अस्ति?",
-     onlyFor:["__strī__"],
+     onlyFor:["__strī__"],   // pseudo-marker; resolved dynamically below
      opts:[{v:"is_stripratyaya",l:"आम् — स्त्रीप्रत्ययान्तः (Yes, Strīpratyayānta)"},{v:"not_stripratyaya",l:"न — स्वाभाविकः शब्दः (No, natural word)"}]},
+    // ── 4.1.122 — Short-i dvyac, not from Iñ ──
     {key:"inj_ctx", label:"इञ्-प्रत्ययान्तः अस्ति?",
-     onlyFor:["__ikar__"],
+     onlyFor:["__ikar__"],   // pseudo-marker; resolved dynamically below
      opts:[{v:"not_inj",l:"न — इञ्-प्रत्ययान्तः नास्ति (Not from Iñ) → ढक् (4.1.122)"},{v:"is_inj",l:"आम् — इञ्-प्रत्ययान्तः (Formed with Iñ) → falls through"}]},
+    // ── 4.1.135/136 — चतुष्पात् / गृष्टि context ──────────────
     {key:"chatushpad_ctx", label:"चतुष्पात् पशुः वा? (4.1.135)",
-     onlyFor:["__chatushpad__"],
+     onlyFor:["__chatushpad__"],   // pseudo-marker: resolved for chatushpad_gana members
      opts:[
        {v:"is_chatushpad", l:"आम् — चतुष्पात् पशुः → ढञ् (4.1.135)"},
        {v:"not_chatushpad",l:"न — अन्यः अर्थः → सामान्यनियमः"},
@@ -821,20 +980,23 @@ function getQuestions(adh,stem){
        {v:"cow",   l:"गौः / चतुष्पात् — → ढञ् (4.1.135)"},
        {v:"woman", l:"एक-अपत्या नारी — → ढञ् (4.1.136)"},
      ]},
+    // ── 4.1.137/138 — राजन्/श्वशुर/क्षत्र: जाति vs सामान्य ──
     {key:"jati_ctx", label:"जातिविशेषः वा सामान्य-अपत्यम्? (4.1.137/138)",
      onlyFor:["राजन्","श्वशुर","क्षत्र"],
      opts:[
        {v:"jati",   l:"जातिविशेषः / क्षत्रियवर्गः → यत्/घ (4.1.137/138)"},
        {v:"samanya",l:"सामान्य-अपत्यम् → अण्/इञ् (4.1.92/95)"},
      ]},
+    // ── 4.1.139–142 — कुल compounds ──────────────────────────
     {key:"kula_ctx", label:"कुल-समासः? (4.1.139–142)",
-     onlyFor:["__kula__"],
+     onlyFor:["__kula__"],   // pseudo-marker: resolved for kula-ending stems
      opts:[
        {v:"kula_compound", l:"आम् — कुल-अन्तः समासः → ख (ईन) etc."},
        {v:"not_kula",      l:"न — स्वतन्त्रः शब्दः → सामान्यनियमः"},
      ]},
+    // ── 4.1.152 — सेनान्तलक्षणकारिभ्यश्च — Artisan/Kāri check ─
     {key:"kari_ctx", label:"कारिवाचकः अस्ति? (4.1.152)",
-     onlyFor:["__kari__"],
+     onlyFor:["__kari__"],   // pseudo-marker: resolved for कार-ending stems + लक्षण
      opts:[
        {v:"is_kari",  l:"आम् — कारिवाचकः / सेनान्तः → ण्य (4.1.152)"},
        {v:"not_kari", l:"न — सामान्यः शब्दः → उत्सर्गनियमः"},
@@ -856,15 +1018,31 @@ function getQuestions(adh,stem){
   ];
   if(adh==="devata") return [
     {key:"is_dev",label:`'${stem}' देवतानाम?`,opts:[{v:"yes",l:"आम् — It is a deity"},{v:"no",l:"न — Not a deity"}]},
+    // devata — no nipātana words here; they have their own adhikāra
   ];
+
+  if(adh==="vishayo_deshe") return [];
+  if(adh==="tadadhite") return [];
+  if(adh==="pragatheshu") return [
+    {key:"is_svartha", label:"सन्दर्भः (Context)", opts:[
+      {v:"pragatha", l:"प्रगाथः — सोऽस्यादिः (Begins a Pragatha stanza)"},
+      {v:"svartha",  l:"स्वार्थे — नपुंसकम् (Self-descriptive / Neuter)"},
+    ]},
+  ];
+  if(adh==="sangrame" || adh==="kridayam") return [];
+
+  // ══ तस्य समूहः ══
   if(adh==="tasya_samuha"){
+    // Fully-determined words need no question
     if(bypassSamuha.has(stem)) return [];
+    // अहन् — क्रतु vs सामान्य
     if(stem==="अहन्") return [
       {key:"samuha_ctx", label:"अहन् — कः अर्थः?", opts:[
         {v:"kratu",   l:"क्रतुः / यज्ञः — Sacrifice → ख (अहीनः)"},
         {v:"samanya", l:"सामान्य-अहन् — General day → अञ् (आहम्)"},
       ]},
     ];
+    // General context question for all other samuha words
     return [
       {key:"samuha_ctx", label:"समूह-विशेषः? (4.2.37–4.2.51)", opts:[
         {v:"general",        l:"सामान्यः / औत्सर्गिकः — General → अण् (4.2.37)"},
@@ -874,6 +1052,8 @@ function getQuestions(adh,stem){
       ]},
     ];
   }
+
+  // ══ NIPĀTANA ══
   if(adh==="nipatan"){
     if(["पितृ","मातृ"].includes(stem)) return [
       {key:"nip_ctx", label:"कः अर्थः विवक्षितः?", opts:[
@@ -894,34 +1074,87 @@ function getQuestions(adh,stem){
     ];
     return [];
   }
+  // ══ NEW ADHIKĀRAS — Questions ══════════════════════════════
+  if(adh==="vishayo_deshe"||adh==="sangrame"||adh==="kridayam") return [];
+  if(adh==="pragatheshu") return [
+    {key:"prag_ctx", label:"सन्दर्भः (Context)", opts:[
+      {v:"pragatha", l:"प्रगाथः — सोऽस्यादिः (Begins a Pragatha stanza)"},
+      {v:"svartha",  l:"स्वार्थे — नपुंसकम् (Self-descriptive / Neuter — Vārttika)"},
+    ]},
+  ];
+  if(adh==="tadadhite") return [
+    {key:"tad_context", label:"विशेष-सन्दर्भः (Specific context if applicable)", opts:[
+      {v:"none",    l:"सामान्यशब्दः — General word (→ अण् utsarga)"},
+      {v:"luk",     l:"सर्व/स-आदिः अथवा द्विगुसमासः — Luk Vārttika (→ suffix dropped)"},
+      {v:"kratu",   l:"क्रतुः — Sacrifice name (→ ठक्)"},
+      {v:"akhyana", l:"आख्यानम् / पुराण — Story / Narrative (→ ठक्)"},
+    ]},
+  ];
+  if(adh==="tatra_bhavah") return [
+    {key:"tatra_ctx", label:"विशेष-सन्दर्भः (Context)", opts:[
+      {v:"general",   l:"सामान्यः — General place/region (औत्सर्गिकः अण्)"},
+      {v:"dik",       l:"दिक्-वाचकः — Direction word → यत् (4.2.65)"},
+      {v:"janapada",  l:"जनपद/ग्राम — Country/Village → अञ् (4.2.66)"},
+      {v:"tha_suffix",l:"नगर/ग्रामान्त — Town/Settlement name → ठक् (4.2.67)"},
+    ]},
+  ];
+  if(adh==="tasya_bhavah"){
+    // Only ask for context if the word is in vidvadādi (optional class)
+    if(vidvadadi_bhava&&vidvadadi_bhava.has(stem)) return [
+      {key:"bhava_opt", label:"विकल्पः (Optional class — 5.1.121)", opts:[
+        {v:"tva",    l:"त्व — तत्त्वम् / गुरुत्वम् (त्व-प्रत्ययः)"},
+        {v:"ta",     l:"तल् — गुरुता / ब्राह्मणता (तल्-प्रत्ययः)"},
+        {v:"both",   l:"उभौ — Both त्व and तल् (vikalpa)"},
+      ]},
+    ];
+    return [];
+  }
   return [];
 }
 
 function buildExtra(adh,answers,stem){
-  // ══ NEW: विषयो देशे ══
   if(adh==="vishayo_deshe") return {sub:null,extra:null};
-
-  // ══ NEW: प्रगाथेषु ══
+  if(adh==="tadadhite") return {sub:null,extra:null};
   if(adh==="pragatheshu") return {sub:null, extra:answers.is_svartha||"pragatha"};
-
-  // ══ NEW: सङ्ग्रामे and क्रीडायाम् ══
   if(adh==="sangrame" || adh==="kridayam") return {sub:null,extra:null};
-
   if(adh==="apatya_gotra"){
+    // Collect clan answer from whichever clan key was answered
     const clanAns = answers.clan102 ||answers.clan102b||answers.clan102c||
                     answers.clan106a||answers.clan106b||
                     answers.clan117a||answers.clan117b||answers.clan117c||null;
+    // 'other' means no specific apavāda → pass null so solver uses fallback
     const extra = (clanAns && clanAns!=="other") ? clanAns : null;
+
+    // 4.1.120 वार्त्तिकम् — वडवा
     if(answers.vadava_ctx) return {sub:answers.sub||"apatya", extra:answers.vadava_ctx};
+
+    // 4.1.114 — Kāśyapa/Vatsa/other for विकर्ण/कुषीतक/कुषीत
     if(answers.clan114) return {sub:answers.sub||"apatya", extra:answers.clan114};
+
+    // 4.1.131 — Kṣudrā sub-context (comes after strī_ctx is confirmed)
     if(answers.kshudra_ctx==="is_kshudra") return {sub:answers.sub||"apatya", extra:"is_kshudra"};
+
+    // 4.1.121/120 — strīpratyaya context
     if(answers.strī_ctx) return {sub:answers.sub||"apatya", extra:answers.strī_ctx};
+
+    // 4.1.122 — iñ context
     if(answers.inj_ctx) return {sub:answers.sub||"apatya", extra:answers.inj_ctx};
+
+    // 4.1.137/138 — जाति vs सामान्य
     if(answers.jati_ctx) return {sub:answers.sub||"apatya", extra:answers.jati_ctx};
+
+    // 4.1.135 — चतुष्पात् detection
     if(answers.chatushpad_ctx) return {sub:answers.sub||"apatya", extra:answers.chatushpad_ctx};
+
+    // 4.1.135/136 — गृष्टि: cow vs woman
     if(answers.grishti_ctx) return {sub:answers.sub||"apatya", extra:answers.grishti_ctx};
+
+    // 4.1.139–142 — कुल compound
     if(answers.kula_ctx) return {sub:answers.sub||"apatya", extra:answers.kula_ctx};
+
+    // 4.1.152 — Artisan/Kāri/Senānta context
     if(answers.kari_ctx) return {sub:answers.sub||"apatya", extra:answers.kari_ctx};
+
     return {sub:answers.sub||"apatya", extra};
   }
   if(adh==="nakshatra_time"){
@@ -946,21 +1179,42 @@ function buildExtra(adh,answers,stem){
     if(answers.is_dev==="no") return {extra:"not_devata"};
     return {extra:"is_devata"};
   }
-  if(adh==="nipatan") return {extra: answers.nip_ctx||null};
-  if(adh==="tasya_samuha") return {extra: answers.samuha_ctx||"general"};
+  if(adh==="nipatan"){
+    return {extra: answers.nip_ctx||null};
+  }
+  if(adh==="tasya_samuha"){
+    return {extra: answers.samuha_ctx||"general"};
+  }
+  if(adh==="vishayo_deshe"||adh==="sangrame"||adh==="kridayam")
+    return {sub:null, extra:null};
+  if(adh==="pragatheshu")
+    return {sub:null, extra: answers.prag_ctx||"pragatha"};
+  if(adh==="tadadhite")
+    return {sub:null, extra: answers.tad_context||"none"};
+  if(adh==="tatra_bhavah")
+    return {sub:null, extra: answers.tatra_ctx||"general"};
+  if(adh==="tasya_bhavah")
+    return {sub:null, extra: answers.bhava_opt||"both"};
   return {};
 }
 
 // ── Master Solver ────────────────────────────────────────────
 function R(no,text,suffix,derivation,note_san,note_eng){return{no,text,suffix,derivation,note_san,note_eng};}
 
+// ── Vikalpa renderer ─────────────────────────────────────────
+// Splits any '/' in a final form and renders each rūpa in large font
+// separated by a stylised 'वा'.  Single forms render identically to before.
 function formatVikalpaFinal(rawForm){
+  // Detect multi-line derivations (contain real newlines) — extract last line
+  // for the final-form display, keeping the full string for step parsing.
   const lastLine = rawForm.includes('\n')
     ? rawForm.split('\n').pop().trim()
     : rawForm.trim();
+
   const parts = lastLine.split('/').map(s=>s.trim()).filter(Boolean);
   if(parts.length<2)
     return `<span class="vikalpa-rupa" style="font-size:38px">${lastLine}</span>`;
+
   const sep = `<span class="vikalpa-sep">वा</span>`;
   return `<div class="vikalpa-wrap">`
     + parts.map(p=>`<span class="vikalpa-rupa">${p}</span>`).join(sep)
@@ -972,6 +1226,9 @@ function solve(stem,mc,sub,extra){
 
   // ══ APATYA ══
   if(mc==='apatya_gotra'){
+
+    // ── 4.1.114 — विकर्णकुषीतकात् काश्यपे ढक् ────────────────────
+    // विकर्ण/कुषीतक/कुषीत in Kāśyapa gotra → ढक्; Vatsa → 4.1.117 Phañ; other → इञ्
     if(["विकर्ण","कुषीतक","कुषीत"].includes(stem)){
       if(extra==="kashyapa"){
         const form = kushitaka_kashyapa[stem];
@@ -980,40 +1237,67 @@ function solve(stem,mc,sub,extra){
           `काश्यप-गोत्रे विकर्ण/कुषीतक → ढक्।`,
           `Vikarna/Kuṣītaka in Kāśyapa gotra → Ḍhak.`);
       }
+      if(extra==="vatsa"){
+        // Falls to 4.1.117 clan117 block below — handled there
+      }
       if(extra==="other"){
         const form = kushitaka_inj[stem];
-        return R("4.1.95","अत इञ्","इञ्",
+        return R("4.1.95","अत इञ्",  "इञ्",
           `${stem} →[इञ्]→ ${form}ः`,
           `अन्य-गोत्रे → इञ् (सामान्यः)।`,
           `Other gotra → general Iñ (4.1.95).`);
       }
     }
+
+    // ── 4.1.119 — ढक् च मण्डूकात् ──────────────────────────────
+    // मण्डूक takes ढक्, अण्, and इञ् (three optional forms)
     if(stem==="मण्डूक")
       return R("4.1.119","ढक् च मण्डूकात्","ढक् / अण् / इञ्",
         "मण्डूक →[७.२.११७]→ माण्डूक →[ढक्]→ माण्डूकेयः\nमण्डूक →[७.२.११७]→ माण्डूक →[अण्]→ माण्डूकः\nमण्डूक →[७.२.११७]→ माण्डूक →[इञ्]→ माण्डूकिः",
         "मण्डूक → त्रयः प्रत्ययाः — ढक् (एय), अण्, इञ्।",
         "Maṇḍūka takes three optional suffixes: Ḍhak (māṇḍūkeya), Aṇ (māṇḍūka), Iñ (māṇḍūki).");
+
+    // ── BAHVĀDI GUARD — must fire BEFORE any strīpratyaya rules ──
+    // बाह्वादिगण-शब्दाः (4.1.96) सर्वदा इञ्-प्रत्ययम् एव गृह्णन्ति।
+    // स्त्रीभ्यो ढक् (4.1.120), द्व्यचः (4.1.121), इतश्चानिञः (4.1.122)
+    // एते त्रयः अपवादाः बाह्वादिशब्देभ्यः न भवन्ति।
+    // e.g. वृषली → वार्षलि (इञ्), NOT वार्षलेयः (ढक्)
     if(stem in bahvadi_data)
       return R("4.1.96","बाह्वादिभ्यश्च","इञ्",
         `${stem} + इञ् → ${bahvadi_data[stem]}ः`,
         `बाह्वादि-गणे पठितः → इञ्-प्रत्ययः। स्त्रीभ्यो ढक् (4.1.120) न भवति।`,
         `Bāhvādi-gaṇa member → Iñ (4.1.96). Strī rules 4.1.120/121/122 do not apply.`);
+
+    // ── APAVĀDA CHAIN: 4.1.121 > 4.1.122 > 4.1.120 ─────────────
+    // These three must fire BEFORE all other rules per Apavāda hierarchy.
+
+    // 4.1.121 — द्व्यचः (2-syllable strīpratyayānta → ढक्, overrides 4.1.113)
+    // Must check BEFORE 4.1.120 because dvyac is a stronger apavāda.
     if(extra==="is_stripratyaya" && countVowels(stem)===2 && isStripratyaya(stem)){
       const dhForm = applyDhakSandhi(stem);
+      const vc2note = `द्विस्वर (${countVowels(stem)} vowels) स्त्रीप्रत्ययान्त-शब्दात् ढक्।`;
       return R("4.1.121","द्व्यचः","ढक् (एय)",
         `${stem} →[७.२.११७ आदिवृद्धिः]→ ${dhForm}`,
-        `द्विस्वर (${countVowels(stem)} vowels) स्त्रीप्रत्ययान्त-शब्दात् ढक्।`,
-        `Dvyac (2-syllable) strīpratyayānta → Ḍhak.`);
+        `${vc2note} अण्-अपवादः, ४.१.११३-अपवादः च।`,
+        `Dvyac (2-syllable) strīpratyayānta → Ḍhak. Overrides both general Aṇ (4.1.92) and 4.1.113.`);
     }
+
+    // 4.1.122 — इतश्चानिञः (dvyac + short-i + NOT from Iñ → ढक्)
+    // Applies to 2-syllable words ending in short 'i' that are NOT Iñ-derived.
+    // E.g. अत्रि → आत्रेयः.  Iñ-derived words (e.g. दाक्षि) fall through to 4.1.101.
     if(stem.endsWith('ि') && countVowels(stem)===2){
       if(extra==="not_inj"){
         const dhForm = applyDhakSandhi(stem);
         return R("4.1.122","इतश्चानिञः","ढक् (एय)",
           `${stem} →[७.२.११७ आदिवृद्धिः]→ ${dhForm}`,
-          `इकारान्त-द्व्यच्-अनिञन्त-शब्दात् ढक्।`,
-          `Dvyac + i-ending + not-Iñ-formed → Ḍhak.`);
+          `इकारान्त-द्व्यच्-अनिञन्त-शब्दात् ढक्। (यथा अत्रि → आत्रेयः)`,
+          `Dvyac + i-ending + not-Iñ-formed → Ḍhak. (e.g. atri → ātreya).`);
       }
+      // extra==="is_inj": falls through to Phak chain (4.1.101) below
     }
+
+    // 4.1.120 — स्त्रीभ्यो ढक् (strīpratyayānta → ढक्, overrides general Aṇ)
+    // Vārttikas: क्रुञ्चा/कोकिला → अण् instead; वडवा → context-sensitive
     if(stem==="क्रुञ्चा")
       return R("4.1.120 (वार्)","क्रुञ्चाद् अण् स्मृतः","अण्",
         `क्रुञ्चा →[७.२.११७]→ ${applyAn("क्रुञ्चा")}ः`,
@@ -1029,218 +1313,394 @@ function solve(stem,mc,sub,extra){
         return R("4.1.120 (वार्)","वडवायाः वृषे ढक्","ढक् (एय)",
           `वडवा →[७.२.११७]→ वाडव →[ढक्→एय]→ वाडवेयः`,
           `वडवा-शब्दात् वृषभे वाच्ये ढक् (वार्त्तिकम्)।`,
-          `Vārttika: वडवा takes Ḍhak when meaning 'bull'.`);
+          `Vārttika: वडवा takes Ḍhak when meaning 'bull descended from mare'.`);
       else
         return R("4.1.92","तस्यापत्यम् (वडवा-अपत्ये)","अण्",
           `वडवा →[७.२.११७]→ ${applyAn("वडवा")}ः`,
-          `वडवा-शब्दात् अपत्यार्थे अण् एव।`,
-          `वडवा in offspring sense takes Aṇ.`);
+          `वडवा-शब्दात् अपत्यार्थे अण् एव (ढक् न भवति)।`,
+          `वडवा in offspring sense takes Aṇ (not Ḍhak).`);
     }
     if(extra==="is_stripratyaya" && isStripratyaya(stem)){
       const dhForm = applyDhakSandhi(stem);
       return R("4.1.120","स्त्रीभ्यो ढक्","ढक् (एय)",
         `${stem} →[७.२.११७ आदिवृद्धिः]→ ${dhForm}`,
-        `स्त्रीप्रत्ययान्त-शब्दात् ढक्-प्रत्ययः।`,
-        `Strīpratyayānta word → Ḍhak suffix.`);
+        `स्त्रीप्रत्ययान्त-शब्दात् ढक्-प्रत्ययः। अण्-अपवादः।`,
+        `Strīpratyayānta word → Ḍhak suffix. Overrides general Aṇ (4.1.92).`);
     }
+
+    // ── 4.1.131 — क्षुद्राभ्यो ढ्रक् वा ────────────────────────
+    // Kṣudrā (mean/lowly) strī words optionally take ढ्रक् (era) instead of ढक्
+    // e.g. दासी → दासेरः (ढ्रक्) or दासेयः (ढक्)
     if(extra==="is_kshudra" && isStripratyaya(stem)){
-      const dhBase = applyDhakSandhi(stem);
+      const dhBase = applyDhakSandhi(stem); // gives ...eyaḥ
       const dhrBase = dhBase.replace(/ेयः$/, 'ेरः');
       return R("4.1.131","क्षुद्राभ्यो ढ्रक् वा","ढ्रक् (एर) / ढक् (एय)",
         `${stem} →[७.२.११७]→ ${dhrBase} (ढ्रक्) | ${dhBase} (ढक्)`,
-        `क्षुद्रावाचक-स्त्रीप्रत्ययान्तात् ढ्रक् वा ढक्।`,
-        `Kṣudrā strī word → optionally ḍhrak or ḍhak.`);
+        `क्षुद्रावाचक-स्त्रीप्रत्ययान्तात् ढ्रक् वा ढक्। यथा दासी → दासेरः / दासेयः।`,
+        `Kṣudrā (lowly/mean) strī word → optionally ḍhrak (era) or ḍhak (eya). e.g. dāsī → dāseraḥ / dāseyaḥ.`);
     }
+
+    // ── 4.1.129/130 — गोधायाः ढ्रक् / आरक् / ढक् ──────────────
+    // गोधा (monitor lizard): ढ्रक् → गौधेरः; आरक् (Udīcya) → गौधारः; ढक् → गौधेयः
     if(stem==="गोधा")
       return R("4.1.129–130","गोधाया ढ्रक् / आरगुदीचाम् / ढक्","ढ्रक् / आरक् / ढक्",
         "गोधा →[७.२.११७]→ गौधा →[ढ्रक्]→ गौधेरः\nगोधा →[७.२.११७]→ गौधा →[आरक्]→ गौधारः\nगोधा →[७.२.११७]→ गौधा →[ढक्]→ गौधेयः",
-        `गोधा-शब्दात् त्रयः प्रत्ययाः।`,
-        `Godhā takes three optional suffixes: ḍhrak, ārak, ḍhak.`);
+        `गोधा-शब्दात् त्रयः प्रत्ययाः —
+ढ्रक् → गौधेरः (सामान्यः)
+आरक् → गौधारः (उदीच्याः)
+ढक् → गौधेयः (पक्षान्तरे)`,
+        `Godhā (monitor lizard) takes three optional suffixes:
+ḍhrak → gaudheraḥ (general); ārak → gaudhāraḥ (northern dialect); ḍhak → gaudheyaḥ.`);
+
+    // ── 4.1.128 — चटकायाः ऐरक् ─────────────────────────────────
+    // चटका (sparrow) takes the special affix ऐरक् → चाटकैरः
     if(["चटका","चटक"].includes(stem))
       return R("4.1.128","चटकाया ऐरक्","ऐरक्",
         "चटका →[७.२.११७]→ चाटका →[ऐरक्]→ चाटकैरः",
-        "चटका → ऐरक्।","Caṭakā takes airak.");
+        "चटका/चटक-शब्दात् ऐरक्-प्रत्ययः। अपत्यम् = चाटकैरः।",
+        "Caṭakā (sparrow) takes the special affix airak → cāṭakaiраḥ.");
+
+    // ── 4.1.127 — कुलटायाः ढक्/इनङ्+ढक्/ढ्रक् ─────────────────
+    // कुलटा (unchaste woman) takes three optional forms
     if(stem==="कुलटा"){
-      const dh = applyDhakSandhi("कुलटा");
+      const dh = applyDhakSandhi("कुलटा"); // कौलटेयः
       return R("4.1.127","कुलटाया वा","ढक् / इनङ्+ढक् / ढ्रक्",
         `कुलटा →[ढक्]→ ${dh}\nकुलटा →[इनङ्+ढक्]→ कौलटिनेयः\nकुलटा →[ढ्रक्]→ कौलटेरः`,
-        `कुलटा → त्रयः प्रत्ययाः।`,`Kulaṭā takes three options.`);
+        `कुलटा-शब्दात् विकल्पेन त्रयः —
+ढक् → कौलटेयः
+इनङ् + ढक् → कौलटिनेयः (इनङ्-आगमः)
+ढ्रक् → कौलटेरः`,
+        `Kulaṭā (unchaste woman) takes three optional suffixes:
+ḍhak → kaulаṭeyaḥ; inaṅ+ḍhak → kaulаṭineyaḥ (with inaṅ-āgama); ḍhrak → kaulаṭeraḥ.`);
     }
+
+    // ── 4.1.125 — भ्रुवो वुक् च ─────────────────────────────────
+    // भ्रू takes ढक् with special āgama वुक् → भ्रौवेयः
+    // वुक् (v-augment) is inserted: भ्रू + वुक् + ढक् → भ्रौव + एय → भ्रौवेयः
     if(stem==="भ्रू")
       return R("4.1.125","भ्रुवो वुक् च","ढक् + वुक्-आगम",
-        "भ्रू →[७.२.११७]→ भ्रौ →[वुक्]→ भ्रौव →[ढक्]→ भ्रौवेयः",
-        `भ्रू → ढक् + वुक्-आगमः।`,`Bhrū takes Ḍhak with vuk-āgama.`);
+        "भ्रू →[७.२.११७ आदिवृद्धिः]→ भ्रौ →[वुक्-आगमः]→ भ्रौव →[ढक्→एय]→ भ्रौवेयः",
+        `भ्रू-शब्दात् ढक्-प्रत्ययः, सह वुक्-आगमः (अन्तर्वर्तिवर्णः व्) —
+भ्रू + ढक् → वुक् (=व्) + ढक् → भ्रौवेयः।`,
+        `Bhrū (eyebrow) takes Ḍhak with special vuk-āgama (augment v):
+bhrū →[vṛddhi]→ bhrau →[vuk]→ bhraуv →[ḍhak]→ bhrаuveyaḥ.`);
+
+    // ── 4.1.126 — कल्याण्यादीनामिनङ् ──────────────────────────
+    // Special gana: Ādivṛddhi applied, then इनङ्-āgama inserted, then ढक् (double-vṛddhi effect)
     if(stem in kalyanyadi_gana)
       return R("4.1.126","कल्याण्यादीनामिनङ्","इनङ् + ढक् (एय)",
-        `${stem} →[आदिवृद्धिः + इनङ् + ढक्]→ ${kalyanyadi_gana[stem]}`,
-        `कल्याण्यादि → इनङ् + ढक्।`,`Kalyāṇy-ādi: inaṅ + Ḍhak.`);
+        `${stem} →[आदिवृद्धिः + इनङ्-आगमः + ढक्]→ ${kalyanyadi_gana[stem]}`,
+        `कल्याण्यादि-गणे पठितात् इनङ्-आगमः सह ढक्। यथा कल्याणी → काल्याणिनेयः।`,
+        `Kalyāṇy-ādi-gaṇa takes inaṅ-āgama + Ḍhak. e.g. kalyāṇī → kālyāṇineyaḥ.`);
+
+    // ── 4.1.123 — शुभ्रादिभ्यश्च ────────────────────────────────
+    // शुभ्राद्-गण members take ढक् directly (no strīpratyaya confirmation needed)
     if(shubhradi_gana.has(stem))
       return R("4.1.123","शुभ्रादिभ्यश्च","ढक् (एय)",
-        `${stem} →[७.२.११७]→ ${applyDhakSandhi(stem)}`,
-        `शुभ्राद् → ढक्।`,`Śubhrādi → Ḍhak.`);
+        `${stem} →[७.२.११७ आदिवृद्धिः]→ ${applyDhakSandhi(stem)}`,
+        `शुभ्राद्-गणे पठितात् ढक्-प्रत्ययः।`,
+        `Śubhrādi-gaṇa member → Ḍhak (eya) directly.`);
+
+    // ── 4.1.132/133/134 — पितृष्वसुश्छण् / ढकि लोपः / मातृष्वसुश्च ──
+    // पितृष्वसृ and मातृष्वसृ take छण् (→ ईय) OR ढक् (→ एय, with ṛ-lopa by 4.1.133)
     if(stem==="पितृष्वसृ")
       return R("4.1.132 / 133","पितृष्वसुश्छण् / ढकि लोपः","छण् (ईय) / ढक् (एय)",
-        `पितृष्वसृ →[छण्]→ पैतृष्वस्रीयः\nपितृष्वसृ →[ढक्]→ पैतृष्वसेयः`,
-        `पितृष्वसृ → छण् / ढक्।`,`Pitṛṣvasṛ: Chañ / Ḍhak.`);
+        `पितृष्वसृ →[छण् → ईय]→ पैतृष्वस्रीयः
+पितृष्वसृ →[ढक् → अन्त्यलोपः (४.१.१३३) → एय]→ पैतृष्वसेयः`,
+        `पितृष्वसृ-शब्दात् द्वौ प्रत्ययौ —
+छण्-पक्षे: आदिवृद्धिः, छण् → ईय → पैतृष्वस्रीयः।
+ढक्-पक्षे: ढकि अन्त्यऋकारस्य लोपः (४.१.१३३) → पैतृष्वसेयः।`,
+        `Father's sister (Pitṛṣvasṛ) takes two optional suffixes:
+Chañ (→ īya): paitṛṣvasr + īya → paitṛṣvasrīyaḥ.
+Ḍhak (→ eya) with terminal-ṛ-lopa (4.1.133): paitṛṣvaseуaḥ.`);
+
     if(stem==="मातृष्वसृ")
       return R("4.1.134","मातृष्वसुश्च","छण् (ईय) / ढक् (एय)",
-        `मातृष्वसृ →[छण्]→ मातृष्वस्रीयः\nमातृष्वसृ →[ढक्]→ मातृष्वसेयः`,
-        `मातृष्वसृ → छण् / ढक्।`,`Mātṛṣvasṛ: Chañ / Ḍhak.`);
+        `मातृष्वसृ →[छण् → ईय]→ मातृष्वस्रीयः
+मातृष्वसृ →[ढक् → अन्त्यलोपः (४.१.१३३) → एय]→ मातृष्वसेयः`,
+        `मातृष्वसृ-शब्दात् छण् तथा ढक् विकल्पेन —
+छण् → मातृष्वस्रीयः।
+ढक् (अन्त्यलोप) → मातृष्वसेयः।`,
+        `Mother's sister (Mātṛṣvasṛ) — same as 4.1.132/133 applied to mātr-branch:
+Chañ → mātṛṣvasrīyaḥ; Ḍhak (terminal-ṛ-lopa) → mātṛṣvaseyaḥ.`);
+
+    // ── 4.1.135 — चतुष्पाद्भ्यो ढञ् ──────────────────────────
+    // Quadruped words take ढञ् (→ एय, same surface as ढक् but different Paribhāṣā)
+    // Helper: strip terminal vowel mātras before ḍhañ (6.4.147/148 analogy)
     {
       const isDhanj = extra==="is_chatushpad"
                    || (chatushpad_gana.has(stem) && extra!=="not_chatushpad")
-                   || extra==="cow";
+                   || extra==="cow";  // गृष्टि meaning cow → also 4.1.135
       if(isDhanj){
-        const vr = applyAn(stem);
+        const vr = applyAn(stem);   // get Ādivṛddhi base
         const base = vr.endsWith('ा')||vr.endsWith('ी')||vr.endsWith('ि')||vr.endsWith('ु')||vr.endsWith('ू')
                      ? vr.slice(0,-1) : vr;
+        const form = base + "ेयः";
         return R("4.1.135","चतुष्पाद्भ्यो ढञ्","ढञ् (एय)",
-          `${stem} →[७.२.११७]→ ${vr} →[ढञ्]→ ${base}ेयः`,
-          `चतुष्पाद् → ढञ्।`,`Quadruped → ḍhañ.`);
+          `${stem} →[७.२.११७ आदिवृद्धिः]→ ${vr} →[ढञ्: अन्त्यलोपः ६.४.१४७]→ ${form}`,
+          `चतुष्पाद्-वाचकात् ढञ्-प्रत्ययः। यथा कमण्डलु → कामण्डलेयः, धेनु → धैनवेयः।`,
+          `Quadruped animal takes ḍhañ (→ eya). Terminal vowel dropped (6.4.147). e.g. kamaṇḍalu → kāmaṇḍaleyaḥ.`);
       }
     }
+
+    // ── 4.1.136 — गृष्ट्यादिभ्यश्च ──────────────────────────
+    // गृष्ट्याद्-गण takes ढञ् (same suffix, different gana)
     if(grishtyadi_gana.has(stem)){
       const vr = applyAn(stem);
       const base = vr.endsWith('ि')||vr.endsWith('ी') ? vr.slice(0,-1) : vr;
       return R("4.1.136","गृष्ट्यादिभ्यश्च","ढञ् (एय)",
-        `${stem} →[७.२.११७]→ ${vr} →[ढञ्]→ ${base}ेयः`,
-        `गृष्ट्याद् → ढञ्।`,`Gṛṣṭy-ādi → Ḍhañ.`);
+        `${stem} →[७.२.११७ आदिवृद्धिः]→ ${vr} →[ढञ्]→ ${base}ेयः`,
+        `गृष्ट्याद्-गणे पठितात् ढञ्-प्रत्ययः। यथा गृष्टि → गार्ष्टेयः।`,
+        `Gṛṣṭy-ādi-gaṇa member → Ḍhañ. e.g. gṛṣṭi → gārṣṭeyaḥ.`);
     }
+
+    // ── 4.1.137 — राजश्वशुराद्यत् ───────────────────────────
+    // राजन् and श्वशुर in caste/class sense → यत् (→ य); general → Aṇ/Iñ
     if(stem==="राजन्"){
       if(extra==="jati")
         return R("4.1.137","राजश्वशुराद्यत्","यत् (य)",
           "राजन् →[यत्]→ राजन्यः",
-          "राजन् → जातिविशेषे यत्।","Rājan in kṣatriya class sense → yat.");
+          "राजन्-शब्दात् जातिविशेषे यत्-प्रत्ययः → राजन्यः (क्षत्रिय-जातिः)।",
+          "Rājan in sense of the kṣatriya class → yat → rājanyaḥ.");
+      // samanya → falls to general Aṇ at bottom of chain
     }
     if(stem==="श्वशुर"){
       if(extra==="jati")
         return R("4.1.137","राजश्वशुराद्यत्","यत् (य)",
-          "श्वशुर →[यत्]→ श्वशुर्यः",
-          "श्वशुर → यत्।","Śvaśura + yat.");
+          "श्वशुर →[यत्]→ श्वशुर →[यस्येति च ६.४.१४८ → अन्त्यलोपः]→ श्वशुर्यः",
+          "श्वशुर-शब्दात् यत्-प्रत्ययः। यस्येति च इत्यनेन अन्त्य-अकारलोपः।",
+          "Śvaśura + yat; terminal a dropped by 6.4.148 → śvaśuryaḥ.");
+      // samanya → general Aṇ
     }
+
+    // ── 4.1.138 — क्षत्राद्घः ────────────────────────────────
+    // क्षत्र in caste sense → घ (→ इय); general sense → इञ्
     if(stem==="क्षत्र"){
       if(extra==="jati")
         return R("4.1.138","क्षत्राद्घः","घ (इय)",
-          "क्षत्र →[घ]→ क्षत्रियः",
-          "क्षत्र → घ → क्षत्रियः।","Kṣatra in caste → gha → kṣatriyaḥ.");
+          "क्षत्र →[घ → इय]→ क्षत्र + इय → क्षत्रियः",
+          "क्षत्र-शब्दात् जातिविशेषे घ-प्रत्ययः (घ → इय) → क्षत्रियः।",
+          "Kṣatra in caste sense → gha (→ iya) → kṣatriyaḥ.");
       if(extra==="samanya")
         return R("4.1.95","अत इञ्","इञ्",
           `क्षत्र →[७.२.११७]→ ${applyInj("क्षत्र")}ः`,
-          "क्षत्र → सामान्यापत्ये इञ्।","Kṣatra general → Iñ.");
+          "क्षत्रस्य सामान्य-अपत्यम् → इञ् (क्षैत्रिः)।",
+          "Kṣatra general offspring → Iñ → kṣairiḥ.");
     }
+
+    // ── 4.1.139–142 — कुल-group ──────────────────────────────
+    // कुलात् खः (139): bare कुल or any कुल-final compound → ख (→ ईन)
+    // अपूर्वपदाद्... (140): कुल not as prior member → also यत् / ढकञ्
+    // महाकुलादञ्खञौ (141): महाकुल → अञ् / खञ् (→ ईन)
+    // दुष्कुलाड्ढक् (142): दुष्कुल → ढक् (→ एय) / ख (→ ईन)
     if(stem==="कुल"||stem.endsWith("कुल")){
       if(stem==="कुल")
-        return R("4.1.139 / 140","कुलात् खः / यड्ढकञौ","ख (ईन) / यत् / ढकञ्",
-          `कुल →[ख]→ कुलीनः\nकुल →[यत्]→ कुल्यः\nकुल →[ढकञ्]→ कौलेयकः`,
-          `कुल → ख / यत् / ढकञ्।`,`Kula: kha / yat / ḍhakañ.`);
+        return R("4.1.139 / 140","कुलात् खः / अपूर्वपदादन्यतरस्यां यड्ढकञौ","ख (ईन) / यत् (य) / ढकञ् (एयक)",
+          `कुल →[ख → ईन]→ कुलीनः
+कुल →[यत्]→ कुल्यः
+कुल →[ढकञ्]→ कौलेयकः`,
+          `कुल-शब्दात् अपूर्वपदात् त्रयः प्रत्ययाः विकल्पेन —
+ख (→ ईन): कुलीनः।
+यत् (→ य): कुल्यः।
+ढकञ् (→ एयक): कौलेयकः।`,
+          `Kula (family) — three optional suffixes when not a prior member:
+kha (→ īna): kulīnaḥ; yat: kulyaḥ; ḍhakañ: kauleyakaḥ.`);
+
       if(stem==="महाकुल")
-        return R("4.1.141","महाकुलादञ्खञौ","अञ् / खञ् / ख",
-          `महाकुल →[अञ्]→ माहाकुलः\nमहाकुल →[खञ्]→ माहाकुलीनः`,
-          `महाकुल → अञ् / खञ्।`,`Mahākula: añ / khañ.`);
+        return R("4.1.141 / 139","महाकुलादञ्खञौ / कुलात् खः","अञ् / खञ् (ईन) / ख (ईन)",
+          `महाकुल →[अञ्]→ माहाकुलः
+महाकुल →[खञ् → ईन]→ माहाकुलीनः
+महाकुल →[ख → ईन]→ महाकुलीनः`,
+          `महाकुल-शब्दात् अञ् तथा खञ् विकल्पेन; पक्षे ख-प्रत्ययः अपि।`,
+          `Mahākula: añ → māhākulaḥ; khañ → māhākulīnaḥ; kha → mahākulīnaḥ.`);
+
       if(stem==="दुष्कुल")
-        return R("4.1.142","दुष्कुलाड्ढक्","ढक् / ख",
-          `दुष्कुल →[ढक्]→ दौष्कुलेयः\nदुष्कुल →[ख]→ दुष्कुलीनः`,
-          `दुष्कुल → ढक् / ख।`,`Duṣkula: ḍhak / kha.`);
+        return R("4.1.142 / 139","दुष्कुलाड्ढक् / कुलात् खः","ढक् (एय) / ख (ईन)",
+          `दुष्कुल →[ढक्]→ दौष्कुलेयः
+दुष्कुल →[ख → ईन]→ दुष्कुलीनः`,
+          `दुष्कुल-शब्दात् ढक् विकल्पेन, पक्षे ख-प्रत्ययः।`,
+          `Duṣkula: ḍhak → dauṣkuleyaḥ; kha → duṣkulīnaḥ.`);
+
+      // Any other X+कुल compound → ख (→ ईन)
       const prefix = stem.slice(0,-3);
+      const vr = applyAn(stem);
       return R("4.1.139","कुलात् खः","ख (ईन)",
-        `${stem} →[ख]→ ${prefix}कुलीनः`,
-        `कुल-अन्त → ख।`,`-kula compound → kha.`);
+        `${stem} →[ख → ईन]→ ${prefix}कुलीनः`,
+        `कुल-अन्त-समासात् ख-प्रत्ययः (ख → ईन)।`,
+        `Compound ending in -kula → kha (→ īna): ${prefix}kulīnaḥ.`);
     }
+
+    // ── Continue with all other existing apavāda rules ───────────
     if(stem==="अत्रि") return R("4.1.122","इतश्चानिञः","ढक् (एय)",
-      "अत्रि →[७.२.११७]→ आत्रि →[ढक्]→ आत्रेयः",
-      "अत्रि → ढक् (४.१.१२२)।","Atri → Ḍhak.");
-    if(stem in sudhatri_data) return R("4.1.97","सुधातृभ्यस्त्रिष्वप्यकञ्","इञ् + अकङ्",`${stem} → ${sudhatri_data[stem]}ः`,"सुधातृ → इञ् + अकङ्।","Sudhātṛ: Iñ + Akaṅ.");
+      "अत्रि →[७.२.११७]→ आत्रि →[ढक्→एय]→ आत्रेयः",
+      "अत्रि — द्व्यच् + इकारान्त + अनिञन्त → ढक् (४.१.१२२)।",
+      "Atri: dvyac + i-ending + not-Iñ → Ḍhak (4.1.122). Classic example.");
+    // (bahvādi already handled at top of chain)
+    if(stem in sudhatri_data) return R("4.1.97","सुधातृभ्यस्त्रिष्वप्यकञ्","इञ् + अकङ्",`${stem} → ${sudhatri_data[stem]}ः`,"सुधातृ-गणात् इञ् + अकङ्।","Sudhātṛ: Iñ + Akaṅ.");
     const is114=(rishi_list.includes(stem))||(andhaka_list.includes(stem)&&extra==="andhaka")||(vrishni_list.includes(stem)&&extra==="vrishni")||(kuru_list.includes(stem)&&extra==="kuru"&&!kurunadi_nya[stem]);
     if(is114) return R("4.1.114","ऋष्यन्धकवृष्णिकुरुभ्यश्च","अण्",ad(stem),"ऋषि/अन्धक/वृष्णि/कुरु → अण्।","Aṇ for Rishi/Andhaka/Vrishni/Kuru.");
-    const clan102={"शरद्वत्":["bhrigu","भृगु","शारद्वतायनः","शारद्वत"],"शुनक":["vatsa","वत्स","शौनकायनः","शौनक"],"दर्भ":["agrayana","आग्रायण","दार्भायणः","दार्भ"]};
+    // 4.1.102 — शरद्वच्छुनकदर्भभृगुवत्साग्रायणेभ्यः फक्
+    // Context-sensitive: Phak only in specific gotra
+    const clan102 = {
+      "शरद्वत्": ["bhrigu",   "भृगु",      "शारद्वतायनः", "शारद्वत"],
+      "शुनक":    ["vatsa",    "वत्स",       "शौनकायनः",   "शौनक"],
+      "दर्भ":    ["agrayana", "आग्रायण",    "दार्भायणः",  "दार्भ"],
+    };
     if(stem in clan102){
       const[reqClan,clanSan,phakForm,anjForm]=clan102[stem];
       if(sub==='gotra'&&extra===reqClan)
         return R("4.1.102","शरद्वच्छुनकदर्भभृगुवत्साग्रायणेभ्यः फक्","फक् (आयन)",
-          `${stem} →[७.२.११७]→ ${phakForm}`,
-          `'${stem}' ${clanSan}-गोत्रे → फक्।`,`Phak for '${stem}' in ${clanSan} gotra.`);
+          `${stem} →[७.२.११७ आदिवृद्धिः]→ ${phakForm}`,
+          `'${stem}' ${clanSan}-गोत्रे → ४.१.१०२ इत्यनेन फक्-प्रत्ययः।`,
+          `Phak for '${stem}' specifically in ${clanSan} (${reqClan}) gotra.`);
+      // Falls through to अञ् via bidadi or general अण् below
     }
-    const clan106={"मधु":["brahmana","ब्राह्मण","माधवः"],"बभ्रु":["kaushika","कौशिक","बाभ्रव्यः"]};
+
+    // 4.1.106 — मधुबभ्र्वोर्ब्राह्मणकौशिकयोः (Yañ in specific gotra)
+    // मधु → Brāhmaṇa gotra → यञ् (माधवः); otherwise → अत इञ् (4.1.95)
+    // बभ्रु → Kauśika gotra → यञ् (बाभ्रव्यः); otherwise → अत इञ्
+    const clan106 = {
+      "मधु":  ["brahmana", "ब्राह्मण", "माधवः"],
+      "बभ्रु": ["kaushika", "कौशिक",   "बाभ्रव्यः"],
+    };
     if(stem in clan106){
       const[reqClan,clanSan,form]=clan106[stem];
       if(sub==='gotra'&&extra===reqClan)
         return R("4.1.106","मधुबभ्र्वोर्ब्राह्मणकौशिकयोः","यञ्",
-          `${stem} →[७.२.११७]→ ${form}`,
-          `'${stem}' ${clanSan}-गोत्रे → यञ्।`,`Yañ for '${stem}' in ${clanSan} gotra.`);
+          `${stem} →[७.२.११७ आदिवृद्धिः]→ ${form}`,
+          `'${stem}' ${clanSan}-गोत्रे → ४.१.१०६ इत्यनेन यञ्-प्रत्ययः।`,
+          `Yañ for '${stem}' specifically in ${clanSan} (${reqClan}) gotra.`);
+      // Falls through to अत इञ् (4.1.95) below for other clans
     }
+
+    // 4.1.117 — विकर्णशुङ्गच्छगलाद्वत्सभरद्वाजात्रिषु (context-sensitive Phañ)
     const clan117={"विकर्ण":["vatsa","वत्स","वैकर्णायनः"],"शुङ्ग":["bharadvaja","भरद्वाज","शौङ्गायनः"],"शुङ्गा":["bharadvaja","भरद्वाज","शौङ्गायनः"],"छगल":["atri","अत्रि","छागलायनः"]};
-    if(stem in clan117){const[reqClan,clanSan,form]=clan117[stem];if(extra===reqClan) return R("4.1.117","विकर्णशुङ्गच्छगलाद्वत्सभरद्वाजात्रिषु","फञ् (आयन)",`${stem} →[७.२.११७]→ ${form}`,`'${stem}' ${clanSan}-गोत्रे → फञ्।`,`Phañ for '${stem}' in ${clanSan} clan.`);}
-    if(stem==="पीला") return R("4.1.120","पीलाया वा","अण् (वा)","पीला →[अण्]→ पैलः\nपीला →[ढक्]→ पैलेयः","'पीला' → विकल्पेन अण् / ढक्।","Pīlā: Aṇ or Ḍhak.");
-    if(stem in avriddha_nadi) return R("4.1.113","अवृद्धाभ्यो नदीमानुषीभ्यः","अण्",ad(stem),"अवृद्ध-नदी → अण्।","Aṇ for Avṛddha river-names.");
-    if(stem in shivadi_data) return R("4.1.112","शिवादिभ्योऽण्","अण्",ad(stem),"शिवादि → अण्।","Śivādi takes Aṇ.");
-    if(stem in ashvadi_data&&sub==='gotra') return R("4.1.110","अश्वादिभ्यः फञ्","फञ् (आयन)",`${stem} →[फञ्]→ ${ashvadi_data[stem]}ः`,"अश्वादि → फञ्।","Aśvādi takes Phañ.");
+    if(stem in clan117){const[reqClan,clanSan,form]=clan117[stem];if(extra===reqClan) return R("4.1.117","विकर्णशुङ्गच्छगलाद्वत्सभरद्वाजात्रिषु","फञ् (आयन)",`${stem} →[७.२.११७]→ ${form}`,`'${stem}' ${clanSan}-गोत्रे → ४.१.११७ फञ्।`,`Phañ for '${stem}' in ${clanSan} (${reqClan}) clan.`);}
+    if(stem==="पीला") return R("4.1.120","पीलाया वा","अण् (वा)","पीला →[७.२.११७]→ पैला →[अण्]→ पैलः\nपीला →[७.२.११७]→ पैला →[ढक्]→ पैलेयः","'पीला' → विकल्पेन अण्, पक्षे ढक्।","Pīlā optionally Aṇ, else Ḍhak.");
+    if(stem in avriddha_nadi) return R("4.1.113","अवृद्धाभ्यो नदीमानुषीभ्यः","अण्",ad(stem),"अवृद्ध-नदी/मानुषी → अण्।","Aṇ for Avṛddha river-names.");
+    if(stem in shivadi_data) return R("4.1.112","शिवादिभ्योऽण्","अण्",ad(stem),"शिवादि-गणात् अण्।","Śivādi takes Aṇ.");
+    if(stem in ashvadi_data&&sub==='gotra') return R("4.1.110","अश्वादिभ्यः फञ्","फञ् (आयन)",`${stem} →[फञ्]→ ${ashvadi_data[stem]}ः`,"अश्वादि-गणात् फञ्।","Aśvādi takes Phañ.");
     if(stem in kapibodha_data&&extra==="angirasa") return R("4.1.107","कपिबोधाद् यञि अङ्गिरसगोत्रे","यञ्",`${stem} → ${kapibodha_data[stem]}ः`,"अङ्गिरसगोत्रे कपिबोधात् यञ्।","Kapibodha + Āṅgirasa → Yañ.");
-    if(stem in gargadi_data&&sub==='gotra') return R("4.1.105","गर्गादिभ्यो यञ्","यञ्",`${stem} →[यञ्]→ ${gargadi_data[stem]}ः`,"गर्गादि → यञ्।","Gargādi takes Yañ.");
+    if(stem in gargadi_data&&sub==='gotra') return R("4.1.105","गर्गादिभ्यो यञ्","यञ्",`${stem} →[यञ्]→ ${gargadi_data[stem]}ः`,"गर्गादि-गणात् यञ्।","Gargādi takes Yañ.");
     if(stem in bidadi_data){
       if(sub==='gotra'&&!non_rishi_list.includes(stem)) return R("4.1.104","बिदादिभ्योऽञ् (गोत्रे)","अञ्",`${stem} →[अञ्]→ ${bidadi_data[stem]}ः`,"बिदादि → गोत्रे अञ्।","Bidādi in Gotra → Añ.");
       if(sub==='apatya'&&non_rishi_list.includes(stem)) return R("4.1.104","बिदादिभ्योऽञ् (अपत्ये)","अञ्",`${stem} →[अञ्]→ ${bidadi_data[stem]}ः`,"बिदादि → अपत्ये अञ्।","Bidādi in Apatya → Añ.");
     }
-    if(stem in drona_data){const[ph,ij]=drona_data[stem];if(sub==='gotra') return R("4.1.103","द्रोण... फक्","फक्",`${stem} → ${ph}ः`,"द्रोण → गोत्रे फक्।","Droṇa in Gotra → Phak.");return R("4.1.103","द्रोण... इञ्","इञ्",`${stem} → ${ij}ः`,"द्रोण → अपत्ये इञ्।","Droṇa in Apatya → Iñ.");}
+    if(stem in drona_data){const [ph,ij]=drona_data[stem];if(sub==='gotra') return R("4.1.103","द्रोण... फक्","फक्",`${stem} → ${ph}ः`,"द्रोण/पर्वत/जीवन्त → गोत्रे फक्।","Droṇa in Gotra → Phak.");return R("4.1.103","द्रोण... इञ्","इञ्",`${stem} → ${ij}ः`,"द्रोण/पर्वत/जीवन्त → अपत्ये इञ्।","Droṇa in Apatya → Iñ.");}
     if(stem in ashvapati_data) return R("4.1.84","अश्वपत्यादिभ्यश्च","अण्",ad(stem),"अश्वपत्यादि → अण्।","Aśvapati-ādi takes Aṇ.");
     if(sub==='gotra'&&stem in nadadi_data) return R("4.1.99","नडादिभ्यः फक्","फक् (आयन)",`${stem} →[फक्]→ ${nadadi_data[stem]}ः`,"नडादि → गोत्रे फक्।","Naḍādi in Gotra → Phak.");
     if(sub==='gotra'&&stem in kunjadi_data){const num=extra||"sg";return R("4.1.98","कुञ्जादिभ्यश्चफञ्","चफञ्",`${stem} →[चफञ्]→ ${kunjadi_data[stem][num]}ः`,"कुञ्जादि → गोत्रे चफञ्।","Kuñjādi in Gotra → Cphañ.");}
+
+    // ── 4.1.154 (वार्.) / 4.1.155 — yuṭ check MUST precede isAkarant ─────────
+    // (कोसल, कर्मार etc. are a-kārānta and would wrongly take Iñ if checked late)
     if(stem in yut_words){
-      const{form,no,text}=yut_words[stem];
-      return R(no,text,"युट् + फिञ् (आयनि)",
-        `${stem} →[७.२.११७]→ →[युट्]→ →[फिञ्]→ ${form}`,
-        `फिञ् + युट्-आगमः।`,`Phiñ + Yuṭ-āgama.`);
+      const {form, no, text} = yut_words[stem];
+      const hasNatva = form.includes("ण");
+      return R(no, text, "युट् + फिञ् (आयनि)",
+        `${stem} →[७.२.११७ आदिवृद्धिः]→ →[युट् (य्) आगमः]→ →[फिञ् → आयनि]→ ${form}`,
+        `फिञ्-प्रत्ययः, तथा 'दग्वादिभ्यो युट्' वार्त्तिकेन युट् (य्) आगमः।${hasNatva ? " ण-त्वम् — रषाभ्यां नो णः (८.४.१)।" : ""}
+इञ्-अपवादः।`,
+        `Phiñ suffix + Yuṭ (y-āgama) by vārttika. Final form: ${form}.${hasNatva ? " Ṇatva (8.4.1) applies." : ""}
+Derogates general Iñ (4.1.95).`);
     }
+    // ── 4.1.154 — tikādi check MUST precede isAkarant ────────────────────────
     if(tikadi_gana.has(stem)){
-      const vr=applyAn(stem);
-      const base=/[ािीुूृेैोौ्]$/.test(vr)?vr.slice(0,-1):vr;
-      const hasNatva=/[रष]/.test(base);
-      const suffix_form=hasNatva?"ायणिः":"ायनिः";
+      const vr = applyAn(stem);
+      const base = /[ािीुूृेैोौ्]$/.test(vr) ? vr.slice(0,-1) : vr;
+      const hasNatva = /[रष]/.test(base);
+      const suffix_form = hasNatva ? "ायणिः" : "ायनिः";
+      const final_form = base + suffix_form;
       return R("4.1.154","तिकादिभ्यः फिञ्","फिञ् (आयनि)",
-        `${stem} →[७.२.११७]→ ${vr} →[फिञ्]→ ${base}${suffix_form}`,
-        `तिकादि → फिञ्।`,`Tikādi → Phiñ.`);
+        `${stem} →[७.२.११७ आदिवृद्धिः]→ ${vr} →[यस्येति च ६.४.१४८]→ ${base} →[फिञ् → आयनि${hasNatva?" + ण-त्वम् ८.४.१":""}]→ ${final_form}`,
+        `तिकादिगणात् फिञ्-प्रत्ययः (आयनि-आदेशः)।${hasNatva ? " रषाभ्यां नो णः (८.४.१) — ण-त्वम्।" : ""}
+अण्/इञ्-अपवादः।`,
+        `Tikādi-gaṇa → Phiñ (→ āyani).${hasNatva ? " Ṇatva (8.4.1): n → ṇ after r/ṣ." : ""}
+Derogates Aṇ (4.1.92) and Iñ (4.1.95). e.g. tika → taikāyaniḥ.`);
     }
+
+
+    // ── 4.1.151 — कुर्वादिभ्यो ण्यः (must precede isAkarant) ──
+    // Kurvādi-gaṇa → ण्य (→ य); special sandhi: u/ū-final → av before ya (6.1.79)
+    if(kurvadi_gana.has(stem)){
+      const vr = applyAn(stem);
+      let base;
+      if(vr.endsWith('ु')||vr.endsWith('ू')){
+        // वाण्तो यि (6.1.79): u → av; e.g. कौरु → कौरव् + य → कौरव्यः
+        base = vr.slice(0,-1) + "व्";
+      } else if(/[ािीि]$/.test(vr)){
+        base = vr.slice(0,-1);
+      } else {
+        base = vr;
+      }
+      return R("4.1.151","कुर्वादिभ्यो ण्यः","ण्य (य)",
+        `${stem} →[७.२.११७ आदिवृद्धिः]→ ${vr} →[वाण्तो यि ६.१.७९ → उ/ऊ + व्]→ ${base} →[ण्य → य]→ ${base}्यः`,
+        `कुर्वादि-गणात् ण्य-प्रत्ययः। उ/ऊ-अन्तात् 'वाण्तो यि' (६.१.७९) — उकारः → अव् — तत् ण्य → य।
+यथा कुरु → कौरव्यः।`,
+        `Kurvādi-gaṇa → Ṇya (→ ya). Terminal u/ū → av before ya (6.1.79 vāṇto yi).
+e.g. kuru → kauravyaḥ. Overrides general Aṇ (4.1.92).`);
+    }
+
+    // ── 4.1.152 — सेनान्तलक्षणकारिभ्यश्च ───────────────────
+    // Senānta = compounds where सेना/षेण is the final member (कृत्स्नसेना, सेनाजित् etc.)
+    // लक्षण, and कारि-vācaka (artisans) → ण्य
+    {
+      const isSenanta = stem.endsWith("सेना") || stem.endsWith("षेण")
+                     || stem.includes("सेना");   // सेनाजित् etc.
+      const isLakshana = stem==="लक्षण";
+      const isKari = extra==="is_kari";
+      if(isSenanta||isLakshana||isKari){
+        const vr = applyAn(stem);
+        // terminal ā/a drop before ṇya (यस्येति च 6.4.148)
+        const base = vr.endsWith('ा') || vr.endsWith('अ') ? vr.slice(0,-1) : vr;
+        return R("4.1.152","सेनान्तलक्षणकारिभ्यश्च","ण्य (य)",
+          `${stem} →[७.२.११७ आदिवृद्धिः]→ ${vr} →[यस्येति च ६.४.१४८]→ ${base} →[ण्य → य]→ ${base}्यः`,
+          `सेनान्त-शब्दात् / लक्षण-शब्दात् / कारिवाचकात् ण्य-प्रत्ययः।
+यथा सेनाजित् → सैनाजित्यः, लक्षण → लाक्षण्यः, तन्तुवाय → तान्तुवाय्यः।`,
+          `Senānta words, लक्षण, and artisan/kāri-vācaka nouns → Ṇya (→ ya).
+e.g. senājit → sainājitvyaḥ, lakṣaṇa → lākṣaṇyaḥ, tantuvāya → tāntuvāyyaḥ.`);
+      }
+    }
+
     if(isAkarant(stem)){const b=applyInj(stem);return R("4.1.95","अत इञ्","इञ्",`${stem} →[७.२.११७]→ ${b.slice(0,-1)} →[इञ्]→ ${b}ः`,"अदन्तात् इञ्।","A-kārānta takes Iñ.");}
     if(stem==="अग्नि"||stem==="कलि") return R("4.1.86","अग्निकलिभ्यां ढक्","ढक् (एय)",`${stem} → ${stem==='अग्नि'?'आग्नेय':'कालेय'}ः`,"अग्नि/कलि → ढक्।","Agni/Kali takes Ḍhak.");
     if(utsadi_gana.includes(stem)) return R("4.1.86","उत्सादिभ्योऽञ्","अञ्",`${stem} + अञ्`,"उत्सादि → अञ्।","Utsādi takes Añ.");
     if(stem==="गो") return R("4.1.85 (वार्)","सर्वत्र गोः...","यत्","गव्यः","गो → गव्य।","Go takes Yat.");
     if(dityadi_list.includes(stem)) return R("4.1.85","दित्यदित्यादित्यपत्युत्तरपदाण्ण्यः","ण्य",`${stem} + ण्य`,"दित्यादि → ण्य।","Dityādi takes Ṇya.");
+    // ── 4.1.143 — स्वसुश्छः ──────────────────────────────────
+    // स्वसृ (sister) → छ (→ ईय); NO Ādivṛddhi (छ is not nit/ñit — 7.2.117 n.a.)
     if(stem==="स्वसृ")
       return R("4.1.143","स्वसुश्छः","छ (ईय)",
-        "स्वसृ →[छ]→ स्वस्रीयः",
-        "स्वसृ → छ।","Sister's son: svasṛ + cha → svasrīyaḥ.");
+        "स्वसृ →[छ → ईय]→ स्वस्रीयः",
+        "स्वसृ-शब्दात् छ-प्रत्ययः (छ → ईय)। आदिवृद्धिः न — छ नित्/ञित् न।",
+        "Sister's son: svasṛ + cha (→ īya) → svasrīyaḥ. No Ādivṛddhi (cha is not nit/ñit).");
+
+    // ── 4.1.144 — भ्रातुर्व्यच्च ─────────────────────────────
+    // भ्रातृ → व्यत् (→ व्य) OR छ (→ ईय) — two vikalpa forms
     if(stem==="भ्रातृ")
       return R("4.1.144","भ्रातुर्व्यच्च","व्यत् / छ (ईय)",
-        "भ्रातृ →[व्यत्]→ भ्रातृव्यः\nभ्रातृ →[छ]→ भ्रात्रीयः",
-        `भ्रातृ → व्यत् / छ।`,`Brother's son: vyat or cha.`);
+        "भ्रातृ →[व्यत्]→ भ्रातृव्यः\nभ्रातृ →[छ → ईय]→ भ्रात्रीयः",
+        `भ्रातृ-शब्दात् द्वौ प्रत्ययौ विकल्पेन —
+व्यत् → भ्रातृव्यः (brother's son, rival sense)
+छ → भ्रात्रीयः (brother's son, neutral sense)`,
+        `Brother's son — two optional suffixes:
+vyat → bhrātṛvyaḥ (also 'rival' sense); cha → bhrātrīyaḥ.`);
+
+    // ── 4.1.146 — रेवत्यादिभ्यष्ठक् ─────────────────────────
+    // Revatyādi-gaṇa → ठक् (→ इक); Ādivṛddhi + terminal vowel drop (यस्येति च 6.4.148)
     if(revatyadi_gana.has(stem)){
-      const vr=applyAn(stem);
-      const base=/[ािीुूृेैोौ]$/.test(vr)?vr.slice(0,-1):vr;
+      const vr = applyAn(stem);   // Ādivṛddhi base
+      const base = /[ािीुूृेैोौ]$/.test(vr) ? vr.slice(0,-1) : vr;
       return R("4.1.146","रेवत्यादिभ्यष्ठक्","ठक् (इक)",
-        `${stem} →[७.२.११७]→ ${vr} →[ठक्]→ ${base}िकः`,
-        `रेवत्यादि → ठक्।`,`Revatyādi → Ṭhak.`);
+        `${stem} →[७.२.११७ आदिवृद्धिः]→ ${vr} →[यस्येति च ६.४.१४८ → अन्त्यलोपः]→ ${base} →[ठक् → इक]→ ${base}िकः`,
+        `रेवत्यादि-गणे पठितात् ठक्-प्रत्ययः (ठ → इक)। यथा रेवती → रैवतिकः।
+स्त्रीप्रत्ययान्तेऽपि ठक् एव — स्त्रीभ्यो ढक् (४.१.१२०) न भवति।`,
+        `Revatyādi-gaṇa → Ṭhak (→ ika). Ādivṛddhi + terminal drop (6.4.148).
+e.g. revatī → raivatīkaḥ. Overrides strī-Ḍhak (4.1.120) even for ī-ending words.`);
     }
-    if(kurvadi_gana.has(stem)){
-      const vr=applyAn(stem);
-      let base;
-      if(vr.endsWith('ु')||vr.endsWith('ू')) base=vr.slice(0,-1)+"व्";
-      else if(/[ािीि]$/.test(vr)) base=vr.slice(0,-1);
-      else base=vr;
-      return R("4.1.151","कुर्वादिभ्यो ण्यः","ण्य (य)",
-        `${stem} →[७.२.११७]→ ${vr} →[ण्य]→ ${base}्यः`,
-        `कुर्वादि → ण्य।`,`Kurvādi → Ṇya.`);
-    }
-    {
-      const isSenanta=stem.endsWith("सेना")||stem.endsWith("षेण")||stem.includes("सेना");
-      const isLakshana=stem==="लक्षण";
-      const isKari=extra==="is_kari";
-      if(isSenanta||isLakshana||isKari){
-        const vr=applyAn(stem);
-        const base=vr.endsWith('ा')||vr.endsWith('अ')?vr.slice(0,-1):vr;
-        return R("4.1.152","सेनान्तलक्षणकारिभ्यश्च","ण्य (य)",
-          `${stem} →[७.२.११७]→ ${vr} →[ण्य]→ ${base}्यः`,
-          `सेनान्त/लक्षण/कारि → ण्य।`,`Senānta/lakṣaṇa/kāri → Ṇya.`);
-      }
-    }
+
+    // ── 4.1.151 — कुर्वादिभ्यो ण्यः ─────────────────────────
+
+
     return R("4.1.92","तस्यापत्यम्","अण् (उत्सर्गः)",ad(stem),"औत्सर्गिकः अण्।","General Aṇ suffix.");
   }
 
@@ -1251,208 +1711,542 @@ function solve(stem,mc,sub,extra){
     if(['हरिद्रा','महारजन'].includes(stem)) return R("4.2.1 (वार्)","हरिद्रादेः अञ्जि","अञ्जि",`${stem} → ${stem==='हरिद्रा'?'हारिद्र':'मारजन'}म्`,"हरिद्रादेः अञ्जि।","Haridrā takes Añji.");
     if(stem==='शकल') return R("4.2.2","शकलाद् ठक्","ठक् (इक)","शकल →[ठक्]→ शाकलिकम्","शकल → ठक्।","Śakala takes Ṭhak.");
     if(stem in color_meanings) return R("4.2.1","तेन रक्तं रागात्","अण्",ad(stem)+` | रागः: ${color_meanings[stem]}`,"रागवाचकात् अण्।","Aṇ for coloring agent.");
-    return R("4.2.1 (प्रत्युदा.)","तेन रक्तं रागात्","न भवति",`${stem}ेन रक्तम्`,`❌ '${stem}' रागवाचकः नास्ति।`,`❌ Not a color/dye.`);
+    return R("4.2.1 (प्रत्युदा.)","तेन रक्तं रागात्","न भवति",`${stem}ेन रक्तम्`,`❌ '${stem}' रागवाचकः नास्ति।`,`❌ '${stem}' is not a color/dye.`);
   }
 
   // ══ NAKSHATRA ══
   if(mc==='nakshatra_time'){
     if(["चन्द्रमस्","चन्द्रमा","चन्द्रमाः"].includes(stem)) return R("4.2.3 (प्रत्युदा.)","नक्षत्रेण युक्तः कालः","न भवति",`${stem} युक्ता रात्रिः`,"❌ नक्षत्रवाचकः नास्ति।","❌ Not an asterism.");
-    if(extra==="dvandva"&&stem in dvandva_data) return R("4.2.6","द्वन्द्वाच्छः","छ (ईय)",`${stem} →[छ]→ ${dvandva_data[stem]}`,"द्वन्द्वे छ।","Dvandva takes Cha.");
-    if(extra==="avishesha") return R("4.2.4","लुबविशेषे","अण् → लुप्",`${stem} (नक्षत्रनाम)`,"अविशेषे अण्-लुप्।","Avishesha: Lup.");
-    if(extra==="vishesha_sanjna"&&["श्रवण","अश्वत्थ"].includes(stem)) return R("4.2.5","श्रवणाश्वत्थाभ्यां ण्यः","ण्य",`${stem} →[ण्य]→ ${stem==='श्रवण'?'श्रावण्य':'आश्वत्थ्य'}`,"श्रवण/अश्वत्थ → ण्य।","Śravaṇa/Aśvattha → Ṇya.");
+    if(extra==="dvandva"&&stem in dvandva_data) return R("4.2.6","द्वन्द्वाच्छः","छ (ईय)",`${stem} →[छ]→ ${dvandva_data[stem]}`,"द्वन्द्वे छ-प्रत्ययः।","Dvandva takes Cha.");
+    if(extra==="avishesha") return R("4.2.4","लुबविशेषे","अण् → लुप्",`${stem} (नक्षत्रनाम एव रात्रिः)`,"अविशेषे अण्-लुप्।","Avishesha: Lup.");
+    if(extra==="vishesha_sanjna"&&["श्रवण","अश्वत्थ"].includes(stem)) return R("4.2.5","श्रवणाश्वत्थाभ्यां ण्यः","ण्य",`${stem} →[ण्य]→ ${stem==='श्रवण'?'श्रावण्य':'आश्वत्थ्य'}`,"श्रवण/अश्वत्थ-संज्ञायां ण्य।","Śravaṇa/Aśvattha → Ṇya.");
     const b=nakshatra_data[stem]||applyAn(stem);
-    return R("4.2.3","नक्षत्रेण युक्तः कालः","अण्",`${stem} →[७.२.११७]→ ${b} →[अण्]→ ${b}ः`,"विशेष-काले अण्।","Aṇ for nakshatra-time.");
+    return R("4.2.3","नक्षत्रेण युक्तः कालः","अण्",`${stem} →[७.२.११७]→ ${b} →[अण्]→ ${b}ः / ${b}ी`,"विशेष-काले अण्।","Takes Aṇ for time named by asterism.");
   }
 
   // ══ SAMA ══
   if(mc==='drishtam_sama'){
-    if(stem==="वामदेव") return R("4.2.9","वामदेवाड्ड्यड्ड्यौ","ड्यत्","वामदेव्यम् (साम)","ड्यत्।","Vāmadeva takes Ḍyat.");
-    if(stem==="कलि") return R("4.2.8","कलेर्ढक्","ढक् (एय)","कालेयम् (साम)","ढक्।","Kali takes Ḍhak.");
+    if(stem==="वामदेव") return R("4.2.9","वामदेवाड्ड्यड्ड्यौ","ड्यत्/ड्य","वामदेव्यम् (साम)","ड्यत्/ड्य।","Vāmadeva takes Ḍyat.");
+    if(stem==="कलि") return R("4.2.8","कलेर्ढक्","ढक् (एय)","कालेयम् (साम)","ढक्-प्रत्ययः।","Kali takes Ḍhak.");
     if(stem==="उशनस्") return R("4.2.7 (वार्.)","अण् डित् वा","अण् (वा)","औशनसम् / औशनम्","विकल्पेन डित्त्वम्।","Optionally ḍit.");
     const b=drishtam_sama_data[stem]||applyAn(stem);
-    return R("4.2.7","दृष्टं साम","अण्",`${stem} →[७.२.११७]→ ${b} →[अण्]→ ${b}म्`,"अण्।","Takes Aṇ.");
+    return R("4.2.7","दृष्टं साम","अण्",`${stem} →[७.२.११७]→ ${b} →[अण्]→ ${b}म् (साम)`,"अण्-प्रत्ययः।","Takes Aṇ.");
   }
 
   // ══ RATHA ══
   if(mc==='parivrito_rathah'){
-    if(extra==='not_chariot') return R("4.2.10 (प्रत्युदा.)","परिवृतो रथः","न भवति",`${stem}ेन परिवृतः`,"❌ रथः नास्ति।","❌ Not a chariot.");
-    if(extra==='not_covering') return R("4.2.10 (प्रत्युदा.)","परिवृतो रथः","न भवति",`${stem}ैः`,"❌ वेष्टनम् नास्ति।","❌ Not a covering.");
-    if(stem==="पाण्डुकम्बल") return R("4.2.11","पाण्डुकम्बलादिनिः","इनि","पाण्डुकम्बली","इनि।","Takes Ini.");
+    if(extra==='not_chariot') return R("4.2.10 (प्रत्युदा.)","परिवृतो रथः","न भवति",`${stem}ेण परिवृतः कायः`,"❌ विशेष्यम् 'रथः' नास्ति।","❌ Not a chariot.");
+    if(extra==='not_covering') return R("4.2.10 (प्रत्युदा.)","परिवृतो रथः","न भवति",`${stem}ैः परिवृतः`,"❌ वेष्टनम् नास्ति।","❌ Not a covering.");
+    if(stem==="पाण्डुकम्बल") return R("4.2.11","पाण्डुकम्बलादिनिः","इनि","पाण्डुकम्बली (रथः)","इनि-प्रत्ययः।","Takes Ini.");
     const b=parivrita_data[stem]||applyAn(stem);
-    return R("4.2.10","परिवृतो रथः","अण्",`${stem} →[७.२.११७]→ ${b} →[अण्]→ ${b}ः`,"अण्।","Takes Aṇ.");
+    return R("4.2.10","परिवृतो रथः","अण्",`${stem} →[७.२.११७]→ ${b} →[अण्]→ ${b}ः (रथः)`,"अण्-प्रत्ययः।","Takes Aṇ.");
   }
 
   // ══ AMATRA ══
   if(mc==='tatroddhritam'){
-    if(extra==='not_amatra') return R("4.2.14 (प्रत्युदा.)","तत्रोद्धृतम्","न भवति",`${stem}ौ`,`❌ पात्रम् नास्ति।`,`❌ Not a vessel.`);
-    return R("4.2.14","तत्रोद्धृतममत्रेभ्यः","अण्",ad(stem)+` (ओदनम्)`,`'${stem}' → अण्।`,"Aṇ for vessel food.");
+    if(extra==='not_amatra') return R("4.2.14 (प्रत्युदा.)","तत्रोद्धृतममत्रेभ्यः","न भवति",`${stem}ौ उद्धृतम्`,`❌ '${stem}' पात्रवाचकः नास्ति।`,`❌ '${stem}' is not a vessel.`);
+    return R("4.2.14","तत्रोद्धृतममत्रेभ्यः","अण्",ad(stem)+` (ओदनम्)`,`'${stem}' → सप्तमी → अण्।`,"Aṇ for food extracted from vessel.");
   }
 
   // ══ SAMSKRITAM ══
   if(mc==='samskritam_bhakshah'){
-    if(extra==='not_bhaksha') return R("4.2.16 (प्रत्युदा.)","संस्कृतं भक्षाः","न भवति",`${stem}`,`❌ भक्षः नास्ति।`,"❌ Not food.");
-    if(extra==='is_dvigu') return R("4.2.16/4.1.88","संस्कृतं भक्षाः / द्विगोर्लुक्","अण् → लुक्",`${stem}ः`,`द्विगु → अण्-लुक्।`,"Dvigu: Aṇ elided.");
+    if(extra==='not_bhaksha') return R("4.2.16 (प्रत्युदा.)","संस्कृतं भक्षाः","न भवति",`${stem}े संस्कृतः`,`❌ '${stem}' भक्षः नास्ति।`,"❌ Not food.");
+    if(extra==='is_dvigu') return R("4.2.16/4.1.88","संस्कृतं भक्षाः / द्विगोर्लुक्","अण् → लुक्",`${stem}ः`,`'${stem}' द्विगुः → अण्-लुक्।`,"Dvigu: Aṇ elided.");
     if(stem==="शूल"||stem==="उखा") return R("4.2.17","शूलोखाभ्यां यत्","यत् (य)",`${stem} →[यत्]→ ${stem==='शूल'?'शूल्य':'औखेय'}म्`,"शूल/उखा → यत्।","Śūla/Ukhā takes Yat.");
     if(stem==="दधि") return R("4.2.18","दध्नस्ठक्","ठक् (इक)","दधि →[ठक्]→ दाधिकम्","दधि → ठक्।","Dadhi takes Ṭhak.");
-    if(stem==="उदश्वित्") return R("4.2.19","उदश्वितो वा","अण् (वा)","औदश्विदम्","विकल्पेन अण्।","Udaśvit optionally Aṇ.");
+    if(stem==="उदश्वित्") return R("4.2.19","उदश्वितो वा","अण् (वा)","औदश्विदम् (वा उदश्वित् एव)","विकल्पेन अण्।","Udaśvit optionally Aṇ.");
     if(stem==="क्षीर") return R("4.2.20","क्षीरात् ढञ्","ढञ् (एय)","क्षीर →[ढञ्]→ क्षैरेयम्","क्षीर → ढञ्।","Kṣīra takes Ḍhañ.");
-    return R("4.2.16","संस्कृतं भक्षाः","अण्",ad(stem)+` (भक्षः)`,`अण्।`,"Aṇ for prepared food.");
+    return R("4.2.16","संस्कृतं भक्षाः","अण्",ad(stem)+` (भक्षः)`,`'${stem}' → भक्षनिर्देशे अण्।`,"Aṇ for food prepared here.");
   }
 
   // ══ DEVATA ══
   if(mc==='devata'){
-    if(extra==='not_devata') return R("4.2.24 (प्रत्युदा.)","साऽस्य देवता","न भवति",`${stem}`,`❌ देवता नास्ति।`,`❌ Not a deity.`);
-    if(stem in devata_thanj_data) return R("4.2.35","महाराजप्रोष्ठपदाट्ठञ्","ठञ् (इक)",`${stem} →[ठञ्]→ ${devata_thanj_data[stem]}म्`,"ठञ्।","Takes Ṭhañ.");
-    if(stem in devata_kala_data){const[p,f]=devata_kala_data[stem];return R("4.2.34","कालेभ्यो भववत्",p,`${stem} →[${p}]→ ${f}म्`,"कालवाचक → भववत्।","Time-deity transfers suffix.");}
-    if(stem==="अग्नि") return R("4.2.33","अग्नेर्ढक्","ढक् (एय)","अग्नि →[७.२.११७]→ आग्नि →[ढक्]→ आग्नेयम्","अग्नि → ढक्।","Agni takes Ḍhak.");
-    if(stem==="कलि") return R("4.2.33 (वार्)","अग्निकलिभ्यां ढक्","ढक् (एय)","कलि →[ढक्]→ कालेयम्","कलि → ढक्।","Kali takes Ḍhak.");
-    if(devata_yat_cha_list.includes(stem)){const[y,c]=devata_yat_cha_forms[stem];return R("4.2.32","द्यावापृथिव्यादिभ्यश्च","यत् / छ",`${stem} →[यत्]→ ${y}म् | →[छ]→ ${c}म्`,"यत् + छ।","Takes Yat and Cha.");}
-    if(devata_yat_list.includes(stem)) return R("4.2.31","वाय्वृतुपित्रुषसो यत्","यत् (य)",`${stem} →[यत्]→ ${devata_yat_forms[stem]}म्`,"यत्।","Takes Yat.");
-    if(stem==="सोम") return R("4.2.30","सोमाट्ट्यण्","ट्यण् (य)","सोम →[ट्यण्]→ सौम्यः","सोम → ट्यण्।","Soma takes Ṭyaṇ.");
-    if(stem==="महेन्द्र") return R("4.2.29","महेन्द्राद्घाणौ च","घ/छ/अण्","माहेन्द्रम् / महेन्द्रियम् / महेन्द्रीयम्","घ + छ + अण्।","Takes Gha, Cha, Aṇ.");
-    if(stem==="शतरुद्र") return R("4.2.28","शतरुद्राच्छश्च घश्च","छ/घ","शतरुद्रीयम् / शतरुद्रियम्","छ + घ।","Takes Cha and Gha.");
-    if(devata_cha_vartika.includes(stem)) return R("4.2.28 (वार्)","पैङ्गाक्षीपुत्रादिभ्यश्छः","छ",`${stem}ीयम्`,"छ।","Takes Cha.");
-    if(["अपोनप्तृ","अपान्नप्तृ"].includes(stem)){const b=stem.slice(0,-1);return R("4.2.27","अपोनप्त्रादिभ्यो घः / छ च","घ/छ",`${b}्रियम् / ${b}्रीयम्`,"घ + छ।","Takes Gha and Cha.");}
+    if(extra==='not_devata') return R("4.2.24 (प्रत्युदा.)","साऽस्य देवता","न भवति",`${stem} — न देवतावाचकः`,`❌ '${stem}' देवतानाम नास्ति।`,`❌ '${stem}' is not a deity.`);
+    // 4.2.35
+    if(stem in devata_thanj_data) return R("4.2.35","महाराजप्रोष्ठपदाट्ठञ्","ठञ् (इक)",`${stem} →[ठञ्]→ ${devata_thanj_data[stem]}म्`,"ठञ्-प्रत्ययः।","Takes Ṭhañ.");
+    // 4.2.34
+    if(stem in devata_kala_data){const[p,f]=devata_kala_data[stem];return R("4.2.34","कालेभ्यो भववत्",p,`${stem} →[${p}]→ ${f}म्`,"कालवाचकः देवता → भववत् प्रत्ययः।","Time-deity transfers suffix from Tatra Bhavaḥ.");}
+    // 4.2.33
+    if(stem==="अग्नि") return R("4.2.33","अग्नेर्ढक्","ढक् (एय)","अग्नि →[७.२.११७]→ आग्नि →[ढक्→एय]→ आग्नेयम्","अग्नि-देवतायाः ढक्।","Agni takes Ḍhak.");
+    if(stem==="कलि") return R("4.2.33 (वार्)","अग्निकलिभ्यां ढक्","ढक् (एय)","कलि →[७.२.११७]→ कालि →[ढक्→एय]→ कालेयम्","कलि → ढक् (वार्त्तिकम्)।","Kali takes Ḍhak.");
+    // 4.2.32
+    if(devata_yat_cha_list.includes(stem)){const[y,c]=devata_yat_cha_forms[stem];return R("4.2.32","द्यावापृथिव्यादिभ्यश्च","यत् / छ",`${stem} →[यत्]→ ${y}म् | →[छ]→ ${c}म्`,"यत् + छ उभौ प्रत्ययौ।","Takes both Yat and Cha.");}
+    // 4.2.31
+    if(devata_yat_list.includes(stem)) return R("4.2.31","वाय्वृतुपित्रुषसो यत्","यत् (य)",`${stem} →[यत्]→ ${devata_yat_forms[stem]}म्`,"वायु/ऋतु/पितृ/उषस् → यत्।","Takes Yat.");
+    // 4.2.30
+    if(stem==="सोम") return R("4.2.30","सोमाट्ट्यण्","ट्यण् (य)","सोम →[७.२.११७]→ सौम →[ट्यण्]→ सौम्यः | स्त्री: सौमी","सोम → ट्यण्।","Soma takes Ṭyaṇ.");
+    // 4.2.29
+    if(stem==="महेन्द्र") return R("4.2.29","महेन्द्राद्घाणौ च","घ/छ/अण्","महेन्द्र →[घ]→ महेन्द्रियम् | →[छ]→ महेन्द्रीयम् | →[अण्]→ माहेन्द्रम्","घ + छ + अण् त्रयोऽपि।","Takes Gha, Cha, and Aṇ.");
+    // 4.2.28
+    if(stem==="शतरुद्र") return R("4.2.28","शतरुद्राच्छश्च घश्च","छ/घ","शतरुद्र →[छ]→ शतरुद्रीयम् | →[घ]→ शतरुद्रियम्","छ + घ उभौ।","Takes Cha and Gha.");
+    if(devata_cha_vartika.includes(stem)) return R("4.2.28 (वार्)","पैङ्गाक्षीपुत्रादिभ्यश्छः","छ (ईय)",`${stem} →[छ]→ ${stem}ीयम्`,"छ-प्रत्ययः।","Takes Cha.");
+    // 4.2.27
+    if(["अपोनप्तृ","अपान्नप्तृ"].includes(stem)){const b=stem.slice(0,-1);return R("4.2.27","अपोनप्त्रादिभ्यो घः / छ च","घ/छ",`${stem} →[घ]→ ${b}्रियम् | →[छ]→ ${b}्रीयम्`,"अपोनप्तृ/अपान्नप्तृ → घ + छ।","Takes Gha and Cha.");}
+    // 4.2.26
     if(stem==="शुक्र") return R("4.2.26","शुक्राद्घन्","घन् (इय)","शुक्र →[घन्]→ शुक्रियम्","शुक्र → घन्।","Śukra takes Ghan.");
-    if(stem==="क") return R("4.2.25","कस्येत्","अण् (इत्-आदेश)","क →[इत्-आदेश]→ कायम्","'क' → कायम्।","'Ka' → kāyam.");
-    if(stem==="श्री") return R("4.2.25 (कौ.)","कस्येत्","अण्","श्री →[अण्]→ श्रायम्","श्री → श्रायम्।","Śrī → śrāyam.");
-    if(stem in pati_uttarapada_devata){const[f,v]=pati_uttarapada_devata[stem];return R("4.2.24+4.1.85","साऽस्य देवता + ण्य","ण्य",`${stem} →[ण्य]→ ${f}म्`,"पत्युत्तरपद → ण्य।","-pati deity → Ṇya.");}
-    if(stem in ashvapati_devata){const f=ashvapati_devata[stem];return R("4.2.24+4.1.84","साऽस्य देवता + अश्वपत्यादि","अण्",`${stem} →[अण्]→ ${f}म्`,"अश्वपत्यादि → अण्।","Aśvapati-ādi deity → Aṇ.");}
-    return R("4.2.24","साऽस्य देवता","अण्",ad(stem),`'${stem}' देवतायाः अण्।`,`Aṇ for deity.`);
+    // 4.2.25
+    if(stem==="क") return R("4.2.25","कस्येत्","अण् (इत्-आदेश)","क + अण् →[४.२.२५ इत्-आदेश]→ कि + अ →[७.२.११७]→ कै + अ →[६.१.७८]→ कायम्","'क' → इत्-आदेशः → कायम्।","'Ka' (Prajāpati) → इत् ādeśa → kāyam.");
+    if(stem==="श्री") return R("4.2.25 (कौ.)","कस्येत् (श्री)","अण्","श्री + अण् →[७.२.११७]→ श्रै + अ →[६.१.७८]→ श्रायम्","श्री → श्रायम् (कौमुदी)।","Śrī → śrāyam (Kaumudī).");
+    // 4.2.24 — apavādas then general
+    if(stem in pati_uttarapada_devata){const[f,v]=pati_uttarapada_devata[stem];return R("4.2.24+4.1.85","साऽस्य देवता + ण्य","ण्य",`${stem} →[७.२.११७]→ ${v} →[ण्य]→ ${f}म्`,"पत्युत्तरपद → ण्य।","-pati deity → Ṇya.");}
+    if(stem in ashvapati_devata){const f=ashvapati_devata[stem];return R("4.2.24+4.1.84","साऽस्य देवता + अश्वपत्यादि","अण्",`${stem} →[७.२.११७]→ ${f} →[अण्]→ ${f}म्`,"अश्वपत्यादि → अण्।","Aśvapati-ādi deity → Aṇ.");}
+    return R("4.2.24","साऽस्य देवता","अण् (प्राग्दीव्यतोऽण् 4.1.83)",ad(stem),`'${stem}' देवतावाचकात् प्रथमासमर्थात् अण्।`,`Aṇ for deity '${stem}' — sacred to / belonging to.`);
   }
 
-  // ══ NIPĀTANA ══
+  // ══ NIPĀTANA — पितृव्यमातुलमातामहपितामहाः ══
+  // These words are nipātana — given readymade. The vārttikas explain
+  // the affixes that can be inferred from the nipāta forms.
   if(mc==='nipatan'){
-    const ctx=extra;
+    const ctx = extra; // 'brother' | 'father' | 'mother' | 'milk' | 'fruitless'
+
+    // ── पितृ ───────────────────────────────────────────────────
     if(stem==="पितृ"){
-      if(ctx==="brother") return R("4.2.36 (वार्) — पितुर्भ्रातरि व्यत्","पितुर्भ्रातरि व्यत्","व्यत्",
-        "पितृ + व्यत् → पितृव्यः",
-        `निपातनम् — पितुः भ्राता = पितृव्यः।`,`Father's brother = पितृव्यः.`);
-      if(ctx==="father") return R("4.2.36 (वार्) — ताभ्यां पितरि डामहच्","मातृपितृभ्यां पितरि डामहच्","डामहच्",
-        "पितृ + डामहच् →[टेः लोपः]→ पितामहः",
-        `निपातनम् — पितुः पिता = पितामहः।`,`Father's father = पितामहः.`);
-      if(ctx==="mother") return R("4.2.36 (वार्)","मातरि षिच्च","डामहच् (षित्) + ङीष्",
-        "पितृ + डामहच् + ङीष् → पितामही",
-        `पितुः माता = पितामही।`,`Father's mother = पितामही.`);
-      return R("4.2.36 — निपातनम्","पितृव्यमातुलमातामहपितामहाः","निपातनम्","पितृ — कृपया अर्थं चिनोतु","अर्थः अनिश्चितः।","Please select meaning.");
+      if(ctx==="brother") return R(
+        "4.2.36 (वार्) — पितुर्भ्रातरि व्यत्",
+        "पितुर्भ्रातरि व्यत्",
+        "व्यत्",
+        "पितृ + व्यत् →[व्यत्-प्रत्ययः]→ पितृव्यः",
+        `निपातनम् — पितुः भ्राता = पितृव्यः ।
+वार्त्तिकम्: पितुर्भ्रातरि व्यत् ।
+पितृ + व्यत् → पितृव्य । यकारोत्तरे अकारः स्वरितः (तित्स्वरितम्) ।`,
+        `Nipātana. Father's brother = पितृव्यः (Paternal Uncle).
+Vārttika: After पितृ, the affix व्यत् comes in the sense of 'his brother'.
+पितृ + व्यत् → पितृव्यः. The a after y is svarita by tit-svarita.`
+      );
+      if(ctx==="father") return R(
+        "4.2.36 (वार्) — ताभ्यां पितरि डामहच्",
+        "मातृपितृभ्यां पितरि डामहच्",
+        "डामहच्",
+        "पितृ + डामहच् →[टेः ६.४.१४३ → ऋकारस्य लोपः]→ पित् + आमह →[संधिः]→ पितामहः । स्त्री: पितामही (षित् + ङीष् ४.१.४१)",
+        `निपातनम् — पितुः पिता = पितामहः (Paternal Grandfather) ।
+वार्त्तिकम्: ताभ्यां पितरि डामहच् ।
+पितृ + डामहच् → टेः (६.४.१४३) ऋकारस्य टिसंज्ञकस्य लोपः → पित् + आमह → पितामहः ।
+स्त्री: डामहच् 'षित्' अस्ति → षिद्गौरादिभ्यश्च (४.१.४१) → ङीष् → पितामही ।`,
+        `Nipātana. Father's father = पितामहः (Paternal Grandfather).
+Vārttika: ताभ्यां पितरि डामहच् — affix डामहच् after पितृ/मातृ in sense 'their father'.
+पितृ + डामहच् → ṭi-lopa (6.4.143) drops ṛ → पित् + आमह → पितामहः.
+Fem: डामहच् is ṣit → ṅīṣ by 4.1.41 → पितामही.`
+      );
+      if(ctx==="mother") return R(
+        "4.2.36 (वार्) — पितामही",
+        "मातरि षिच्च — डामहच् (षित्) + ङीष्",
+        "डामहच् (षित्) + ङीष्",
+        "पितृ + डामहच् →[टेः ६.४.१४३ → ऋकारलोपः]→ पित् + आमह →[ङीष् ४.१.४१]→ पितामही",
+        `निपातनम् — पितुः माता = पितामही (Paternal Grandmother) ।
+डामहच् षित् अस्ति → षिद्गौरादिभ्यश्च (४.१.४१) → ङीष् → पितामही ।`,
+        `Nipātana. Father's mother = पितामही (Paternal Grandmother).
+ṣit-affix डामहच् → ṅīṣ by 4.1.41 → पितामही (fem.).`
+      );
+      // No context selected yet
+      return R(
+        "4.2.36 — निपातनम्",
+        "पितृव्यमातुलमातामहपितामहाः",
+        "निपातनम्",
+        "पितृ — कृपया अर्थं चिनोतु",
+        "अर्थः अनिश्चितः — भ्राता वा पिता वा चिनोतु ।",
+        "Please select the intended meaning (brother / father)."
+      );
     }
+
+    // ── मातृ ───────────────────────────────────────────────────
     if(stem==="मातृ"){
-      if(ctx==="brother") return R("4.2.36 (वार्) — मातुर्डुलच्","मातुर्डुलच्","डुलच्",
-        "मातृ + डुलच् →[टेः लोपः]→ मातुलः",
-        `निपातनम् — मातुः भ्राता = मातुलः।`,`Mother's brother = मातुलः.`);
-      if(ctx==="father") return R("4.2.36 (वार्) — ताभ्यां पितरि डामहच्","मातृपितृभ्यां पितरि डामहच्","डामहच्",
-        "मातृ + डामहच् →[टेः लोपः]→ मातामहः",
-        `निपातनम् — मातुः पिता = मातामहः।`,`Mother's father = मातामहः.`);
-      if(ctx==="mother") return R("4.2.36 (वार्)","मातरि षिच्च","डामहच् (षित्) + ङीष्",
-        "मातृ + डामहच् + ङीष् → मातामही",
-        `मातुः माता = मातामही।`,`Mother's mother = मातामही.`);
-      return R("4.2.36 — निपातनम्","पितृव्यमातुलमातामहपितामहाः","निपातनम्","मातृ — कृपया अर्थं चिनोतु","अर्थः अनिश्चितः।","Please select meaning.");
+      if(ctx==="brother") return R(
+        "4.2.36 (वार्) — मातुर्डुलच्",
+        "मातुर्डुलच्",
+        "डुलच्",
+        "मातृ + डुलच् →[ड-च-इत्संज्ञा-लोपः]→ मातृ + उल →[टेः ६.४.१४३ → ऋकारलोपः]→ मात् + उल →[संधिः]→ मातुलः",
+        `निपातनम् — मातुः भ्राता = मातुलः (Maternal Uncle) ।
+वार्त्तिकम्: मातुर्डुलच् ।
+प्रक्रिया:
+१. मातृ + डुलच् — डकारचकारयोः इत्संज्ञा, लोपः → मातृ + उल
+२. टेः (६.४.१४३) — ऋकारः टिसंज्ञकः, तस्य लोपः → मात् + उल
+३. मात् + उल → मातुलः`,
+        `Nipātana. Mother's brother = मातुलः (Maternal Uncle).
+Vārttika: मातुर्डुलच् — affix डुलच् after मातृ meaning 'her brother'.
+Process:
+1. मातृ + डुलच् → ḍ and c are it → drop → मातृ + उल
+2. ṭi-lopa (6.4.143): ṛ is ṭi, dropped → मात् + उल
+3. मात् + उल → मातुलः`
+      );
+      if(ctx==="father") return R(
+        "4.2.36 (वार्) — ताभ्यां पितरि डामहच्",
+        "मातृपितृभ्यां पितरि डामहच्",
+        "डामहच्",
+        "मातृ + डामहच् →[टेः ६.४.१४३ → ऋकारलोपः]→ मात् + आमह →[संधिः]→ मातामहः । स्त्री: मातामही (षित् + ङीष् ४.१.४१)",
+        `निपातनम् — मातुः पिता = मातामहः (Maternal Grandfather) ।
+वार्त्तिकम्: ताभ्यां पितरि डामहच् ।
+मातृ + डामहच् → टेः (६.४.१४३) ऋकारलोपः → मात् + आमह → मातामहः ।
+स्त्री: षित्वात् (४.१.४१) ङीष् → मातामही ।`,
+        `Nipātana. Mother's father = मातामहः (Maternal Grandfather).
+Vārttika: ताभ्यां पितरि डामहच् — after मातृ/पितृ in sense of 'their father'.
+मातृ + डामहच् → ṭi-lopa (6.4.143) → मात् + आमह → मातामहः.
+Fem (षित्): by 4.1.41 → ṅīṣ → मातामही.`
+      );
+      if(ctx==="mother") return R(
+        "4.2.36 (वार्) — मातरि षिच्च",
+        "मातरि षिच्च — डामहच् (षित्) + ङीष्",
+        "डामहच् (षित्) + ङीष्",
+        "मातृ + डामहच् →[षित् → ङीष् ४.१.४१]→ मात् + आमह + ई →[संधिः]→ मातामही | पितृ + डामहच् + ङीष् → पितामही",
+        `निपातनम् — मातुः माता = मातामही, पितुः माता = पितामही ।
+वार्त्तिकम्: मातरि षिच्च ।
+डामहच्-प्रत्ययः 'षित्' अपि अस्ति ।
+षिद्गौरादिभ्यश्च (४.१.४१) → स्त्रीत्वे ङीष् विधीयते ।
+मातृ + डामहच् + ङीष् → मातामही ।
+पितृ + डामहच् + ङीष् → पितामही ।`,
+        `Nipātana. Mother's mother = मातामही; Father's mother = पितामही.
+Vārttika: मातरि षिच्च — डामहच् is also ṣit.
+By 4.1.41 (ṣid-gaurādi): ṅīṣ added for feminine.
+मातृ + डामहच् + ṅīṣ → मातामही.
+पितृ + डामहच् + ṅīṣ → पितामही.`
+      );
+      return R(
+        "4.2.36 — निपातनम्",
+        "पितृव्यमातुलमातामहपितामहाः",
+        "निपातनम्",
+        "मातृ — कृपया अर्थं चिनोतु",
+        "अर्थः अनिश्चितः — भ्राता / पिता / माता चिनोतु ।",
+        "Please select the intended meaning."
+      );
     }
-    if(stem==="अवि") return R("4.2.36 (वार्) — अवेर्दुग्धे","अवेर्दुग्धे सोढ-दूस-मरीसचः","सोढ / दूस / मरीसच्",
-      "अवि + सोढ → अविसोढम्\nअवि + दूस → अविदूसम्\nअवि + मरीसच् → अविमरीसम्",
-      `निपातनम् — अवेः दुग्धम्।`,`Sheep's milk: three affixes.`);
-    if(stem==="तिल") return R("4.2.36 (वार्) — तिलात् निष्फलात्","तिलात् निष्फलात् पिञ्ज-पेजौ","पिञ्ज / पेज",
-      "तिल + पिञ्ज → तिलपिञ्जम्\nतिल + पेज → तिलपेजम्",
-      `निपातनम् — निष्फलं तिलम्।`,`Fruitless sesame: two affixes.`);
-    return R("4.2.36 — निपातनम्","पितृव्यमातुलमातामहपितामहाः","निपातनम्",
-      `'${stem}' — अस्मिन् अधिकारे नास्ति`,`❌ अत्र नास्ति।`,`❌ Not in this nipātana group.`);
+
+    // ── अवि ────────────────────────────────────────────────────
+    if(stem==="अवि"){
+      return R(
+        "4.2.36 (वार्) — अवेर्दुग्धे सोढदूसमरीसचः",
+        "अवेर्दुग्धे सोढ-दूस-मरीसचः",
+        "सोढ / दूस / मरीसच्",
+        "अवि + सोढ  → अविसोढम् ।\nअवि + दूस   → अविदूसम् ।\nअवि + मरीसच् → अविमरीसम् ।",
+        `निपातनम् — अवेः दुग्धम् ।
+वार्त्तिकम्: अवेः दुग्धे सोढ-दूस-मरीसचः वक्तव्याः ।
+अवि (= मेषः / एडकः) इत्यस्मात् 'दुग्धम्' अस्मिन् अर्थे त्रयः प्रत्ययाः भवन्ति —
+  १. अवि + सोढ  → अविसोढम्
+  २. अवि + दूस   → अविदूसम्
+  ३. अवि + मरीसच् → अविमरीसम्`,
+        `Nipātana. Sheep's milk — three vārttika affixes.
+Vārttika: अवेर्दुग्धे सोढ-दूस-मरीसचः
+After अवि (= sheep/ewe), in the meaning 'its milk':
+  1. अवि + सोढ  → अविसोढम्
+  2. अवि + दूस   → अविदूसम्
+  3. अवि + मरीसच् → अविमरीसम्`
+      );
+    }
+
+    // ── तिल ────────────────────────────────────────────────────
+    if(stem==="तिल"){
+      return R(
+        "4.2.36 (वार्) — तिलात् निष्फलात् पिञ्जपेजौ",
+        "तिलात् निष्फलात् पिञ्ज-पेजौ",
+        "पिञ्ज / पेज",
+        "तिल + पिञ्ज → तिलपिञ्जम् ।\nतिल + पेज  → तिलपेजम् ।\nवैदिकम्: तिल + पिञ्ज् (डित्) →[टेः ६.४.१४३]→ तिल्पिञ्जः (AV १२.२.५४)",
+        `निपातनम् — निष्फलं तिलम् ।
+वार्त्तिकम्: तिलात् निष्फलात् पिञ्जपेजौ ।
+तिल-शब्दात् 'निष्फलम्' अस्मिन् अर्थे द्वौ प्रत्ययौ —
+  १. तिल + पिञ्ज → तिलपिञ्जम्
+  २. तिल + पेज  → तिलपेजम्
+वार्त्तिकम्: पिञ्जः छन्दसि डित् च —
+  वेदेषु पिञ्ज् 'डित्' → टेः (६.४.१४३) टिलोपः → तिल् + पिञ्ज = तिल्पिञ्जः
+  (अथर्ववेदः १२.२.५४: 'इषीकां जरतीमिष्ट्वा तिल्पिञ्जं दण्डनं नडम्')`,
+        `Nipātana. Fruitless sesame — two affixes.
+Vārttika: तिलात् निष्फलात् पिञ्ज-पेजौ
+After तिल in the sense 'fruitless (useless) sesame':
+  1. तिल + पिञ्ज → तिलपिञ्जम्
+  2. तिल + पेज  → तिलपेजम्
+Vārttika: पिञ्जः छन्दसि डित् च —
+  In Vedic, पिञ्ज् is ḍit → ṭi-lopa (6.4.143) → तिल् + पिञ्ज = तिल्पिञ्जः
+  (Atharva-veda 12.2.54: 'iṣīkāṃ jaratīmiṣṭvā tilpiñjaṃ daṇḍanaṃ naḍam')`
+      );
+    }
+
+    // Unknown stem in nipātana
+    return R(
+      "4.2.36 — निपातनम्",
+      "पितृव्यमातुलमातामहपितामहाः",
+      "निपातनम्",
+      `'${stem}' — अस्मिन् अधिकारे नास्ति`,
+      `❌ '${stem}' अत्र निपातितः नास्ति ।`,
+      `❌ '${stem}' is not in this nipātana group. Use: पितृ, मातृ, अवि, तिल.`
+    );
   }
 
-  // ══ तस्य समूहः ══
+  // ══ तस्य समूहः (4.2.37–4.2.51) ══════════════════════════════
   if(mc==='tasya_samuha'){
     const ctx=extra||"general";
+
+    // ── 1. भिक्षादि — hardcoded Aṇ forms (4.2.38, सर्व-अपवादः) ──────
     if(stem in bhikshadi_samuha)
-      return R("4.2.38","भिक्षादिभ्योऽण्","अण्",`${stem} →[अण्]→ ${bhikshadi_samuha[stem]}`,"भिक्षादि → अण्।","Bhikṣādi → Aṇ.");
+      return R("4.2.38","भिक्षादिभ्योऽण्","अण्",
+        `${stem} →[अण् (भिक्षादि)]→ ${bhikshadi_samuha[stem]}`,
+        "भिक्षादिगणात् अण्-प्रत्ययः — सर्व-अपवादः।",
+        "Bhikṣādi-gaṇa → Aṇ (overrides all other samuha rules).");
+
+    // ── 2. अहन् — ख (क्रतौ) or अञ् (general) ────────────────────────
     if(stem==="अहन्"){
-      if(ctx==="kratu") return R("4.2.42 (वार्.)","अह्नः ख क्रतौ","ख (ईन)","अहन् →[ख]→ अहीनः","क्रतौ ख।","ahan in sacrifice → kha: ahīnaḥ.");
-      return R("4.2.45","खण्डिकादिभ्यश्च","अञ्","अहन् →[अञ्]→ आहम्","खण्डिकादि → अञ्।","ahan → Añ: āham.");
+      if(ctx==="kratu")
+        return R("4.2.42 (वार्.)","अह्नः ख क्रतौ","ख (ईन)",
+          "अहन् →[ख → ईन]→ अहीनः",
+          "अहन्-शब्दात् क्रत्वर्थे ख-प्रत्ययः (ख → ईन) — वार्त्तिकम्।",
+          "ahan in sense of 'sacrifice-day' → kha (→ īna): ahīnaḥ.");
+      return R("4.2.45","खण्डिकादिभ्यश्च","अञ्",
+        "अहन् →[अञ्]→ आहम्",
+        "खण्डिकादिगणे पाठात् अञ्-प्रत्ययः।",
+        "ahan in khaṇḍikādi-gaṇa → Añ: āham.");
     }
-    if(stem==="पर्शु") return R("4.2.42 (वार्.)","पर्श्वा णस्","णस् (अ)","पर्शु →[णस्]→ पार्श्वम्","णस्।","parśu → ṇas: pārśvam.");
-    if(stem==="केदार") return R("4.2.40 / 41","केदाराद्यञ् च / ठञ्","यञ् / वुञ् / ठञ्",
-      "केदार →[यञ्]→ कैदार्यम्\nकेदार →[वुञ्]→ कैदारकम्\nकेदार →[ठञ्]→ कैदारिकम्","केदार → तीन प्रत्ययाः।","kedāra: three options.");
-    if(stem==="केश") return R("4.2.48","केशाश्वाभ्यां यञ्छावन्यतरस्याम्","यञ् / ठक्",
-      "केश →[यञ्]→ कैश्यम्\nकेश →[ठक्]→ कैशिकम्","केश → यञ् / ठक्।","keśa: yañ / ṭhak.");
-    if(stem==="अश्व") return R("4.2.48","केशाश्वाभ्यां...","छ / अण्",
-      "अश्व →[छ]→ अश्वीयम्\nअश्व →[अण्]→ आश्वम्","अश्व → छ / अण्।","aśva: cha / Aṇ.");
-    if(stem==="खल") return R("4.2.50 / 51","खलगोरथात्...","य / इनि",
-      "खल →[य]→ खल्या\nखल →[इनि]→ खलिनी","य / इनि।","khala: ya / ini.");
-    if(stem==="गो") return R("4.2.50 / 51","खलगोरथात्...","य / त्र",
-      "गो →[य]→ गव्या\nगो →[त्र]→ गोत्रा","य / त्र।","go: ya / tra.");
-    if(stem==="रथ") return R("4.2.50 / 51","खलगोरथात्...","य / कट्यच्",
-      "रथ →[य]→ रथ्या\nरथ →[कट्यच्]→ रथकट्या","य / कट्यच्।","ratha: ya / kaṭyac.");
-    if(stem==="कवचिन्") return R("4.2.41","ठञ् कवचिनश्च","ठञ् (इक)","कवचिन् →[ठञ्]→ कावचिकम्","कवचिन् → ठञ्।","kavacin → ṭhañ.");
-    if(["ब्राह्मण","माणव","वाडव","पृष्ठ"].includes(stem)) return R("4.2.42","ब्राह्मणमाणव...","यन् (य)",`${stem}्यम्`,"यन्।","yat.");
-    if(kamaladi_samuha.has(stem)) return R("वार्.","कमलादिभ्यः खण्डच्","खण्डच्",`${stem}खण्डम्`,"कमलादि → खण्डच्।","kamalādi → khaṇḍac.");
-    if(purvadi_samuha.has(stem)) return R("वार्.","पूर्वादिभ्यः काण्डच्","काण्डच्",`${stem}काण्डम्`,"पूर्वादि → काण्डच्।","pūrvādi → kāṇḍac.");
-    if(["नर","करि","तुरङ्ग"].includes(stem)) return R("वार्.","नरकरितुरङ्गाणां स्कन्धच्","स्कन्धच्",`${stem}स्कन्धः`,"→ स्कन्धच्।","→ skandhac.");
+
+    // ── 3. पर्शु — णस् (वार्त्तिकम्) ──────────────────────────────────
+    if(stem==="पर्शु")
+      return R("4.2.42 (वार्.)","पर्श्वा णस् वक्तव्यः","णस् (अ)",
+        "पर्शु →[णस्]→ पार्श्वम्",
+        "णस्-प्रत्ययः — वार्त्तिकम्।",
+        "parśu → ṇas (vārttika): pārśvam.");
+
+    // ── 4. Vikalpa words ────────────────────────────────────────────────
+    if(stem==="केदार")
+      return R("4.2.40 / 41","केदाराद्यञ् च / ठञ् कवचिनश्च","यञ् / वुञ् (अक) / ठञ् (इक)",
+        "केदार →[यञ्]→ कैदार्यम्\nकेदार →[वुञ्]→ कैदारकम्\nकेदार →[ठञ्]→ कैदारिकम्",
+        "केदार-शब्दात् त्रयः प्रत्ययाः विकल्पेन।",
+        "kedāra: yañ / vuñ / ṭhañ — three optional forms.");
+    if(stem==="केश")
+      return R("4.2.48","केशाश्वाभ्यां यञ्छावन्यतरस्याम्","यञ् / ठक् (इक)",
+        "केश →[यञ्]→ कैश्यम्\nकेश →[ठक्]→ कैशिकम्",
+        "केश-शब्दात् यञ् विकल्पेन, पक्षे ठक्।",
+        "keśa: yañ (kaiśyam) or ṭhak (kaiśikam).");
+    if(stem==="अश्व")
+      return R("4.2.48","केशाश्वाभ्यां यञ्छावन्यतरस्याम्","छ (ईय) / अण्",
+        "अश्व →[छ]→ अश्वीयम्\nअश्व →[अण्]→ आश्वम्",
+        "अश्व-शब्दात् छ विकल्पेन, पक्षे अण्।",
+        "aśva: cha (aśvīyam) or Aṇ (āśvam).");
+    if(stem==="खल")
+      return R("4.2.50 / 51","खलगोरथात् / इनित्रकट्यचश्च","य / इनि",
+        "खल →[य]→ खल्या\nखल →[इनि]→ खलिनी",
+        "खल-शब्दात् य तथा इनि — स्त्रीलिङ्गे।",
+        "khala: ya → khalyā / ini → khalinī (both feminine).");
+    if(stem==="गो")
+      return R("4.2.50 / 51","खलगोरथात् / इनित्रकट्यचश्च","य / त्र",
+        "गो →[य]→ गव्या\nगो →[त्र]→ गोत्रा",
+        "गो-शब्दात् य तथा त्र।",
+        "go: ya → gavyā / tra → gotrā.");
+    if(stem==="रथ")
+      return R("4.2.50 / 51","खलगोरथात् / इनित्रकट्यचश्च","य / कट्यच्",
+        "रथ →[य]→ रथ्या\nरथ →[कट्यच्]→ रथकट्या",
+        "रथ-शब्दात् य तथा कट्यच्।",
+        "ratha: ya → rathyā / kaṭyac → rathakaṭyā.");
+
+    // ── 5. Specific nouns ───────────────────────────────────────────────
+    if(stem==="कवचिन्")
+      return R("4.2.41","ठञ् कवचिनश्च","ठञ् (इक)",
+        "कवचिन् →[ठञ्]→ कावचिकम्","कवचिन् → ठञ्।","kavacin → ṭhañ: kāvacikam.");
+    if(["ब्राह्मण","माणव","वाडव","पृष्ठ"].includes(stem))
+      return R("4.2.42","ब्राह्मणमाणववाडवाद्यन्","यन् (य)",
+        `${stem} →[यन्]→ ${stem}्यम्`,"यन्-प्रत्ययः।","yat (→ ya): collective of brāhmaṇa etc.");
+    if(stem==="वात"&&pashadi_samuha.has(stem)===false)
+      return R("4.2.42 (वार्.)","वातात् ऊलः","ऊल",
+        "वात →[ऊल]→ वातूलः","वात + ऊल — वार्त्तिकम्।","vāta + ūla (vārttika): vātūlaḥ.");
+    if(["ग्राम","जन","बन्धु","सहाय","गज"].includes(stem))
+      return R("4.2.43","ग्रामजनबन्धुसहायेभ्यस्तल्","तल् + टाप्",
+        `${stem} →[तल्]→ ${stem}ता`,"तल्-प्रत्ययः, स्त्रीलिङ्गे।","tal (+ ṭāp, feminine): grāmatā etc.");
+
+    // ── 6. Gaṇa-based rules ─────────────────────────────────────────────
+    if(kamaladi_samuha.has(stem))
+      return R("वार्.","कमलादिभ्यः खण्डच्","खण्डच्",
+        `${stem} →[खण्डच्]→ ${stem}खण्डम्`,"कमलादि → खण्डच्।","kamalādi → khaṇḍac.");
+    if(purvadi_samuha.has(stem))
+      return R("वार्.","पूर्वादिभ्यः काण्डच्","काण्डच्",
+        `${stem} →[काण्डच्]→ ${stem}काण्डम्`,"पूर्वादि → काण्डच्।","pūrvādi → kāṇḍac.");
+    if(["नर","करि","तुरङ्ग"].includes(stem))
+      return R("वार्.","नरकरितुरङ्गाणां स्कन्धच्","स्कन्धच्",
+        `${stem} →[स्कन्धच्]→ ${stem}स्कन्धः`,"नरादि → स्कन्धच्।","nara etc. → skandhac.");
+
     if(pashadi_samuha.has(stem)){
       const vr=applyAn(stem);
       const base=vr.endsWith('ा')||vr.endsWith('अ')?vr.slice(0,-1):vr;
-      return R("4.2.49","पाशादिभ्यो यः","य + टाप्",`${stem} →[य + टाप्]→ ${base}्या`,"पाशादि → य।","pāśādi → ya.");
+      return R("4.2.49","पाशादिभ्यो यः","य + टाप्",
+        `${stem} →[७.२.११७]→ ${vr} →[य + टाप्]→ ${base}्या`,
+        "पाशादि → य-प्रत्ययः, स्त्रीलिङ्गे।",
+        "pāśādi → ya (+ ṭāp, feminine): pāśyā etc.");
     }
     if(khandikadi_samuha.has(stem)){
-      if(stem==="श्वन्") return R("4.2.45","खण्डिकादिभ्यश्च","अञ्","श्वन् →[अञ्]→ शौवम्","→ अञ्।","śvan → Añ.");
+      if(stem==="श्वन्") return R("4.2.45","खण्डिकादिभ्यश्च","अञ्",
+        "श्वन् →[अञ्]→ शौवम्","खण्डिकादि → अञ्।","śvan → Añ: śauvam.");
       const vr=applyAn(stem);
       const base=/[ािीुूृेैोौ]$/.test(vr)?vr.slice(0,-1):vr;
-      return R("4.2.45","खण्डिकादिभ्यश्च","अञ्",`${stem} →[अञ्]→ ${base}म्`,"खण्डिकादि → अञ्।","khaṇḍikādi → Añ.");
+      return R("4.2.45","खण्डिकादिभ्यश्च","अञ्",
+        `${stem} →[७.२.११७]→ ${vr} →[अञ्]→ ${base}म्`,
+        "खण्डिकादि → अञ्-प्रत्ययः।","khaṇḍikādi → Añ.");
     }
-    if(ctx==="is_gotra"||["उक्षन्","उष्ट्र","राजन्","मनुष्य"].includes(stem)){
+
+    // ── 7. Context-dependent rules ──────────────────────────────────────
+    if(ctx==="is_gotra"||["उक्षन्","उष्ट्र","उरभ्र","राजन्","राजन्य","राजपुत्र","वत्स","मनुष्य","अज","वृद्ध"].includes(stem)){
       const vr=applyAn(stem);
       const base=stem.endsWith("न्")?vr.slice(0,-2):(vr.endsWith("अ")?vr.slice(0,-1):vr);
-      return R("4.2.39","गोत्रोक्षोष्ट्र...","वुञ् (अक)",`${stem} →[वुञ्]→ ${base}कम्`,"गोत्रादि → वुञ्।","gotra/ukṣan → vuñ.");
+      return R("4.2.39","गोत्रोक्षोष्ट्र...","वुञ् (अक)",
+        `${stem} →[७.२.११७]→ ${vr} →[वुञ्]→ ${base}कम्`,
+        "गोत्रादि → वुञ्-प्रत्ययः।","gotra/ukṣan etc. → vuñ (→ aka).");
     }
     if(ctx==="is_achitta"||["हस्तिन्","धेनु"].includes(stem)){
       const vr=applyAn(stem);
-      if(stem==="हस्तिन्") return R("4.2.47","अचित्तहस्तिधेनोष्ठक्","ठक् (इक)","हस्तिन् →[ठक्]→ हास्तिकम्","हस्तिन् → ठक्।","hastin → ṭhak.");
+      if(stem==="हस्तिन्") return R("4.2.47","अचित्तहस्तिधेनोष्ठक्","ठक् (इक)",
+        "हस्तिन् →[७.२.११७]→ हास्ति →[ठक्]→ हास्तिकम्",
+        "हस्तिन् → ठक्।","hastin → ṭhak: hāstikam.");
       const base=/[ािीुूृेैोौ]$/.test(vr)?vr.slice(0,-1):vr;
-      return R("4.2.47","अचित्तहस्तिधेनोष्ठक्","ठक् (इक)",`${stem} →[ठक्]→ ${base}िकम्`,"अचित्त → ठक्।","acitta → ṭhak.");
+      const sfx=stem.endsWith("ु")||stem.endsWith("ू")?"कम्":"िकम्";
+      return R("4.2.47","अचित्तहस्तिधेनोष्ठक्","ठक् (इक)",
+        `${stem} →[७.२.११७]→ ${vr} →[ठक्]→ ${base}${sfx}`,
+        "अचित्त-शब्दात् ठक्।","acitta → ṭhak.");
     }
     if(ctx==="is_anudattadi"){
       const vr=applyAn(stem);
       const base=/[ािीुूृेैोौ]$/.test(vr)?vr.slice(0,-1):vr;
-      return R("4.2.44","अनुदात्तादेरञ्","अञ्",`${stem} →[अञ्]→ ${base}म्`,"अनुदात्तादि → अञ्।","Anudāttādi → Añ.");
+      return R("4.2.44","अनुदात्तादेरञ्","अञ्",
+        `${stem} →[७.२.११७]→ ${vr} →[अञ्]→ ${base}म्`,
+        "अनुदात्तादिभ्यः अञ्-प्रत्ययः।","Anudāttādi → Añ.");
     }
+
+    // ── 8. Utsarga fallback — 4.2.37 तस्य समूहः (Aṇ) ──────────────────
     {
       const vr=applyAn(stem);
       const base=vr.endsWith("ा")||vr.endsWith("अ")?vr.slice(0,-1):vr;
-      return R("4.2.37","तस्य समूहः","अण् (उत्सर्गः)",`${stem} →[७.२.११७]→ ${vr} →[अण्]→ ${base}म्`,"औत्सर्गिकः अण्।","General Aṇ for collection.");
+      return R("4.2.37","तस्य समूहः","अण् (उत्सर्गः)",
+        `${stem} →[७.२.११७ आदिवृद्धिः]→ ${vr} →[अण्]→ ${base}म्`,
+        "औत्सर्गिकः अण्-प्रत्ययः।","General Aṇ (utsarga) for collection meaning.");
     }
   }
 
   // ══ विषयो देशे (4.2.52–4.2.54) ══════════════════════════════
   if(mc==='vishayo_deshe'){
-    // 4.2.54 — भौरिक्यादि → विधल् (no Ādivṛddhi)
+    if(bhaurikyadi_vishaya.has(stem)) return R("4.2.54","भौरिक्याद्यैषुकार्यादिभ्यो विधल्","विधल् (विध)",`${stem}विधः`,`भौरिक्यादि → विधल्।`,`Bhaurikyādi → vidhal.`);
+    if(aishukaryadi_vishaya.has(stem)) return R("4.2.54","भौरिक्याद्यैषुकार्यादिभ्यो भक्तल्","भक्तल् (भक्त)",`${stem}भक्तः`,`ऐषुकार्यादि → भक्तल्।`,`Aiṣukāryādi → bhaktal.`);
+    if(rajanyadi_vishaya.has(stem)){const vr=applyAn(stem);const base=/[ािीुूृेैोौ·]$/.test(vr)?vr.slice(0,-1):vr;return R("4.2.53","राजन्यादिभ्यो वुञ्","वुञ् (अक)",`${stem} →[७.२.११७]→ ${vr} →[वुञ्]→ ${base}कः`,`राजन्यादि → वुञ्।`,`Rājanyādi → vuñ.`);}
+    {const vr=applyAn(stem);const base=/[ािीुूृेैोौ·]$/.test(vr)?vr.slice(0,-1):vr;return R("4.2.52","विषयो देशे","अण् (उत्सर्गः)",`${stem} →[७.२.११७]→ ${vr} →[अण्]→ ${base}ः`,`देशवाचकात् अण्।`,`Country-name: Aṇ.`);}
+  }
+
+  // ══ प्रगाथेषु (4.2.55) ════════════════════════════════════════
+  if(mc==='pragatheshu'){
+    const vr=applyAn(stem);const base=/[ािीुूृेैोौ·]$/.test(vr)?vr.slice(0,-1):vr;
+    if(extra==='svartha') return R("4.2.55 (वार्.)","स्वार्थे नपुंसके","अण् (नपुंसकम्)",`${stem} →[अण्]→ ${base}म्`,`स्वार्थे अण् नपुंसकम्।`,`Svartha: Aṇ neuter.`);
+    return R("4.2.55","सोऽस्यादिरिति प्रगाथेषु","अञ्",`${stem} →[अञ्]→ ${base}ः`,`प्रगाथे अञ्।`,`Pragatha: Añ.`);
+  }
+
+  // ══ सङ्ग्रामे (4.2.56) ════════════════════════════════════════
+  if(mc==='sangrame'){
+    const vr=applyAn(stem);const base=/[ािीुूृेैोौ·]$/.test(vr)?vr.slice(0,-1):vr;
+    return R("4.2.56","सङ्ग्रामे प्रयोजनयोद्धृभ्यः","अण्",`${stem} →[७.२.११७]→ ${vr} →[अण्]→ ${base}ः`,`प्रयोजन/योद्धृ → अण्।`,`Battle named: Aṇ.`);
+  }
+
+  // ══ क्रीडायाम् (4.2.57) ═══════════════════════════════════════
+  if(mc==='kridayam'){
+    const vr=applyAn(stem);const base=/[ािीुूृेैोौ·]$/.test(vr)?vr.slice(0,-1):vr;
+    return R("4.2.57","तदस्यां प्रहरणमिति क्रीडायाम् णः","ण + टाप् (स्त्री)",`${stem} →[७.२.११७]→ ${vr} →[ण + टाप्]→ ${base}ा`,`प्रहरण → ण + टाप् → क्रीडानाम।`,`Sport weapon → ṇa + ṭāp.`);
+  }
+
+  // ══ तदधीते तद्वेद (4.2.59–4.2.63) ══════════════════════════════
+  if(mc==='tadadhite'){
+    const vr=applyAn(stem);
+    const base=/[ािीुूृेैोौ्]$/.test(vr)?vr.slice(0,-1):vr;
+    function thak(no,text,ns,ne){return R(no,text,"ठक् (इक)",`${stem} →[७.२.११७]→ ${vr} →[ठक्]→ ${base}िकः`,ns,ne);}
+    function aN2(no,text,ns,ne){return R(no,text,"अण्",`${stem} →[७.२.११७]→ ${vr} →[अण्]→ ${base}ः`,ns,ne);}
+    // ── 4.2.62: अनुब्राह्मण → इनि (no vṛddhi) ──
+    if(stem==="अनुब्राह्मण")
+      return R("4.2.62","अनुब्राह्मणादिनिः","इनि",
+        `अनुब्राह्मण →[इनि]→ आनुब्राह्मणी`,
+        `अनुब्राह्मण → इनि। आदिवृद्धिः न।`,`ini (no vṛddhi).`);
+    // ── वार्.: सर्व/स-आदि / द्विगु → लुक् ──
+    if(extra==="luk"||stem.startsWith("सर्व"))
+      return R("4.2.60 (वा.)","सर्वादेः सादेश्च लुग्वक्तव्यः","लुक्",
+        `${stem} →[लुक्]→ ${stem}ः`,
+        `सर्व-आदि शब्दात् तद्धित-प्रत्ययस्य लुक्।`,
+        `Vārttika: luk (suffix elision) after sarva-initial words.`);
+    // ── वार्.: शतपथ/षष्टिपथ → षिकन् / अण् ──
+    if(stem==="शतपथ"||stem==="षष्टिपथ"){
+      const sb=/[ािीुूृेैोौ्]$/.test(stem)?stem.slice(0,-1):stem;
+      return R("4.2.59 (वार्.)","शतषष्टेः षिकन् पथः","षिकन् / अण् (वा.)",
+        `${stem} →[षिकन्]→ ${sb}षिकः
+${stem} →[अण्]→ ${base}ः`,
+        `शतपथ/षष्टिपथ → पाक्षिकः षिकन्; पक्षे अण्।`,
+        `ṣikan or optionally Aṇ.`);
+    }
+    // ── वार्.: -पद-अन्त → इकन् (no vṛddhi) — but NOT if in ukthadi_gana ──
+    if(stem.endsWith("पद")&&stem!=="पद"&&!ukthadi_gana.has(stem)){
+      const sb=/[ािीुूृेैोौ्]$/.test(stem)?stem.slice(0,-1):stem;
+      return R("4.2.59 (वार्.)","इकन् पदोत्तरपदात्","इकन् (इक)",
+        `${stem} →[इकन्]→ ${sb}इकः`,
+        `पद-उत्तरपद → इकन्। आदिवृद्धिः न।`,
+        `-pada-final → ikaṅ (no vṛddhi).`);
+    }
+    // ── 4.2.61: क्रमादि → वुन् (no vṛddhi) ──
+    if(kramadi_gana.has(stem)){
+      const sb=/[ािीुूृेैोौ्]$/.test(stem)?stem.slice(0,-1):stem;
+      return R("4.2.61","क्रमादिभ्यो वुन्","वुन् (अक)",
+        `${stem} →[वुन्]→ ${sb}कः`,
+        `क्रमादि → वुन्। नित्त्वात् आदिवृद्धिः न।`,
+        `Kramādi → vuṅ (no vṛddhi, nit).`);
+    }
+    // ── 4.2.63: वसन्तादि → ठक् ──
+    if(vasantadi_gana.has(stem))
+      return thak("4.2.63","वसन्तादिभ्यष्ठक्",
+        `वसन्तादि → ठक्।`,`Vasantādi → Ṭhak.`);
+    // ── वार्.: कल्प-आदि -सूत्र → अण् (exception) ──
+    if(stem.startsWith("कल्प")&&stem.endsWith("सूत्र"))
+      return aN2("4.2.60 (वा.)","कल्पसूत्राद् अण्-इष्टिः",
+        `कल्प-आदि-सूत्रान्त → अण् (इष्टि)।`,
+        `Kalpa-sūtra-final → Aṇ (special prescription).`);
+    // ── वार्.: -विद्या → ठक् (vidya_exceptions → अण्) ──
+    if(stem.endsWith("विद्या")){
+      const pfx=stem.slice(0,-6);
+      if(vidya_exceptions.has(pfx))
+        return aN2("4.2.60 (वा.)","अङ्गक्षत्रादि-पूर्वाद् विद्यायाः अण्",
+          `${pfx}-विद्या → अपवाद-अण्।`,
+          `Vidyā-exception: Aṇ (aṅga, kṣatra, dharma, saṃsarga, tri prefix).`);
+      return thak("4.2.60 (वा.)","विद्यान्ताट्ठक्",
+        `विद्या-अन्त → ठक्।`,`-vidyā final → Ṭhak.`);
+    }
+    // ── वार्.: -लक्षण / -कल्प → ठक् ──
+    if(stem.endsWith("लक्षण")||stem.endsWith("कल्प"))
+      return thak("4.2.60 (वा.)","विद्यालक्षणकल्पान्ताच्च",
+        `लक्षण/कल्प-अन्त → ठक्।`,`-lakṣaṇa/-kalpa → Ṭhak.`);
+    // ── 4.2.60: -सूत्र → ठक् ──
+    if(stem.endsWith("सूत्र"))
+      return thak("4.2.60","सूत्रान्ताट्ठक्",
+        `सूत्र-अन्त → ठक्।`,`-sūtra final → Ṭhak.`);
+    // ── वार्.: आख्यान / पुराण → ठक् ──
+    if(akhyana_list.has(stem))
+      return thak("4.2.60 (वा.)","आख्यानाख्यायिकेतिहासपुराणेभ्यश्च",
+        `इतिहास/पुराण → ठक्।`,`Itihāsa/Purāṇa → Ṭhak.`);
+    // ── 4.2.60: उक्थादि / क्रतु → ठक् ──
+    if(ukthadi_gana.has(stem)||kratu_list.has(stem))
+      return thak("4.2.60","क्रतूक्थादिसूत्रान्ताट्ठक्",
+        `उक्थादि/क्रतु → ठक्।`,`Ukthādi/Kratu → Ṭhak.`);
+    // ── 4.2.59: उत्सर्गः → अण् ──
+    return aN2("4.2.59","तदधीते तद्वेद",
+      `'${stem}' → औत्सर्गिकः अण्। (४.२.५९)`,
+      `Default Aṇ: one who studies/knows this.`);
+  }
+  // ══ विषयो देशे (4.2.52–4.2.54) ══════════════════════════════
+  if(mc==='vishayo_deshe'){
     if(bhaurikyadi_vishaya.has(stem))
-      return R("4.2.54","भौरिक्याद्यैषुकार्यादिभ्यो विधल्भक्तलौ","विधल् (विध)",
+      return R("4.2.54","भौरिक्याद्यैषुकार्यादिभ्यो विधल्भक्तलौ","विधल्",
         `${stem} →[विधल्]→ ${stem}विधः`,
-        `भौरिक्यादिगणात् 'विधल्'-प्रत्ययः। आदिवृद्धिः न भवति — अण्-अपवादः।`,
-        `Bhaurikyādi-gaṇa → vidhal suffix. No Ādivṛddhi. e.g. bhauriki → bhaurikividhaḥ.`);
-
-    // 4.2.54 — ऐषुकार्यादि → भक्तल् (no Ādivṛddhi)
+        "भौरिक्यादिगणात् विधल्-प्रत्ययः। आदिवृद्धिः न।",
+        "Bhaurikyādi → vidhal suffix. No Ādivṛddhi.");
     if(aishukaryadi_vishaya.has(stem))
-      return R("4.2.54","भौरिक्याद्यैषुकार्यादिभ्यो विधल्भक्तलौ","भक्तल् (भक्त)",
+      return R("4.2.54","भौरिक्याद्यैषुकार्यादिभ्यो विधल्भक्तलौ","भक्तल्",
         `${stem} →[भक्तल्]→ ${stem}भक्तः`,
-        `ऐषुकार्यादिगणात् 'भक्तल्'-प्रत्ययः। आदिवृद्धिः न भवति — अण्-अपवादः।`,
-        `Aiṣukāryādi-gaṇa → bhaktal suffix. No Ādivṛddhi. e.g. saubīra → saubīrabhaktaḥ.`);
-
-    // 4.2.53 — राजन्यादि → वुञ् (अक) with Ādivṛddhi
+        "ऐषुकार्यादिगणात् भक्तल्-प्रत्ययः। आदिवृद्धिः न।",
+        "Aiṣukāryādi → bhaktal suffix. No Ādivṛddhi.");
     if(rajanyadi_vishaya.has(stem)){
       const vr=applyAn(stem);
       const base=/[ािीुूृेैोौ्]$/.test(vr)?vr.slice(0,-1):vr;
       return R("4.2.53","राजन्यादिभ्यो वुञ्","वुञ् (अक)",
-        `${stem} →[७.२.११७ आदिवृद्धिः]→ ${vr} →[यस्येति च ६.४.१४८ → अन्त्यलोपः]→ ${base} →[वुञ् → अक]→ ${base}कः`,
-        `राजन्यादिगणात् वुञ्-प्रत्ययः (वु → अक)। यथा विराट → वैराटकः, उदुम्बर → औदुम्बरकः।`,
-        `Rājanyādi-gaṇa → vuñ (→ aka). Ādivṛddhi + terminal drop (6.4.148). e.g. virāṭ → vairāṭakaḥ.`);
+        `${stem} →[७.२.११७]→ ${vr} →[६.४.१४८]→ ${base} →[वुञ्]→ ${base}कः`,
+        "राजन्यादिगणात् वुञ्-प्रत्ययः (अक)।",
+        "Rājanyādi-gaṇa → vuñ (→ aka).");
     }
-
-    // 4.2.52 — Utsarga: विषयो देशे → अण्
     {
       const vr=applyAn(stem);
       const base=/[ािीुूृेैोौ्]$/.test(vr)?vr.slice(0,-1):vr;
       return R("4.2.52","विषयो देशे","अण् (उत्सर्गः)",
-        `${stem} →[७.२.११७ आदिवृद्धिः]→ ${vr} →[यस्येति च ६.४.१४८ → अन्त्यलोपः]→ ${base} →[अण्]→ ${base}ः`,
-        `देशवाचकात् अण्-प्रत्ययः (औत्सर्गिकः)। यथा मदन → मादनः (मदनस्य अयं देशः — मादनः)।`,
-        `General Aṇ for country/region name (utsarga). e.g. madana → māddanaḥ (inhabitant of Madana country).`);
+        `${stem} →[७.२.११७]→ ${vr} →[६.४.१४८]→ ${base} →[अण्]→ ${base}ः`,
+        "देशवाचकात् अण्-प्रत्ययः (औत्सर्गिकः)।",
+        "Country/region name → Aṇ (utsarga).");
     }
   }
 
@@ -1460,50 +2254,543 @@ function solve(stem,mc,sub,extra){
   if(mc==='pragatheshu'){
     const vr=applyAn(stem);
     const base=/[ािीुूृेैोौ्]$/.test(vr)?vr.slice(0,-1):vr;
-    if(extra==='svartha')
-      return R("4.2.55 (वा.)","छन्दसः प्रत्ययविधाने नपुंसके स्वार्थे उपसङ्ख्यानम्","अण् (नपुंसकम्)",
-        `${stem} →[७.२.११७ आदिवृद्धिः]→ ${vr} →[यस्येति च ६.४.१४८ → अन्त्यलोपः]→ ${base} →[अण्]→ ${base}म्`,
-        `स्वार्थे अण्-प्रत्ययः — नपुंसकलिङ्गे।
-यथा जगती → जागतम् (नपुंसकम्), पङ्क्ति → पाङ्क्तम्।`,
-        `Vārttika: Aṇ in neuter self-descriptive sense.
-e.g. jagatī → jāgatam (neuter), paṅkti → pāṅktam.`);
-    else
-      return R("4.2.55","सोऽस्यादिरिति च्छन्दसः प्रगाथेषु","अञ्",
-        `${stem} →[७.२.११७ आदिवृद्धिः]→ ${vr} →[यस्येति च ६.४.१४८ → अन्त्यलोपः]→ ${base} →[अञ्]→ ${base}ः`,
-        `उत्सादिगणे पाठात् अञ्-प्रत्ययः — प्रगाथः (पुंलिङ्गे)।
-यथा जगती → जागतः (प्रगाथः), त्रिष्टुभ् → त्रैष्टुभः।`,
-        `Añ (from Utsādi gaṇa) denoting the Pragatha (Vedic stanza) beginning with this metre.
-e.g. jagatī → jāgataḥ (a Pragatha), triṣṭubh → traiṣṭubhaḥ.`);
+    if(extra==="svartha")
+      return R("4.2.55 (वा.)","स्वार्थे नपुंसके अण्","अण् (नपुंसक)",
+        `${stem} →[७.२.११७]→ ${vr} →[अण्]→ ${base}म्`,
+        "स्वार्थे नपुंसके अण्-प्रत्ययः (वार्त्तिकम्)।",
+        "Vārttika: Aṇ in neuter self-descriptive sense.");
+    return R("4.2.55","सोऽस्यादिरिति च्छन्दसः प्रगाथेषु","अञ्",
+      `${stem} →[७.२.११७]→ ${vr} →[अञ्]→ ${base}ः`,
+      "प्रगाथ-वाचकात् अञ्-प्रत्ययः।",
+      "Añ for the Pragatha (Vedic stanza) beginning with this metre.");
   }
 
-  // ══ सङ्ग्रामे प्रयोजनयोद्धृभ्यः (4.2.56) ══════════════════════
+  // ══ सङ्ग्रामे (4.2.56) ════════════════════════════════════════
   if(mc==='sangrame'){
     const vr=applyAn(stem);
     const base=/[ािीुूृेैोौ्]$/.test(vr)?vr.slice(0,-1):vr;
     return R("4.2.56","संग्रामे प्रयोजनयोद्धृभ्यः","अण्",
-      `${stem} →[७.२.११७ आदिवृद्धिः]→ ${vr} →[यस्येति च ६.४.१४८ → अन्त्यलोपः]→ ${base} →[अण्]→ ${base}ः`,
-      `प्रयोजन-वाचकात् / योद्धृ-वाचकात् अण्-प्रत्ययः — सङ्ग्रामस्य नाम (पुंलिङ्गे)।
-यथा सुभद्रा → सौभद्रः (सुभद्रायाः प्रयोजनः संग्रामः), भरत → भारतः।`,
-      `Aṇ denoting a battle named after its purpose or the warrior.
-e.g. subhadrā → saubhadraḥ (battle for Subhadrā), bharata → bhārataḥ.`);
+      `${stem} →[७.२.११७]→ ${vr} →[अण्]→ ${base}ः`,
+      "प्रयोजन-वाचकात् / योद्धृ-वाचकात् अण्-प्रत्ययः — सङ्ग्रामनाम।",
+      "Aṇ denoting a battle named after its purpose or warrior.");
   }
 
-  // ══ क्रीडायाम् प्रहरणम् (4.2.57) ═══════════════════════════════
+  // ══ क्रीडायाम् (4.2.57) ═══════════════════════════════════════
   if(mc==='kridayam'){
     const vr=applyAn(stem);
     const base=/[ािीुूृेैोौ्]$/.test(vr)?vr.slice(0,-1):vr;
     return R("4.2.57","तदस्यां प्रहरणमिति क्रीडायाम् णः","ण + टाप् (स्त्री)",
-      `${stem} →[७.२.११७ आदिवृद्धिः]→ ${vr} →[यस्येति च ६.४.१४८ → अन्त्यलोपः]→ ${base} →[ण + टाप्]→ ${base}ा`,
-      `प्रहरण-वाचकात् ण-प्रत्ययः — क्रीडायाः नाम, टाप् (स्त्रीलिङ्गे)।
-यथा दण्ड → दाण्डा (क्रीडा), मुष्टि → मौष्टिका।`,
-      `Ṇa suffix (+ Ṭāp for feminine) denoting a sport/game played with this weapon.
-e.g. daṇḍa → dāṇḍā (the stick-game), muṣṭi → mauṣṭikā (the fist-game).`);
+      `${stem} →[७.२.११७]→ ${vr} →[ण + टाप्]→ ${base}ा`,
+      "प्रहरण-वाचकात् ण-प्रत्ययः + टाप् — क्रीडानाम (स्त्रीलिङ्गे)।",
+      "Ṇa + Ṭāp (feminine) → sport named after this weapon.");
+  }
+
+  // ══ तदधीते तद्वेद (4.2.59–4.2.63) ══════════════════════════════
+  if(mc==='tadadhite'){
+    const tad_ctx = extra||"none";
+    const vr        = applyAn(stem);
+    const base_vr   = /[ािीुूृेैोौ्]$/.test(vr)   ? vr.slice(0,-1)   : vr;
+    const base_norm = /[ािीुूृेैोौ्]$/.test(stem)  ? stem.slice(0,-1) : stem;
+
+    // ── 4.2.62 अनुब्राह्मणादिनिः ────────────────────────────────────
+    if(stem==="अनुब्राह्मण")
+      return R("4.2.62","अनुब्राह्मणादिनिः","इनि",
+        "अनुब्राह्मण →[इनि]→ आनुब्राह्मणी",
+        "अनुब्राह्मणशब्दात् इनि-प्रत्ययः। आदिवृद्धिः न।",
+        "ini suffix, no vṛddhi: ānubrāhmaṇī.");
+
+    // ── 4.2.61 क्रमादिभ्यो वुन् ─────────────────────────────────────
+    if(kramadi_tad.has(stem))
+      return R("4.2.61","क्रमादिभ्यो वुन्","वुन् (अक)",
+        `${stem} →[वुन् (नित् — आदिवृद्धिः न)]→ ${base_norm}कः`,
+        "क्रमादिगणात् वुन्-प्रत्ययः। नित्त्वात् आदिवृद्धिः न।",
+        "vuṅ suffix (nit → no vṛddhi): kramāka, padaka, śaikṣaka etc.");
+
+    // ── 4.2.63 वसन्तादिभ्यष्ठक् ────────────────────────────────────
+    if(vasantadi_tad.has(stem))
+      return R("4.2.63","वसन्तादिभ्यष्ठक्","ठक् (इक)",
+        `${stem} →[७.२.११७]→ ${vr} →[ठक्]→ ${base_vr}िकः`,
+        "वसन्तादिगणात् ठक्-प्रत्ययः।",
+        "Vasantādi-gaṇa → Ṭhak: vāsantikaḥ, śāradikaḥ etc.");
+
+    // ── Luk vārttika — सर्वादि / सादि / द्विगु ──────────────────────
+    if(tad_ctx==="luk"||["सर्ववेद","ससंग्रह","द्विवेद"].includes(stem))
+      return R("4.2.60 (वा.)","सर्वादेः सादेश्च द्विगोश्च लुक्","लुक् (—)",
+        `${stem} →[लुक्]→ ${stem}ः`,
+        "सर्व/स-आदि / द्विगु-शब्दात् प्रत्ययस्य लुक् — रूपम् अपरिवर्तितम्।",
+        "Suffix dropped (luk): stem form used as-is.");
+
+    // ── पद-उत्तरपद — इकन् (vārttika) ────────────────────────────────
+    if(stem.endsWith("पद")&&stem!=="पद")
+      return R("4.2.60 (वा.)","पदान्ताद् इकन्","इकन् (इक)",
+        `${stem} →[इकन् (आदिवृद्धिः न)]→ ${base_norm}इकः`,
+        "पद-उत्तरपदात् इकन्-प्रत्ययः। आदिवृद्धिः न।",
+        "Words ending in -pada → ikan (no vṛddhi).");
+
+    // ── शतपथ / षष्टिपथ — षिकन् (opt.) / अण् ────────────────────────
+    if(stem==="शतपथ"||stem==="षष्टिपथ")
+      return R("4.2.60 (वा.)","शतषष्टेः षिकन्पथः","षिकन् (इक) / अण्",
+        `${stem} →[षिकन्]→ ${base_norm}षिकः\n${stem} →[७.२.११७]→ ${vr} →[अण्]→ ${base_vr}ः`,
+        "शतपथ/षष्टिपथ-शब्दाभ्यां पाक्षिकः षिकन् (वा अण्)।",
+        "Optionally ṣikan or Aṇ.");
+
+    // ── सूत्र-अन्त ────────────────────────────────────────────────────
+    if(stem.endsWith("सूत्र")){
+      if(stem.startsWith("कल्प"))
+        return R("4.2.60 (वा.)","कल्पादि-सूत्रान्तात् अण्","अण्",
+          `${stem} →[७.२.११७]→ ${vr} →[अण्]→ ${base_vr}ः`,
+          "कल्पादि-सूत्रान्तशब्दात् अण्-प्रत्ययः।",
+          "kalpa-sūtra words → Aṇ.");
+      return R("4.2.60","सूत्रान्ताट्ठक्","ठक् (इक)",
+        `${stem} →[७.२.११७]→ ${vr} →[ठक्]→ ${base_vr}िकः`,
+        "सूत्र-अन्तशब्दात् ठक्-प्रत्ययः।",
+        "sūtra-final words → Ṭhak.");
+    }
+
+    // ── विद्या-अन्त ──────────────────────────────────────────────────
+    if(stem.endsWith("विद्या")){
+      const prefix=stem.slice(0,-6);
+      if(vidya_exceptions.has(prefix))
+        return R("4.2.60 (वा.)","अङ्गादि-पूर्वपद-विद्यान्तात् अण्","अण्",
+          `${stem} →[७.२.११७]→ ${vr} →[अण्]→ ${base_vr}ः`,
+          `${prefix}-विद्या — अपवाद-गणे → अण्।`,
+          `Exception: ${prefix}-vidyā words take Aṇ.`);
+      return R("4.2.60 (वा.)","विद्यान्ताट्ठक्","ठक् (इक)",
+        `${stem} →[७.२.११७]→ ${vr} →[ठक्]→ ${base_vr}िकः`,
+        "विद्या-अन्तशब्दात् ठक्-प्रत्ययः।",
+        "vidyā-final words → Ṭhak.");
+    }
+
+    // ── लक्षण / कल्प -अन्त ──────────────────────────────────────────
+    if(stem.endsWith("लक्षण")||stem.endsWith("कल्प"))
+      return R("4.2.60 (वा.)","लक्षणकल्पान्ताट्ठक्","ठक् (इक)",
+        `${stem} →[७.२.११७]→ ${vr} →[ठक्]→ ${base_vr}िकः`,
+        "लक्षण/कल्प-अन्तशब्दात् ठक्-प्रत्ययः।",
+        "lakṣaṇa/kalpa-final words → Ṭhak.");
+
+    // ── आख्यान / पुराण ──────────────────────────────────────────────
+    if(akhyanadi_tad.has(stem)||tad_ctx==="akhyana")
+      return R("4.2.60 (वा.)","आख्यानाख्यायिकेतिहासपुराणेभ्यश्च","ठक् (इक)",
+        `${stem} →[७.२.११७]→ ${vr} →[ठक्]→ ${base_vr}िकः`,
+        "इतिहास/पुराण/आख्यान-वाचकात् ठक्-प्रत्ययः।",
+        "Ākhyāna/Purāṇa words → Ṭhak: aitihāsikaḥ, paurāṇikaḥ.");
+
+    // ── अनसू, लक्ष्य ────────────────────────────────────────────────
+    if(stem==="अनसू")
+      return R("4.2.60 (वा.)","अनसूर्नामग्रन्थः","ठक् (निपातनम्)",
+        "अनसू →[निपातनम्]→ आनुसुकः",
+        "अनसू-शब्दात् निपातनात् आनुसुकः।",
+        "Irregular: ānusukaḥ.");
+    if(stem==="लक्ष्य")
+      return R("4.2.60 (वा.)","अनसूलक्ष्यलक्षणेभ्यश्च","ठक् (इक)",
+        `${stem} →[७.२.११७]→ ${vr} →[ठक्]→ ${base_vr}िकः`,
+        "लक्ष्य-शब्दात् ठक्-प्रत्ययः।","lākṣyikaḥ.");
+
+    // ── उक्थादि / क्रतु → ठक् (4.2.60) ─────────────────────────────
+    if(ukthadi_tad.has(stem)||kratu_list.has(stem)||tad_ctx==="kratu")
+      return R("4.2.60","क्रतूक्थादिसूत्रान्ताट्ठक्","ठक् (इक)",
+        `${stem} →[७.२.११७]→ ${vr} →[ठक्]→ ${base_vr}िकः`,
+        "क्रतुवाचकात् / उक्थादिगणात् ठक्-प्रत्ययः।",
+        "Kratu/Ukthādi-gaṇa → Ṭhak: aukthi kaḥ, āgniṣṭomikaḥ.");
+
+    // ── उत्सर्ग: 4.2.59 तदधीते तद्वेद → अण् ───────────────────────
+    {
+      const final_form=(stem==="छन्दस्"||stem==="तपस्")?stem+"ः":base_vr+"ः";
+      return R("4.2.59","तदधीते तद्वेद","अण् (उत्सर्गः)",
+        `${stem} →[७.२.११७]→ ${vr} →[अण्]→ ${final_form}`,
+        "'तदधीते तद्वेद' इत्यर्थे औत्सर्गिकः अण्-प्रत्ययः।",
+        "General Aṇ: one who studies/knows this (4.2.59).");
+    }
+  }
+
+  // ══ तत्र भवः (4.2.64–4.2.80) ═══════════════════════════════
+  if(mc==='tatra_bhavah'){
+    const ctx = extra||"general";
+    const vr  = applyAn(stem);
+    const base = /[ािीुूृेैोौ्]$/.test(vr) ? vr.slice(0,-1) : vr;
+
+    // ── निपातन — hardcoded irregular forms ──────────────────
+    if(stem in nipatan_tatra)
+      return R("4.2.64 (निपा.)","विशेषनिपातनम्","(निपातनम्)",
+        `${stem} →[निपातनम्]→ ${nipatan_tatra[stem]}`,
+        `'${stem}' — पाणिनिनिपातनात् विशेषरूपम्।`,
+        `Irregular nipātana form for '${stem}'.`);
+
+    // ── 4.2.65: दिगादि → यत् ────────────────────────────────
+    if(digadi_tatra.has(stem)||ctx==="dik")
+      return R("4.2.65","दिगादिभ्यो यत्","यत् (य)",
+        `${stem} →[यत्]→ ${stem}्यः`,
+        `दिगादि-गणात् यत्-प्रत्ययः — तत्र भवः।
+यथा पूर्व → पूर्व्यः (पूर्वस्यां दिशि भवः)।`,
+        `Digādi-gaṇa → yat. e.g. pūrva → pūrvyaḥ ('existing in the east').`);
+
+    // ── 4.2.66: जनपद/ग्राम → अञ् ───────────────────────────
+    if(gramajanapad_tatra.has(stem)||ctx==="janapada")
+      return R("4.2.66","ग्रामजनपदैकदेशात् अञ्","अञ्",
+        `${stem} →[७.२.११७]→ ${vr} →[अञ्]→ ${base}ः`,
+        `जनपद-वाचकात् अञ्-प्रत्ययः — तत्र भवः।
+यथा पाञ्चाल → पाञ्चालः (पाञ्चाले भवः), कोसल → कौसलः।`,
+        `Janapada/grāma → Añ. e.g. pāñcāla → pāñcālaḥ.`);
+
+    // ── 4.2.67: नगर/ग्रामान्त → ठक् ────────────────────────
+    if(thak_tatra.has(stem)||ctx==="tha_suffix"||
+       stem.endsWith("पुर")||stem.endsWith("नगर")||stem.endsWith("ग्राम")){
+      return R("4.2.67","नगरात् ठक्","ठक् (इक)",
+        `${stem} →[७.२.११७]→ ${vr} →[ठक्]→ ${base}िकः`,
+        `नगर/पुर/ग्राम-अन्त-शब्दात् ठक्-प्रत्ययः — तत्र भवः।
+यथा नगर → नागरिकः, पुर → पौरिकः।`,
+        `Town/city/village-final words → Ṭhak. e.g. nagara → nāgarikaḥ.`);
+    }
+
+    // ── 4.2.64: उत्सर्गः → अण् ──────────────────────────────
+    return R("4.2.64","तत्र भवः","अण् (उत्सर्गः)",
+      `${stem} →[७.२.११७]→ ${vr} →[यस्येति च ६.४.१४८]→ ${base} →[अण्]→ ${base}ः`,
+      `औत्सर्गिकः अण्-प्रत्ययः — 'तत्र भवः' (४.२.६४)।
+यथा हिमालय → हैमालयः (हिमालये भवः), वन → वानः।`,
+      `General Aṇ suffix: 'existing/produced there' (4.2.64).
+e.g. himālaya → haimālayaḥ, vana → vānaḥ.`);
+  }
+
+  // ══ तस्य भावः (5.1.119–5.1.132) ════════════════════════════
+  if(mc==='tasya_bhavah'){
+    const ctx = extra||"both";
+
+    // ── Helper: build tva form ──────────────────────────────
+    function makeTva(s){
+      if(s.endsWith('त्'))  return s+'त्वम्';
+      if(s.endsWith('न्'))  return s.slice(0,-2)+'त्वम्';
+      if(s.endsWith('स्'))  return s.slice(0,-2)+'त्त्वम्';
+      if(s.endsWith('श्'))  return s.slice(0,-2)+'त्त्वम्';
+      return s+'त्वम्';
+    }
+    // ── Helper: build tā form ───────────────────────────────
+    function makeTa(s){
+      if(s.endsWith('न्'))  return s.slice(0,-2)+'ता';
+      if(s.endsWith('त्'))  return s+'ता';
+      if(s.endsWith('स्'))  return s.slice(0,-2)+'त्ता';
+      if(s.endsWith('श्'))  return s.slice(0,-2)+'त्ता';
+      return s+'ता';
+    }
+
+    // ── 1. ईमनिच् (5.1.126): dṛḍhādi — hardcoded irregular ──
+    if(stem in drdhadi_iman){
+      const form = drdhadi_iman[stem];
+      return R("5.1.126","दृढादिभ्य ईमनिच्","ईमनिच् (इमा)",
+        `${stem} →[ईमनिच्]→ ${form}`,
+        `दृढादि-गणात् ईमनिच्-प्रत्ययः — भावार्थे।
+यथा दृढ → दृढिमा, महत् → महिमा, गुरु → गरिमा।`,
+        `Dṛḍhādi-gaṇa → īmanic suffix (bhāva). e.g. dṛḍha → dṛḍhimā, guru → garimā.`);
+    }
+
+    // ── 2. इमनिच् (5.1.126 वार्.): aṇu etc. ────────────────
+    if(stem in imanic_forms){
+      const form = imanic_forms[stem];
+      return R("5.1.126 (वार्.)","इमनिच् (अणुमहादिभ्यः)","इमनिच् (इमा)",
+        `${stem} →[इमनिच्]→ ${form}`,
+        `अणु/मह-आदिभ्यः इमनिच्-प्रत्ययः।
+यथा अणु → अणिमा, मह → महिमा।`,
+        `imaṅ suffix for aṇu, maha etc. e.g. aṇu → aṇimā.`);
+    }
+
+    // ── 3. ष्यञ् (5.1.125): śālīnādi ────────────────────────
+    if(shalinadi_syanj&&shalinadi_syanj.has(stem)){
+      const vr  = applyAn(stem);
+      const base = /[ािीुूृेैोौ्]$/.test(vr)?vr.slice(0,-1):vr;
+      return R("5.1.125","शालीनादिभ्यः ष्यञ्","ष्यञ् (य)",
+        `${stem} →[७.२.११७]→ ${vr} →[ष्यञ्]→ ${base}्यम्`,
+        `शालीनादि-गणात् ष्यञ्-प्रत्ययः — भावार्थे।
+यथा शालीन → शालीन्यम्, प्राजन → प्राजन्यम्।`,
+        `Śālīnādi-gaṇa → ṣyañ suffix. e.g. śālīna → śālīnyam.`);
+    }
+
+    // ── 4. विशेषनिपातन (nipātana_bhava) ─────────────────────
+    if(stem in nipatan_bhava){
+      const[f1,f2] = nipatan_bhava[stem];
+      if(f1===f2)
+        return R("5.1.119 (निपा.)","विशेषनिपातनम्","(निपातनम्)",
+          `${stem} →[निपातनम्]→ ${f1}`,
+          `'${stem}' — निपातनात् विशेषभाव-रूपम्।`,`Nipātana: irregular bhāva form.`);
+      return R("5.1.119 (निपा.)","विशेषनिपातनम्","त्व / विशेष",
+        `${stem} →[त्व]→ ${f1}\n${stem} →[विशेष]→ ${f2}`,
+        `'${stem}' — निपातनात् द्वौ भाव-रूपौ।`,`Nipātana: two bhāva forms.`);
+    }
+
+    // ── 5. विद्वदादि optional (5.1.121) ──────────────────────
+    if(vidvadadi_bhava&&vidvadadi_bhava.has(stem)){
+      const tvaF = makeTva(stem);
+      const taF  = makeTa(stem);
+      if(ctx==="tva")
+        return R("5.1.119","तस्य भावस्त्वतलौ","त्व",
+          `${stem} →[त्व]→ ${tvaF}`,
+          `विद्वदादि → विभाषा त्व-प्रत्ययः (५.१.१२१)।`,`Vidvadādi → optional tva.`);
+      if(ctx==="ta")
+        return R("5.1.119","तस्य भावस्त्वतलौ","तल् (ता)",
+          `${stem} →[तल्]→ ${taF}`,
+          `विद्वदादि → विभाषा तल्-प्रत्ययः (५.१.१२१)।`,`Vidvadādi → optional tā.`);
+      return R("5.1.119 / 5.1.121","तस्य भावस्त्वतलौ / विभाषा विद्वदादिभ्यः","त्व / तल् (वा.)",
+        `${stem} →[त्व]→ ${tvaF}\n${stem} →[तल्]→ ${taF}`,
+        `विद्वदादि → विभाषा — त्व/तल् उभावपि साधू।`,`Vidvadādi: both tva and tā optional.`);
+    }
+
+    // ── 6. उत्सर्गः (5.1.119): त्व + तल् ────────────────────
+    {
+      const tvaF = makeTva(stem);
+      const taF  = makeTa(stem);
+      if(ctx==="tva")
+        return R("5.1.119","तस्य भावस्त्वतलौ","त्व",
+          `${stem} →[त्व]→ ${tvaF}`,
+          `औत्सर्गिकः त्व-प्रत्ययः — '${stem}' इत्यस्य भावः।
+यथा ब्राह्मण → ब्राह्मणत्वम्, गुरु → गुरुत्वम्।`,
+          `General tva suffix: '${stem}ness / state of being ${stem}'.`);
+      if(ctx==="ta")
+        return R("5.1.119","तस्य भावस्त्वतलौ","तल् (ता)",
+          `${stem} →[तल्]→ ${taF}`,
+          `औत्सर्गिकः तल्-प्रत्ययः — '${stem}' इत्यस्य भावः।
+यथा ब्राह्मण → ब्राह्मणता, गुरु → गुरुता।`,
+          `General tā suffix: '${stem}ness'.`);
+      // Default: show both (vikalpa)
+      return R("5.1.119","तस्य भावस्त्वतलौ","त्व / तल् (ता)",
+        `${stem} →[त्व]→ ${tvaF}\n${stem} →[तल्]→ ${taF}`,
+        `औत्सर्गिकौ त्व-तल्-प्रत्ययौ — '${stem}' इत्यस्य भावार्थे।
+त्व → ${tvaF} | तल् → ${taF}`,
+        `Both tva (${tvaF}) and tā (${taF}) are valid (5.1.119).`);
+    }
   }
 
   return null;
 }
 
-// ── UI Rendering ─────────────────────────────────────────────
+// ── suffixMapping — centralised pratyaya metadata dictionary ─────────────────
+// Each entry: { it, clean, vibluk, vrddhi }
+//   it      = anubandha letters dropped (1.3.3 etc.); '—' if none
+//   clean   = phonetic remainder after it-lopa (shown in steps 5–8)
+//   vibluk  = 2.4.71 ṅas-vibhakti-luk applies
+//   vrddhi  = 7.2.117 ādivṛddhi applies
+const SUFFIX_META={
+  // ── अ-कार (aṇ, añ, ṇa) ──────────────────────────────────
+  'अण्':      {it:'ण्',     clean:'अ',     vibluk:true,  vrddhi:true},
+  'अञ्':      {it:'ञ्',     clean:'अ',     vibluk:true,  vrddhi:true},
+  'ण':        {it:'—',      clean:'अ',     vibluk:true,  vrddhi:true},
+  // ── य-कार (yañ, ṇya, yat) ──────────────────────────────
+  'यञ्':      {it:'ञ्',     clean:'य',     vibluk:true,  vrddhi:true},
+  'ण्य':      {it:'—',      clean:'य',     vibluk:true,  vrddhi:true},
+  'यत्':      {it:'त्',     clean:'य',     vibluk:true,  vrddhi:false},
+  // ── आयन (phak, phañ, cphañ, phiñ) ─────────────────────
+  'फक्':      {it:'फ,क्',   clean:'आयन',   vibluk:true,  vrddhi:true},
+  'फञ्':      {it:'फ,ञ्',   clean:'आयन',   vibluk:true,  vrddhi:true},
+  'चफञ्':     {it:'फ,ञ्',   clean:'आयन',   vibluk:true,  vrddhi:true},
+  'फिञ्':     {it:'फ,ञ्',   clean:'आयनि',  vibluk:true,  vrddhi:true},
+  // ── एय / एर / ऐर (ḍhak, ḍhañ, ḍhrak, ārak, airak) ───
+  'ढक्':      {it:'ढ,क्',   clean:'एय',    vibluk:true,  vrddhi:true},
+  'ढञ्':      {it:'ञ्',     clean:'एय',    vibluk:true,  vrddhi:true},
+  'ढ्रक्':   {it:'क्',     clean:'एर',    vibluk:true,  vrddhi:true},
+  'आरक्':     {it:'क्',     clean:'आर',    vibluk:true,  vrddhi:true},
+  'ऐरक्':     {it:'क्',     clean:'ऐर',    vibluk:true,  vrddhi:true},
+  // ── ईन (khak, kha, khañ) ───────────────────────────────
+  'खक्':      {it:'क्',     clean:'ईन',    vibluk:true,  vrddhi:false},
+  'ख':        {it:'—',      clean:'ईन',    vibluk:true,  vrddhi:false},
+  'खञ्':      {it:'ञ्',     clean:'ईन',    vibluk:true,  vrddhi:true},
+  // ── ईय / इय (cha, chaṇ, gha, ghan) ────────────────────
+  'छ':        {it:'—',      clean:'ईय',    vibluk:false, vrddhi:false},
+  'छण्':      {it:'ण्',     clean:'ईय',    vibluk:false, vrddhi:false},
+  'घ':        {it:'—',      clean:'इय',    vibluk:true,  vrddhi:false},
+  'घन्':      {it:'न्',     clean:'इय',    vibluk:true,  vrddhi:false},
+  // ── इक (ṭhak, ṭhañ, ñiṭh) ─────────────────────────────
+  'ठक्':      {it:'ठ,क्',   clean:'इक',    vibluk:true,  vrddhi:true},
+  'ठञ्':      {it:'ठ,ञ्',   clean:'इक',    vibluk:true,  vrddhi:true},
+  'ञिठ्':     {it:'ठ्',     clean:'इक',    vibluk:true,  vrddhi:true},
+  'ठक् (इक)': {it:'ठ,क्',   clean:'इक',    vibluk:true,  vrddhi:true},
+  // ── अक (vuñ, vun) ──────────────────────────────────────
+  'वुञ्':     {it:'ञ्',     clean:'अक',    vibluk:true,  vrddhi:true},
+  'वुन्':     {it:'—',      clean:'अक',    vibluk:true,  vrddhi:false},
+  'वुन् (अक)':{it:'—',      clean:'अक',    vibluk:true,  vrddhi:false},
+  // ── इन् / इ / इक (ini, iñ, ikan) ──────────────────────
+  'इनि':      {it:'—',      clean:'इन्',   vibluk:true,  vrddhi:false},
+  'इञ्':      {it:'ञ्',     clean:'इ',     vibluk:true,  vrddhi:true},
+  'इकन्':     {it:'—',      clean:'इक',    vibluk:true,  vrddhi:false},
+  // ── व्य (vyat) ─────────────────────────────────────────
+  'व्यत्':    {it:'त्',     clean:'व्य',   vibluk:true,  vrddhi:false},
+  // ── ता / त्व / तल् ─────────────────────────────────────
+  'तल्':      {it:'ल्',     clean:'ता',    vibluk:true,  vrddhi:false},
+  'त्व':      {it:'—',      clean:'त्व',   vibluk:false, vrddhi:false},
+  // ── iman (īmanic, imanic) ──────────────────────────────
+  'ईमनिच्':   {it:'—',      clean:'इमा',   vibluk:false, vrddhi:false},
+  'इमनिच्':   {it:'—',      clean:'इमा',   vibluk:false, vrddhi:false},
+  // ── ष्यञ् (ya, ṣyañ) ──────────────────────────────────
+  'ष्यञ्':    {it:'ञ्',     clean:'य',     vibluk:true,  vrddhi:true},
+  // ── विध / भक्त (vidhal, bhaktal) ──────────────────────
+  'विधल्':    {it:'ल्',     clean:'विध',   vibluk:false, vrddhi:false},
+  'भक्तल्':   {it:'ल्',     clean:'भक्त',  vibluk:false, vrddhi:false},
+  // ── अ / णस् ────────────────────────────────────────────
+  'णस्':      {it:'—',      clean:'अ',     vibluk:true,  vrddhi:true},
+  // ── stri / nipāta ──────────────────────────────────────
+  'ण + टाप्': {it:'—',      clean:'आ',     vibluk:true,  vrddhi:true},
+  'डामहच्':   {it:'च्',     clean:'आमह',   vibluk:false, vrddhi:false},
+  'डुलच्':    {it:'ड,च्',   clean:'उल',    vibluk:false, vrddhi:false},
+  // ── misc ────────────────────────────────────────────────
+  'ट्यण्':    {it:'ण्',     clean:'य',     vibluk:true,  vrddhi:true},
+  'एण्य':     {it:'—',      clean:'एण्य',  vibluk:true,  vrddhi:false},
+};
+
+// suffixMapping alias — maps any raw suffix string to its clean phonetic form
+// Falls back gracefully: strips known it-letters, or returns the raw suffix itself
+function getSuffixClean(raw){
+  if(!raw) return '?';
+  if(SUFFIX_META[raw]) return SUFFIX_META[raw].clean;
+  // Strip common trailing it-markers and return remainder
+  return raw
+    .replace(/[ञ्ण्क्ट्ठ्ड्ल्त्]$/,'')
+    .replace(/^[फढठखघछ]/,'')
+    || raw;
+}
+function getSuffixIt(raw){
+  if(!raw) return '—';
+  if(SUFFIX_META[raw]) return SUFFIX_META[raw].it;
+  return '—';
+}
+
+function pkChip(no){return `<span class="pk-chip">${no}</span>`;}
+function pkRow(num,formHTML,ruleHTML,isFinal){
+  return `<div class="prakriya-row${isFinal?' final-row':''}">
+    <div class="pk-num">${num}</div>
+    <div class="pk-form">${formHTML}</div>
+    <div class="pk-rule">${ruleHTML}</div>
+  </div>`;
+}
+
+function generatePrakriya(stem, meaning_sutra, suffix_raw, final_form){
+  // ── Look up suffix metadata via suffixMapping dictionary ──
+  const meta = SUFFIX_META[suffix_raw] || {
+    it: getSuffixIt(suffix_raw),
+    clean: getSuffixClean(suffix_raw),
+    vibluk: true,
+    vrddhi: true
+  };
+
+  const clean    = meta.clean;              // phonetic form after it-lopa
+  const itLetters= meta.it;                 // anubandha letters to be dropped
+  const hasIt    = (itLetters !== '—');     // whether it-lopa step is needed
+  const hasVibluk= meta.vibluk;             // whether ṅas-luk step applies
+  const hasVrddhi= meta.vrddhi;             // whether ādivṛddhi applies
+
+  // ── Compute vṛddhi stem and terminal-drop base ────────────
+  const vrddhi_stem = applyAn(stem);
+  const vrddhi_changed = (vrddhi_stem !== stem) && hasVrddhi;
+  // Terminal vowel drop (6.4.148): strip final mātrā from vṛddhi stem
+  const base = /[ािीुूृेैोौ्]$/.test(vrddhi_stem)
+               ? vrddhi_stem.slice(0,-1) : vrddhi_stem;
+  const hasDrop = vrddhi_changed && (base !== vrddhi_stem);
+
+  // ── Extract clean final form (first of any vikalpa) ───────
+  const clean_final = final_form.split('/')[0].trim();
+
+  let rows = ''; let n = 0;
+
+  // ── Step 0: Input stem ────────────────────────────────────
+  rows += pkRow(n,
+    `<span>${stem}</span>`,
+    `प्रातिपदिकम् — Input nominal stem`,
+    false); n++;
+
+  // ── Step 1: Meaning sūtra — suffix injected ───────────────
+  // Show: stem + ṅas + raw_suffix (with anubandhas visible)
+  rows += pkRow(n,
+    `<span>${stem}</span>`
+    + `<span class="pk-join">+</span><span class="pk-suf pk-vib">ङस्</span>`
+    + `<span class="pk-join">+</span><span class="pk-suf">${suffix_raw}</span>`,
+    `${pkChip(meaning_sutra)} अर्थ-सूत्रेण प्रत्ययः — `
+    + `ङस्-विभक्तिः + ${suffix_raw}-प्रत्ययः`,
+    false); n++;
+
+  // ── Step 2: Taddhita-saṃjñā (4.1.76) ────────────────────
+  rows += pkRow(n,
+    `<span>${stem}</span>`
+    + `<span class="pk-join">+</span><span class="pk-suf pk-vib">ङस्</span>`
+    + `<span class="pk-join">+</span><span class="pk-suf">${suffix_raw}</span>`,
+    `${pkChip('4.1.76')} तद्धिताः — ${suffix_raw}-प्रत्ययस्य तद्धितसंज्ञा`,
+    false); n++;
+
+  // ── Step 3: Prātipadika-saṃjñā (1.2.46) ─────────────────
+  rows += pkRow(n,
+    `<span>${stem}</span>`
+    + `<span class="pk-join">+</span><span class="pk-suf pk-vib">ङस्</span>`
+    + `<span class="pk-join">+</span><span class="pk-suf">${suffix_raw}</span>`,
+    `${pkChip('1.2.46')} कृत्तद्धितसमासाश्च — प्रातिपदिकसंज्ञा`,
+    false); n++;
+
+  // ── Step 4: It-lopaḥ (1.3.3 / 1.3.8 / 1.3.9) ────────────
+  // Always show this step explicitly, even when it='—' (no it-letters)
+  // This fixes the '?' bug: clean suffix is now always from the dictionary
+  if(hasIt){
+    rows += pkRow(n,
+      `<span>${stem}</span>`
+      + `<span class="pk-join">+</span><span class="pk-suf pk-vib">अस्</span>`
+      + `<span class="pk-join">+</span><span class="pk-suf">${clean}</span>`,
+      `${pkChip('1.3.3')} हलन्त्यम् / ${pkChip('1.3.8')} लशकुतद्धिते`
+      + ` — ${suffix_raw} → इत्-लोपः (${itLetters} लुप्यते) → शेषः: ${clean}`,
+      false); n++;
+  } else {
+    // Suffix has no anubandhas — show the phonetically identical clean form
+    rows += pkRow(n,
+      `<span>${stem}</span>`
+      + `<span class="pk-join">+</span><span class="pk-suf pk-vib">अस्</span>`
+      + `<span class="pk-join">+</span><span class="pk-suf">${clean}</span>`,
+      `${pkChip('1.3.3')} हलन्त्यम् — ${suffix_raw}: इत्-संज्ञा नास्ति; `
+      + `प्रत्ययः अपरिवर्तितः (${clean})`,
+      false); n++;
+  }
+
+  // ── Step 5: Vibhakti-luk / Sub-luk (2.4.71) ──────────────
+  if(hasVibluk){
+    rows += pkRow(n,
+      `<span>${stem}</span>`
+      + `<span class="pk-join">+</span><span class="pk-suf">${clean}</span>`,
+      `${pkChip('2.4.71')} सुपो धातुप्रातिपदिकयोः — ङस्-विभक्तेः लुक्`
+      + ` (अस् → लुप्तम्)`,
+      false); n++;
+  }
+
+  // ── Step 6: Bha-saṃjñā (1.4.18) ─────────────────────────
+  rows += pkRow(n,
+    `<span>${stem}</span>`
+    + `<span class="pk-join">+</span><span class="pk-suf">${clean}</span>`,
+    `${pkChip('1.4.18')} यचि भम् — ${pkChip('6.4.1')} अङ्गस्य`
+    + ` — ${stem} इत्यस्य भ-संज्ञा (before vowel-initial ${clean})`,
+    false); n++;
+
+  // ── Step 7: Ādivṛddhi (7.2.117) ──────────────────────────
+  if(vrddhi_changed){
+    rows += pkRow(n,
+      `<span>${vrddhi_stem}</span>`
+      + `<span class="pk-join">+</span><span class="pk-suf">${clean}</span>`,
+      `${pkChip('7.2.117')} तद्धितेष्वचामादेः — आदिवृद्धिः`
+      + ` (${stem} → ${vrddhi_stem})`,
+      false); n++;
+  }
+
+  // ── Step 8: Antya-ac-lopaḥ (6.4.148) ────────────────────
+  if(hasDrop){
+    rows += pkRow(n,
+      `<span>${base}</span>`
+      + `<span class="pk-join">+</span><span class="pk-suf">${clean}</span>`,
+      `${pkChip('6.4.148')} यस्येति च — अन्त्य-अच्-लोपः`
+      + ` (${vrddhi_stem} → ${base})`,
+      false); n++;
+  }
+
+  // ── Final: derived form ───────────────────────────────────
+  rows += pkRow(n,
+    `<span class="pk-final">${clean_final}</span>`,
+    `व्युत्पन्नरूपम् — Final derived form`,
+    true);
+
+  return `<div class="prakriya-box">
+    <div class="prakriya-title">प्रक्रिया — Pāṇinian Step-by-step Derivation (${suffix_raw})</div>
+    ${rows}
+  </div>`;
+}
+
+
 function buildSidebar(){
   const el=document.getElementById('adhList');
   el.innerHTML=ADHIKARAS.map(a=>`
@@ -1529,29 +2816,37 @@ function buildChips(stem){
 }
 
 function renderQuestions(stem){
-  const vc=countVowels(stem);
+  const vc = countVowels(stem);
   const qs=getQuestions(curAdh,stem).filter(q=>{
     if(q.onlyFor){
+      // Pseudo-marker: __strī__ → show for strīpratyaya-ending words
+      // BUT NOT if stem is a bahvādi member (they always take Iñ, never Ḍhak)
+      // AND NOT if stem is in revatyādi (takes Ṭhak directly — no strī question needed)
       if(q.onlyFor.includes("__strī__")){
         if(stem in bahvadi_data) return false;
-        if(revatyadi_gana.has(stem)) return false;
-        if(kurvadi_gana.has(stem)) return false;
+        if(revatyadi_gana.has(stem)) return false;   // bypass: revatyādi → Ṭhak always
+        if(kurvadi_gana.has(stem))   return false;   // bypass: kurvādi → Ṇya always
         if(!isStripratyaya(stem)) return false;
       }
+      // Pseudo-marker: __ikar__ → show for short-i + dvyac words
+      // BUT NOT if stem is a bahvādi member
       else if(q.onlyFor.includes("__ikar__")){
         if(stem in bahvadi_data) return false;
         if(!(stem.endsWith('ि') && vc===2)) return false;
       }
+      // Pseudo-marker: __chatushpad__ → show for chatushpad_gana members
       else if(q.onlyFor.includes("__chatushpad__")){
         if(!chatushpad_gana.has(stem)) return false;
       }
+      // Pseudo-marker: __kula__ → show for stems ending in 'कुल' (but not bare 'कुल'/'महाकुल'/'दुष्कुल')
       else if(q.onlyFor.includes("__kula__")){
         const kulaExact=["कुल","महाकुल","दुष्कुल"];
         if(!stem.endsWith("कुल")||kulaExact.includes(stem)) return false;
       }
+      // Pseudo-marker: __kari__ → show for stems ending in 'कार', 'सेना', or stem=लक्षण
       else if(q.onlyFor.includes("__kari__")){
-        const isKariCandidate=stem.endsWith("कार")||stem.endsWith("सेना")
-          ||stem==="लक्षण"||stem==="तन्तुवाय"||stem==="नापित";
+        const isKariCandidate = stem.endsWith("कार") || stem.endsWith("सेना")
+          || stem==="लक्षण" || stem==="तन्तुवाय" || stem==="नापित";
         if(!isKariCandidate) return false;
       }
       else if(!q.onlyFor.includes(stem)) return false;
@@ -1571,208 +2866,49 @@ function renderQuestions(stem){
     </div>`).join('');
 }
 
-// ── generatePrakriya — Pāṇinian step-by-step derivation table ──────────────
-// suffix_raw  : the full pratyaya as named (e.g. 'अण्', 'इञ्', 'ढक्', 'यञ्')
-// suffix_anubandha : the it-letters (e.g. 'ण्', 'ञ्', 'क्') that undergo lopa
-// suffix_clean : what remains after it-lopa (e.g. 'अ', 'इ', 'एय', 'य')
-// meaning_sutra : e.g. '4.1.92', '4.2.37'
-// final_form  : the derived word as output by solve()
-// is_vikalpa  : true when the result has multiple forms (shown differently)
-
-// Suffix metadata: maps raw suffix → {anubandha, clean, vibhakti_luk, adivrddhi}
-const SUFFIX_META = {
-  'अण्':   {it:'ण्',   clean:'अ',    vibluk:true,  vrddhi:true},
-  'इञ्':   {it:'ञ्',   clean:'इ',    vibluk:true,  vrddhi:true},
-  'यञ्':   {it:'ञ्',   clean:'य',    vibluk:true,  vrddhi:true},
-  'अञ्':   {it:'ञ्',   clean:'अ',    vibluk:true,  vrddhi:true},
-  'ढक्':   {it:'ढ,क्', clean:'एय',   vibluk:true,  vrddhi:true},
-  'ढञ्':   {it:'ञ्',   clean:'एय',   vibluk:true,  vrddhi:true},
-  'ठक्':   {it:'ठ,क्', clean:'इक',   vibluk:true,  vrddhi:true},
-  'ठञ्':   {it:'ठ,ञ्', clean:'इक',   vibluk:true,  vrddhi:true},
-  'वुञ्':  {it:'ञ्',   clean:'अक',   vibluk:true,  vrddhi:true},
-  'फक्':   {it:'फ,क्', clean:'आयन',  vibluk:true,  vrddhi:true},
-  'फञ्':   {it:'फ,ञ्', clean:'आयन',  vibluk:true,  vrddhi:true},
-  'चफञ्':  {it:'फ,ञ्', clean:'आयन',  vibluk:true,  vrddhi:true},
-  'इञ् + अकङ्':{it:'ञ्,ङ्',clean:'इ+अक',vibluk:true,vrddhi:true},
-  'ण्य':   {it:'—',    clean:'य',    vibluk:true,  vrddhi:true},
-  'यत्':   {it:'त्',   clean:'य',    vibluk:true,  vrddhi:false},
-  'घ':     {it:'—',    clean:'इय',   vibluk:true,  vrddhi:false},
-  'छ':     {it:'—',    clean:'ईय',   vibluk:false, vrddhi:false},
-  'छण्':   {it:'ण्',   clean:'ईय',   vibluk:false, vrddhi:false},
-  'व्यत्': {it:'त्',   clean:'व्य',  vibluk:true,  vrddhi:false},
-  'ख':     {it:'—',    clean:'ईन',   vibluk:true,  vrddhi:false},
-  'खञ्':   {it:'ञ्',   clean:'ईन',   vibluk:true,  vrddhi:false},
-  'ण':     {it:'—',    clean:'अ+टाप्',vibluk:true, vrddhi:true},
-  'ण + टाप्':{it:'—',  clean:'आ',    vibluk:true,  vrddhi:true},
-  'ऐरक्':  {it:'क्',   clean:'ऐर',   vibluk:true,  vrddhi:true},
-  'ढ्रक्': {it:'क्',   clean:'एर',   vibluk:true,  vrddhi:true},
-  'आरक्':  {it:'क्',   clean:'आर',   vibluk:true,  vrddhi:true},
-  'फिञ्':  {it:'फ,ञ्', clean:'आयनि', vibluk:true,  vrddhi:true},
-  'तल्':   {it:'ल्',   clean:'ता',   vibluk:true,  vrddhi:false},
-  'इनि':   {it:'—',    clean:'इन्',  vibluk:true,  vrddhi:false},
-  'विधल्': {it:'ल्',   clean:'विध',  vibluk:false, vrddhi:false},
-  'भक्तल्':{it:'ल्',   clean:'भक्त', vibluk:false, vrddhi:false},
-  'णस्':   {it:'—',    clean:'अ',    vibluk:true,  vrddhi:true},
-  'डामहच्':{it:'च्',   clean:'आमह',  vibluk:false, vrddhi:false},
-  'डुलच्': {it:'ड,च्', clean:'उल',   vibluk:false, vrddhi:false},
-};
-
-function chip(no){return `<span class="pk-chip">${no}</span>`;}
-
-function row(num,formHTML,ruleHTML,isFinal){
-  return `<div class="prakriya-row${isFinal?' final-row':''}">
-    <div class="pk-num">${num}</div>
-    <div class="pk-form">${formHTML}</div>
-    <div class="pk-rule">${ruleHTML}</div>
-  </div>`;}
-
-function generatePrakriya(stem, meaning_sutra, suffix_raw, final_form){
-  // Look up suffix metadata; fall back to generic if unknown
-  const meta = SUFFIX_META[suffix_raw] || {it:'—', clean:'?', vibluk:true, vrddhi:true};
-
-  const vrddhi_stem = applyAn(stem);
-  const hasVrddhi   = (vrddhi_stem !== stem) && meta.vrddhi;
-  // terminal-vowel drop base (6.4.148)
-  const base = /[ािीुूृेैोौ्]$/.test(vrddhi_stem) ? vrddhi_stem.slice(0,-1) : vrddhi_stem;
-  const hasDrop = (base !== vrddhi_stem);
-
-  // Extract the clean final stem for display (first form if vikalpa)
-  const clean_final = final_form.split('/')[0].trim();
-
-  let rows = '';
-  let n = 0;
-
-  // ── Row 0: Input ──
-  rows += row(0,
-    `<span>${stem}</span>`,
-    `प्रातिपदिकम् (Input stem)`,
-    false);
-
-  // ── Row 1: Meaning sūtra — pratyaya injected ──
-  n=1;
-  rows += row(n,
-    `<span>${stem}</span><span class="pk-join">+</span><span class="pk-suf">ङस्</span><span class="pk-join">+</span><span class="pk-suf">${suffix_raw}</span>`,
-    `${chip(meaning_sutra)} अर्थ-सूत्रेण प्रत्ययः`,
-    false);
-
-  // ── Row 2: तद्धितसंज्ञा ──
-  n=2;
-  rows += row(n,
-    `<span>${stem}</span><span class="pk-join">+</span><span class="pk-suf">ङस्</span><span class="pk-join">+</span><span class="pk-suf">${suffix_raw}</span>`,
-    `${chip('4.1.76')} तद्धिताः — तद्धितसंज्ञा`,
-    false);
-
-  // ── Row 3: प्रातिपदिकसंज्ञा ──
-  n=3;
-  rows += row(n,
-    `<span>${stem}</span><span class="pk-join">+</span><span class="pk-suf">ङस्</span><span class="pk-join">+</span><span class="pk-suf">${suffix_raw}</span>`,
-    `${chip('1.2.46')} कृत्तद्धितसमासाश्च — प्रातिपदिकसंज्ञा`,
-    false);
-
-  // ── Row 4: इत्-लोपः (only if suffix has it-letters) ──
-  if(meta.it !== '—'){
-    n=4;
-    rows += row(n,
-      `<span>${stem}</span><span class="pk-join">+</span><span class="pk-suf">अस्</span><span class="pk-join">+</span><span class="pk-suf">${meta.clean}</span>`,
-      `${chip('1.3.3')} हलन्त्यम् / ${chip('1.3.8')} लशक्कतद्धिते — ${suffix_raw}-प्रत्ययस्य इत्-लोपः (${meta.it})`,
-      false);
-    n++;
-  } else {
-    n=4; n++;
-  }
-
-  // ── Row 5: विभक्ति-लुक् ──
-  if(meta.vibluk){
-    rows += row(n,
-      `<span>${stem}</span><span class="pk-join">+</span><span class="pk-suf">${meta.clean}</span>`,
-      `${chip('2.4.71')} सुपो धातुप्रातिपदिकयोः — ङस्-विभक्तेः लुक्`,
-      false);
-    n++;
-  }
-
-  // ── Row 6: भ-संज्ञा ──
-  rows += row(n,
-    `<span>${stem}</span><span class="pk-join">+</span><span class="pk-suf">${meta.clean}</span>`,
-    `${chip('1.4.18')} यचि भम् — ${chip('6.4.1')} अङ्गस्य — ${stem} इत्यस्य भ-संज्ञा`,
-    false);
-  n++;
-
-  // ── Row 7: आदिवृद्धिः ──
-  if(hasVrddhi){
-    rows += row(n,
-      `<span>${vrddhi_stem}</span><span class="pk-join">+</span><span class="pk-suf">${meta.clean}</span>`,
-      `${chip('7.2.117')} तद्धितेष्वचामादेः — आदिवृद्धिः`,
-      false);
-    n++;
-  }
-
-  // ── Row 8: अन्त्य-स्वरलोपः (6.4.148) ──
-  if(hasDrop){
-    rows += row(n,
-      `<span>${base}</span><span class="pk-join">+</span><span class="pk-suf">${meta.clean}</span>`,
-      `${chip('6.4.148')} यस्येति च — अन्त्य-अच्-लोपः (${vrddhi_stem} → ${base})`,
-      false);
-    n++;
-  }
-
-  // ── Row 9: Final form ──
-  rows += row(n,
-    `<span class="pk-final">${clean_final}</span>`,
-    `व्युत्पन्नरूपम् (Final derived form)`,
-    true);
-
-  return `<div class="prakriya-box">
-    <div class="prakriya-title">प्रक्रिया — Step-by-step Derivation</div>
-    ${rows}
-  </div>`;
-}
-
 function renderResult(stem,mc,sub,extra){
   const el=document.getElementById('resultArea');
   if(!stem){el.innerHTML='';return;}
   const res=solve(stem,mc,sub,extra);
   if(!res){el.innerHTML=`<div class="error-box">❌ क्षम्यताम् — '${stem}' अस्मिन् अर्थे नियमः न प्राप्तः।</div>`;return;}
 
-  // ── Extract final form(s) for display ──
+  // Parse derivation steps — handles single-line and multi-line (vikalpa/nipātana)
   const raw=res.derivation;
   const lines=raw.split('\n').map(s=>s.trim()).filter(Boolean);
   const isMultiLine=lines.length>1;
 
+  function buildLineSteps(line){
+    const steps=line.split('→').map(s=>s.trim()).filter(Boolean);
+    if(steps.length<2) return '';
+    return steps.map((s,i)=>{
+      const isFinal=i===steps.length-1;
+      const ruleMatch=s.match(/\[(.*?)\]/);
+      const rule=ruleMatch?ruleMatch[1]:'';
+      const clean=s.replace(/\[.*?\]/,'').trim();
+      return(i>0?`<span class="arrow">→</span>`:'')
+        +(rule?`<span class="step-rule">${rule}</span>`:'')
+        +`<span class="step${isFinal?' final':''}">${clean}</span>`;
+    }).join('');
+  }
+
+  const stepsHTML=isMultiLine
+    ? lines.map(l=>buildLineSteps(l)).filter(Boolean)
+        .map(h=>`<div class="deriv-line">${h}</div>`).join('')
+    : buildLineSteps(raw);
+  // Final form extraction:
+  // • Multi-line (Type B vikalpa: each line = one derivation chain): collect
+  //   last arrow-segment of EVERY line, join with ' / ' → all rūpas in one string.
+  // • Single-line with embedded '/' (Type A vikalpa): pass through unchanged.
+  // • Single-line plain: pass through unchanged.
   function lastSegment(line){
     const segs=line.split('→').map(s=>s.replace(/\[.*?\]/,'').trim()).filter(Boolean);
     return segs[segs.length-1]||line;
   }
-  const finalRaw=isMultiLine?lines.map(l=>lastSegment(l)).join(' / '):lastSegment(raw);
+  const finalRaw=isMultiLine
+    ? lines.map(l=>lastSegment(l)).join(' / ')
+    : lastSegment(raw);
+  // Plain text for history chip (first form only)
   const finalForm=finalRaw.split('/')[0].trim();
-
-  // ── Prakriyā: for vikalpa (multiple forms) keep old chip display;
-  //    for single forms use the new numbered table ──
-  let prakriyaHTML='';
-  if(isMultiLine){
-    // Vikalpa: show each derivation line as chips (old style — works well for these)
-    function buildLineSteps(line){
-      const steps=line.split('→').map(s=>s.trim()).filter(Boolean);
-      if(steps.length<2) return '';
-      return steps.map((s,i)=>{
-        const isFinal=i===steps.length-1;
-        const ruleMatch=s.match(/\[(.*?)\]/);
-        const rule=ruleMatch?ruleMatch[1]:'';
-        const clean=s.replace(/\[.*?\]/,'').trim();
-        return(i>0?`<span class="arrow">→</span>`:'')
-          +(rule?`<span class="step-rule">${rule}</span>`:'')
-          +`<span class="step${isFinal?' final':''}">${clean}</span>`;
-      }).join('');
-    }
-    const stepsHTML=lines.map(l=>buildLineSteps(l)).filter(Boolean)
-      .map(h=>`<div class="deriv-line">${h}</div>`).join('');
-    prakriyaHTML=`<div style="margin:16px 0">
-      <div class="deriv-label">व्युत्पत्तिः (विकल्पाः)</div>
-      <div class="deriv-steps">${stepsHTML}</div>
-    </div>`;
-  } else {
-    // Single form: full numbered prakriyā table
-    prakriyaHTML = generatePrakriya(stem, res.no, res.suffix, finalForm);
-  }
 
   el.innerHTML=`
     <div class="result-box" id="rb_${++animKey}">
@@ -1780,7 +2916,11 @@ function renderResult(stem,mc,sub,extra){
       <div class="res-sutra-text">${res.text}</div>
       <div class="res-final">${formatVikalpaFinal(finalRaw)}</div>
       <div class="res-pratyaya"><span class="pratyaya-badge">प्रत्ययः: ${res.suffix}</span></div>
-      ${prakriyaHTML}
+      ${stepsHTML?`
+      <div style="margin:16px 0">
+        <div class="deriv-label">व्युत्पत्तिः</div>
+        <div class="deriv-steps">${stepsHTML}</div>
+      </div>`:''}
       <div class="notes-grid">
         <div class="note-box">
           <span class="note-title">संस्कृतम्</span>
@@ -1793,6 +2933,7 @@ function renderResult(stem,mc,sub,extra){
       </div>
     </div>`;
 
+  // Save to history
   history.unshift({stem,adh:curAdh,sub,extra,finalForm,res});
   if(history.length>12) history.pop();
   renderHistory();
@@ -1811,6 +2952,7 @@ function renderHistory(){
     </button>`).join('');
 }
 
+// ── Actions ──────────────────────────────────────────────────
 function selectAdh(id){
   const a=ADHIKARAS.find(x=>x.id===id);if(!a||!a.ok)return;
   curAdh=id;answers={};
@@ -1862,6 +3004,7 @@ function loadHistory(i){
   renderResult(h.stem,h.adh,h.sub,h.extra);
 }
 
+// Input events
 document.getElementById('stemInput').addEventListener('keydown',e=>{if(e.key==='Enter')derive();});
 document.getElementById('stemInput').addEventListener('input',e=>{
   answers={};
@@ -1871,6 +3014,7 @@ document.getElementById('stemInput').addEventListener('input',e=>{
   document.getElementById('resultArea').innerHTML='';
 });
 
+// Init
 buildSidebar();
 buildChips('');
 renderQuestions('');
